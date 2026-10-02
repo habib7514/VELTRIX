@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<title>VELTRIX</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#050505;
+  color:#fff;
+  min-height:100vh;
+}
+
+:root{
+  --gold:#d6a84f;
+  --gold2:#f1c96b;
+  --dark:#080808;
+  --card:#111;
+  --line:#252525;
+  --muted:#999;
+}
+
+.app{
+  width:100%;
+  max-width:480px;
+  margin:auto;
+  min-height:100vh;
+  background:#070707;
+  padding-bottom:80px;
+}
+
+/* HEADER */
+.header{
+  padding:22px 18px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#f1c96b,#8c641f);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#050505;
+  font-size:21px;
+  font-weight:900;
+}
+
+.brand h1{
+  color:var(--gold2);
+  font-size:22px;
+  letter-spacing:2px;
+}
+
+.header-btn{
+  width:40px;
+  height:40px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#101010;
+  color:white;
+}
+
+/* PAGES */
+.page{
+  display:none;
+  padding:20px 16px;
+}
+
+.page.active{
+  display:block;
+}
+
+.title{
+  font-size:25px;
+  margin-bottom:7px;
+}
+
+.subtitle{
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:20px;
+}
+
+/* HERO */
+.hero{
+  border:1px solid #3b2d14;
+  background:linear-gradient(145deg,#151108,#0b0b0b);
+  border-radius:20px;
+  padding:22px;
+  margin-bottom:18px;
+}
+
+.hero small{
+  color:var(--gold2);
+}
+
+.hero h2{
+  font-size:28px;
+  margin:10px 0;
+}
+
+.hero p{
+  color:#aaa;
+  line-height:1.5;
+}
+
+/* CARDS */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:17px;
+}
+
+.card h3{
+  font-size:16px;
+  margin-bottom:8px;
+}
+
+.card p{
+  color:#999;
+  font-size:13px;
+}
+
+.gold{
+  color:var(--gold2);
+}
+
+/* BUTTONS */
+.btn{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:12px;
+  background:linear-gradient(135deg,#f0c667,#a67628);
+  color:#080808;
+  font-weight:800;
+  margin-top:12px;
+  cursor:pointer;
+}
+
+.btn.dark{
+  background:#171717;
+  color:white;
+  border:1px solid var(--line);
+}
+
+/* BALANCE */
+.balance{
+  font-size:31px;
+  font-weight:800;
+  color:var(--gold2);
+  margin:8px 0;
+}
+
+/* PLANS */
+.plan{
+  background:#101010;
+  border:1px solid #292929;
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:14px;
+}
+
+.plan.featured{
+  border-color:#7d5c22;
+}
+
+.price{
+  font-size:28px;
+  color:var(--gold2);
+  font-weight:800;
+  margin:10px 0;
+}
+
+.plan ul{
+  list-style:none;
+  color:#aaa;
+  line-height:2;
+  font-size:14px;
+}
+
+/* SIGNAL */
+.signal{
+  border:1px solid #302712;
+  background:#0e0e0e;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:15px;
+}
+
+.signal-head{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:12px;
+}
+
+.buy{
+  color:#4ade80;
+  font-weight:800;
+}
+
+.sell{
+  color:#f87171;
+  font-weight:800;
+}
+
+.signal-row{
+  display:flex;
+  justify-content:space-between;
+  padding:9px 0;
+  border-bottom:1px solid #1e1e1e;
+  color:#aaa;
+}
+
+.signal-row strong{
+  color:#fff;
+}
+
+/* ACADEMY */
+.course{
+  background:#101010;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:14px;
+}
+
+.course-icon{
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+.course h3{
+  margin-bottom:7px;
+}
+
+.course p{
+  color:#999;
+  font-size:13px;
+  line-height:1.5;
+}
+
+/* FORM */
+.form-group{
+  margin-bottom:14px;
+}
+
+.form-group label{
+  display:block;
+  color:#aaa;
+  font-size:13px;
+  margin-bottom:7px;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  background:#111;
+  border:1px solid #292929;
+  border-radius:11px;
+  color:#fff;
+  outline:none;
+}
+
+input:focus{
+  border-color:#80601f;
+}
+
+/* NAV */
+.nav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  max-width:480px;
+  height:68px;
+  background:#0b0b0b;
+  border-top:1px solid #242424;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:100;
+}
+
+.nav button{
+  background:none;
+  border:0;
+  color:#777;
+  font-size:11px;
+}
+
+.nav button span{
+  display:block;
+  font-size:21px;
+  margin-bottom:3px;
+}
+
+.nav button.active{
+  color:var(--gold2);
+}
+
+/* NOTICE */
+.notice{
+  padding:14px;
+  background:#111;
+  border-left:3px solid var(--gold);
+  border-radius:8px;
+  color:#aaa;
+  font-size:13px;
+  line-height:1.5;
+  margin-bottom:16px;
+}
+
+/* AUTH */
+.auth{
+  min-height:100vh;
+  max-width:480px;
+  margin:auto;
+  padding:35px 22px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.auth-logo{
+  width:75px;
+  height:75px;
+  border-radius:22px;
+  background:linear-gradient(135deg,#f1c96b,#8c641f);
+  color:#050505;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:34px;
+  font-weight:900;
+  margin:0 auto 20px;
+}
+
+.auth h1{
+  text-align:center;
+  color:var(--gold2);
+  letter-spacing:3px;
+  margin-bottom:7px;
+}
+
+.auth-sub{
+  text-align:center;
+  color:#888;
+  margin-bottom:28px;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.8);
+  z-index:500;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:100%;
+  max-width:430px;
+  background:#111;
+  border:1px solid #333;
+  border-radius:18px;
+  padding:22px;
+}
+
+.close{
+  float:right;
+  background:none;
+  border:0;
+  color:#aaa;
+  font-size:20px;
+}
+
+/* RESPONSIVE */
+@media(max-width:360px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- AUTH -->
+<div id="auth" class="auth">
+
+  <div class="auth-logo">V</div>
+
+  <h1>VELTRIX</h1>
+  <div class="auth-sub">
+    Digital Trading & Education
+  </div>
+
+  <div class="form-group">
+    <label>Email</label>
+    <input id="email" type="email" placeholder="Enter your email">
+  </div>
+
+  <div class="form-group">
+    <label>Password</label>
+    <input id="password" type="password" placeholder="Enter your password">
+  </div>
+
+  <button class="btn" onclick="login()">LOGIN</button>
+  <button class="btn dark" onclick="register()">CREATE ACCOUNT</button>
+
+  <div class="notice" style="margin-top:20px">
+    Access to premium trading signals and paid courses
+    requires an active subscription.
+  </div>
+
+</div>
+
+
+<!-- APP -->
+<div id="app" class="app" style="display:none">
+
+<header class="header">
+
+  <div class="brand">
+    <div class="logo">V</div>
+    <h1>VELTRIX</h1>
+  </div>
+
+  <button class="header-btn" onclick="showPage('notifications')">
+    🔔
+  </button>
+
+</header>
+
+
+<!-- HOME -->
+<section id="home" class="page active">
+
+  <div class="hero">
+
+    <small>VELTRIX PLATFORM</small>
+
+    <h2>Trade. Learn. Grow.</h2>
+
+    <p>
+      A professional platform for digital asset trading,
+      trading education and premium market signals.
+    </p>
+
+    <button class="btn" onclick="showPage('plans')">
+      VIEW PLANS
+    </button>
+
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>💰 Wallet</h3>
+      <p>Manage your digital assets and deposits.</p>
+    </div>
+
+    <div class="card">
+      <h3>📊 Signals</h3>
+      <p>Access premium trading opportunities.</p>
+    </div>
+
+    <div class="card">
+      <h3>🎓 Academy</h3>
+      <p>Learn trading through structured courses.</p>
+    </div>
+
+    <div class="card">
+      <h3>💎 VIP</h3>
+      <p>Unlock premium platform features.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- WALLET -->
+<section id="wallet" class="page">
+
+  <h2 class="title">Wallet</h2>
+  <p class="subtitle">Your digital asset account</p>
+
+  <div class="card">
+
+    <p>Available Balance</p>
+
+    <div class="balance">
+      $0.00
+    </div>
+
+    <button class="btn" onclick="showPage('deposit')">
+      DEPOSIT
+    </button>
+
+    <button class="btn dark">
+      WITHDRAW
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- DEPOSIT -->
+<section id="deposit" class="page">
+
+  <h2 class="title">Deposit</h2>
+  <p class="subtitle">Crypto deposit</p>
+
+  <div class="notice">
+    Network: <strong class="gold">BNB Smart Chain (BEP20)</strong>
+  </div>
+
+  <div class="card">
+
+    <p style="color:#aaa;font-size:13px">
+      Deposit Address
+    </p>
+
+    <p style="margin-top:10px;word-break:break-all">
+      Deposit wallet will be displayed here.
+    </p>
+
+    <button class="btn">
+      COPY ADDRESS
+    </button>
+
+  </div>
+
+  <div class="form-group" style="margin-top:18px">
+
+    <label>Transaction Hash</label>
+
+    <input
+      type="text"
+      placeholder="Paste transaction hash"
+    >
+
+  </div>
+
+  <button class="btn">
+    SUBMIT DEPOSIT
+  </button>
+
+</section>
+
+
+<!-- PLANS -->
+<section id="plans" class="page">
+
+  <h2 class="title">Plans</h2>
+  <p class="subtitle">Choose your VELTRIX access</p>
+
+  <div class="plan">
+
+    <h3>1 MONTH</h3>
+
+    <div class="price">$49</div>
+
+    <ul>
+      <li>✓ Premium signals</li>
+      <li>✓ Trading education</li>
+      <li>✓ Member notifications</li>
+      <li>✓ VIP access</li>
+    </ul>
+
+    <button class="btn" onclick="showPage('deposit')">
+      SELECT PLAN
+    </button>
+
+  </div>
+
+
+  <div class="plan featured">
+
+    <h3>3 MONTHS</h3>
+
+    <div class="price">$119</div>
+
+    <ul>
+      <li>✓ Premium signals</li>
+      <li>✓ Trading education</li>
+      <li>✓ Member notifications</li>
+      <li>✓ VIP access</li>
+    </ul>
+
+    <button class="btn" onclick="showPage('deposit')">
+      SELECT PLAN
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- SIGNALS -->
+<section id="signals" class="page">
+
+  <h2 class="title">Trading Signals</h2>
+  <p class="subtitle">Premium market analysis</p>
+
+  <div class="signal">
+
+    <div class="signal-head">
+      <strong>GOLD / XAUUSD</strong>
+      <span class="buy">BUY</span>
+    </div>
+
+    <div class="signal-row">
+      <span>Entry</span>
+      <strong>—</strong>
+    </div>
+
+    <div class="signal-row">
+      <span>Stop Loss</span>
+      <strong>—</strong>
+    </div>
+
+    <div class="signal-row">
+      <span>Take Profit</span>
+      <strong>—</strong>
+    </div>
+
+    <div class="signal-row">
+      <span>Timeframe</span>
+      <strong>1H</strong>
+    </div>
+
+  </div>
+
+  <div class="notice">
+    Trading signals are provided for informational and educational purposes.
+  </div>
+
+</section>
+
+
+<!-- ACADEMY -->
+<section id="academy" class="page">
+
+  <h2 class="title">VELTRIX Academy</h2>
+  <p class="subtitle">Learn trading step by step</p>
+
+  <div class="course">
+
+    <div class="course-icon">📘</div>
+
+    <h3>Trading Fundamentals</h3>
+
+    <p>
+      Learn market structure, orders, risk management
+      and essential trading concepts.
+    </p>
+
+    <button class="btn">
+      VIEW COURSE
+    </button>
+
+  </div>
+
+
+  <div class="course">
+
+    <div class="course-icon">📈</div>
+
+    <h3>Technical Analysis</h3>
+
+    <p>
+      Learn charts, trends, support, resistance,
+      indicators and price action.
+    </p>
+
+    <button class="btn">
+      VIEW COURSE
+    </button>
+
+  </div>
+
+
+  <div class="course">
+
+    <div class="course-icon">🎯</div>
+
+    <h3>Advanced Trading</h3>
+
+    <p>
+      Advanced strategies, trade management
+      and professional risk control.
+    </p>
+
+    <button class="btn">
+      VIEW COURSE
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- NOTIFICATIONS -->
+<section id="notifications" class="page">
+
+  <h2 class="title">Notifications</h2>
+  <p class="subtitle">Latest updates</p>
+
+  <div class="notice">
+    No new notifications.
+  </div>
+
+</section>
+
+
+<!-- PROFILE -->
+<section id="profile" class="page">
+
+  <h2 class="title">Profile</h2>
+  <p class="subtitle">Account settings</p>
+
+  <div class="card">
+
+    <p>Email</p>
+
+    <p id="profileEmail"
+       style="margin-top:8px;color:#ddd">
+       —
+    </p>
+
+    <button class="btn dark" onclick="logout()">
+      LOGOUT
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- NAVIGATION -->
+<nav class="nav">
+
+  <button class="active" onclick="showPage('home')">
+    <span>⌂</span>
+    Home
+  </button>
+
+  <button onclick="showPage('wallet')">
+    <span>◈</span>
+    Wallet
+  </button>
+
+  <button onclick="showPage('signals')">
+    <span>◉</span>
+    Signals
+  </button>
+
+  <button onclick="showPage('academy')">
+    <span>▣</span>
+    Academy
+  </button>
+
+  <button onclick="showPage('profile')">
+    <span>●</span>
+    Profile
+  </button>
+
+</nav>
+
+</div>
+
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+
+  <div class="modal-box">
+
+    <button class="close" onclick="closeModal()">×</button>
+
+    <h2 id="modalTitle">VELTRIX</h2>
+
+    <p id="modalText"
+       style="color:#aaa;margin-top:12px;line-height:1.5">
+    </p>
+
+  </div>
+
+</div>
+
+
+<script>
+
+let currentUser = null;
+
+
+/* AUTH DEMO */
+
+function login(){
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const password =
+    document.getElementById("password").value.trim();
+
+  if(!email || !password){
+
+    showModal(
+      "VELTRIX",
+      "Please enter your email and password."
+    );
+
+    return;
+  }
+
+  currentUser = email;
+
+  enterApp();
+}
+
+
+function register(){
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const password =
+    document.getElementById("password").value.trim();
+
+  if(!email || !password){
+
+    showModal(
+      "VELTRIX",
+      "Please enter your email and password."
+    );
+
+    return;
+  }
+
+  currentUser = email;
+
+  enterApp();
+}
+
+
+function enterApp(){
+
+  document.getElementById("auth").style.display="none";
+
+  document.getElementById("app").style.display="block";
+
+  document.getElementById("profileEmail").textContent =
+    currentUser;
+
+}
+
+
+function logout(){
+
+  currentUser = null;
+
+  document.getElementById("app").style.display="none";
+
+  document.getElementById("auth").style.display="flex";
+}
+
+
+/* NAVIGATION */
+
+function showPage(page){
+
+  document.querySelectorAll(".page")
+    .forEach(p => p.classList.remove("active"));
+
+  const target =
+    document.getElementById(page);
+
+  if(target){
+    target.classList.add("active");
+  }
+
+  document.querySelectorAll(".nav button")
+    .forEach(b => b.classList.remove("active"));
+
+}
+
+
+/* MODAL */
+
+function showModal(title,text){
+
+  document.getElementById("modalTitle")
+    .textContent = title;
+
+  document.getElementById("modalText")
+    .textContent = text;
+
+  document.getElementById("modal")
+    .classList.add("show");
+
+}
+
+
+function closeModal(){
+
+  document.getElementById("modal")
+    .classList.remove("show");
+
+}
+
+</script>
+
+</body>
+</html>
