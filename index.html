@@ -169,6 +169,11 @@ color:white;
 border:1px solid var(--line);
 }
 
+.btn:disabled{
+opacity:.6;
+cursor:not-allowed;
+}
+
 .balance{
 font-size:31px;
 font-weight:800;
@@ -430,15 +435,11 @@ grid-template-columns:1fr
 
 <body>
 
-<!-- ================================================= -->
 <!-- AUTH -->
-<!-- ================================================= -->
 
 <div id="auth" class="auth">
 
-<!-- ================================================= -->
-<!-- REGISTER SCREEN -->
-<!-- ================================================= -->
+<!-- REGISTER -->
 
 <div id="registerScreen" class="auth-screen active">
 
@@ -452,7 +453,6 @@ V
 Create your VELTRIX account
 </div>
 
-
 <div class="form-group">
 
 <label>Email</label>
@@ -464,7 +464,6 @@ placeholder="Enter your email"
 autocomplete="email">
 
 </div>
-
 
 <div class="form-group">
 
@@ -478,7 +477,6 @@ autocomplete="new-password">
 
 </div>
 
-
 <div class="form-group">
 
 <label>Confirm Password</label>
@@ -491,7 +489,6 @@ autocomplete="new-password">
 
 </div>
 
-
 <button
 id="registerButton"
 class="btn"
@@ -500,7 +497,6 @@ onclick="register()">
 CREATE ACCOUNT
 
 </button>
-
 
 <div class="notice" style="margin-top:20px">
 
@@ -511,9 +507,7 @@ Create your VELTRIX account to continue.
 </div>
 
 
-<!-- ================================================= -->
-<!-- LOGIN SCREEN -->
-<!-- ================================================= -->
+<!-- LOGIN -->
 
 <div id="loginScreen" class="auth-screen">
 
@@ -527,7 +521,6 @@ V
 Login to your VELTRIX account
 </div>
 
-
 <div class="form-group">
 
 <label>Email</label>
@@ -539,7 +532,6 @@ placeholder="Enter your email"
 autocomplete="email">
 
 </div>
-
 
 <div class="form-group">
 
@@ -553,7 +545,6 @@ autocomplete="current-password">
 
 </div>
 
-
 <button
 id="loginButton"
 class="btn"
@@ -562,7 +553,6 @@ onclick="login()">
 LOGIN
 
 </button>
-
 
 <div class="create-area">
 
@@ -585,15 +575,12 @@ CREATE ACCOUNT
 </div>
 
 
-<!-- ================================================= -->
 <!-- MAIN APP -->
-<!-- ================================================= -->
 
 <div
 id="app"
 class="app"
 style="display:none">
-
 
 <header class="header">
 
@@ -645,7 +632,6 @@ VIEW PLANS
 
 </div>
 
-
 <div class="grid">
 
 <div class="card">
@@ -658,7 +644,6 @@ Manage your digital assets and deposits.
 
 </div>
 
-
 <div class="card">
 
 <h3>📊 Signals</h3>
@@ -669,7 +654,6 @@ Access premium trading opportunities.
 
 </div>
 
-
 <div class="card">
 
 <h3>🎓 Academy</h3>
@@ -679,7 +663,6 @@ Learn trading through structured courses.
 </p>
 
 </div>
-
 
 <div class="card">
 
@@ -794,7 +777,6 @@ COPY ADDRESS
 
 </div>
 
-
 <div
 class="form-group"
 style="margin-top:18px">
@@ -809,7 +791,6 @@ type="text"
 placeholder="Paste transaction hash">
 
 </div>
-
 
 <button
 class="btn"
@@ -835,7 +816,6 @@ Plans
 <p class="subtitle">
 Choose your VELTRIX access
 </p>
-
 
 <div class="plan">
 
@@ -863,7 +843,6 @@ SELECT PLAN
 </button>
 
 </div>
-
 
 <div class="plan featured">
 
@@ -923,7 +902,6 @@ BUY
 
 </div>
 
-
 <div class="signal-row">
 
 <span>
@@ -935,7 +913,6 @@ Entry
 </strong>
 
 </div>
-
 
 <div class="signal-row">
 
@@ -949,7 +926,6 @@ Stop Loss
 
 </div>
 
-
 <div class="signal-row">
 
 <span>
@@ -961,7 +937,6 @@ Take Profit
 </strong>
 
 </div>
-
 
 <div class="signal-row">
 
@@ -976,7 +951,6 @@ Timeframe
 </div>
 
 </div>
-
 
 <div class="notice">
 
@@ -1001,7 +975,6 @@ VELTRIX Academy
 <p class="subtitle">
 Learn trading step by step
 </p>
-
 
 <div class="course">
 
@@ -1031,7 +1004,6 @@ VIEW COURSE
 
 </div>
 
-
 <div class="course">
 
 <div class="course-icon">
@@ -1059,7 +1031,6 @@ VIEW COURSE
 </button>
 
 </div>
-
 
 <div class="course">
 
@@ -1167,7 +1138,6 @@ Home
 
 </button>
 
-
 <button
 onclick="showPage('wallet')">
 
@@ -1175,7 +1145,6 @@ onclick="showPage('wallet')">
 Wallet
 
 </button>
-
 
 <button
 onclick="showPage('signals')">
@@ -1185,7 +1154,6 @@ Signals
 
 </button>
 
-
 <button
 onclick="showPage('academy')">
 
@@ -1193,7 +1161,6 @@ onclick="showPage('academy')">
 Academy
 
 </button>
-
 
 <button
 onclick="showPage('profile')">
@@ -1208,9 +1175,7 @@ Profile
 </div>
 
 
-<!-- ================================================= -->
 <!-- MODAL -->
-<!-- ================================================= -->
 
 <div
 id="modal"
@@ -1252,14 +1217,12 @@ const APPWRITE_ENDPOINT =
 const APPWRITE_PROJECT =
 "6abfcc0f000549caeb36";
 
-
 const client =
 new Appwrite.Client();
 
 client
 .setEndpoint(APPWRITE_ENDPOINT)
 .setProject(APPWRITE_PROJECT);
-
 
 const account =
 new Appwrite.Account(client);
@@ -1416,66 +1379,25 @@ button.textContent="CREATING ACCOUNT...";
 
 try{
 
-/*
-=================================================
-DIRECT APPWRITE REST REGISTRATION
-=================================================
+/* ============================================= */
+/* OFFICIAL APPWRITE ACCOUNT CREATION */
+/* ============================================= */
 
-We intentionally use the Appwrite REST endpoint
-here instead of account.create().
+await account.create({
 
-This sends email explicitly in the request body.
-*/
+userId:Appwrite.ID.unique(),
 
-const response =
-await fetch(
-APPWRITE_ENDPOINT + "/account",
-{
-method:"POST",
+email:email,
 
-headers:{
-"Content-Type":"application/json",
-"X-Appwrite-Project":APPWRITE_PROJECT
-},
+password:password
 
-body:JSON.stringify({
-
-userId:
-Appwrite.ID.unique(),
-
-email:
-email,
-
-password:
-password
-
-})
-
-}
-);
+});
 
 
-const data =
-await response.json();
-
-
-if(!response.ok){
-
-throw new Error(
-data.message ||
-"Unable to create account."
-);
-
-}
-
-
-/*
-ACCOUNT CREATED.
-
-DO NOT LOGIN AUTOMATICALLY.
-
-GO TO LOGIN SCREEN.
-*/
+/* ============================================= */
+/* ACCOUNT CREATED */
+/* NO AUTOMATIC LOGIN */
+/* ============================================= */
 
 showLogin(email);
 
@@ -1561,10 +1483,6 @@ button.textContent="LOGGING IN...";
 
 try{
 
-/*
-Appwrite SDK v17 login.
-*/
-
 await account.createEmailPasswordSession({
 
 email:email,
@@ -1576,7 +1494,6 @@ password:password
 
 currentUser =
 await account.get();
-
 
 enterApp();
 
@@ -1631,11 +1548,6 @@ document
 document
 .getElementById("auth")
 .style.display="flex";
-
-/*
-No session:
-FIRST SCREEN = REGISTER
-*/
 
 showRegister();
 
