@@ -280,6 +280,7 @@ border:1px solid #292929;
 border-radius:11px;
 color:#fff;
 outline:none;
+font-size:15px;
 }
 
 input:focus{
@@ -342,6 +343,7 @@ justify-content:center;
 
 .auth-screen{
 display:none;
+width:100%;
 }
 
 .auth-screen.active{
@@ -428,25 +430,31 @@ grid-template-columns:1fr
 
 <body>
 
-<!-- ========================= -->
+<!-- ================================================= -->
 <!-- AUTH -->
-<!-- ========================= -->
+<!-- ================================================= -->
 
 <div id="auth" class="auth">
 
-<!-- ========================= -->
-<!-- REGISTER SCREEN - FIRST -->
-<!-- ========================= -->
+<!-- ================================================= -->
+<!-- REGISTER -->
+<!-- FIRST SCREEN -->
+<!-- ================================================= -->
 
 <div id="registerScreen" class="auth-screen active">
 
-<div class="auth-logo">V</div>
+<div class="auth-logo">
+V
+</div>
 
 <h1>VELTRIX</h1>
 
 <div class="auth-sub">
 Create your VELTRIX account
 </div>
+
+
+<!-- EMAIL -->
 
 <div class="form-group">
 
@@ -460,6 +468,9 @@ autocomplete="email">
 
 </div>
 
+
+<!-- PASSWORD -->
+
 <div class="form-group">
 
 <label>Password</label>
@@ -471,6 +482,9 @@ placeholder="Enter your password"
 autocomplete="new-password">
 
 </div>
+
+
+<!-- CONFIRM PASSWORD -->
 
 <div class="form-group">
 
@@ -484,6 +498,9 @@ autocomplete="new-password">
 
 </div>
 
+
+<!-- CREATE ACCOUNT -->
+
 <button
 class="btn"
 onclick="register()">
@@ -491,6 +508,7 @@ onclick="register()">
 CREATE ACCOUNT
 
 </button>
+
 
 <div class="notice" style="margin-top:20px">
 
@@ -501,19 +519,24 @@ Create your VELTRIX account to continue.
 </div>
 
 
-<!-- ========================= -->
-<!-- LOGIN SCREEN -->
-<!-- ========================= -->
+<!-- ================================================= -->
+<!-- LOGIN -->
+<!-- ================================================= -->
 
 <div id="loginScreen" class="auth-screen">
 
-<div class="auth-logo">V</div>
+<div class="auth-logo">
+V
+</div>
 
 <h1>VELTRIX</h1>
 
 <div class="auth-sub">
 Login to your VELTRIX account
 </div>
+
+
+<!-- EMAIL -->
 
 <div class="form-group">
 
@@ -527,6 +550,9 @@ autocomplete="email">
 
 </div>
 
+
+<!-- PASSWORD -->
+
 <div class="form-group">
 
 <label>Password</label>
@@ -539,6 +565,9 @@ autocomplete="current-password">
 
 </div>
 
+
+<!-- LOGIN -->
+
 <button
 class="btn"
 onclick="login()">
@@ -546,6 +575,7 @@ onclick="login()">
 LOGIN
 
 </button>
+
 
 <div class="create-area">
 
@@ -568,14 +598,15 @@ CREATE ACCOUNT
 </div>
 
 
-<!-- ========================= -->
-<!-- APP -->
-<!-- ========================= -->
+<!-- ================================================= -->
+<!-- MAIN APP -->
+<!-- ================================================= -->
 
 <div
 id="app"
 class="app"
 style="display:none">
+
 
 <header class="header">
 
@@ -600,7 +631,9 @@ onclick="showPage('notifications')">
 </header>
 
 
+<!-- ================================================= -->
 <!-- HOME -->
+<!-- ================================================= -->
 
 <section
 id="home"
@@ -627,6 +660,7 @@ VIEW PLANS
 
 </div>
 
+
 <div class="grid">
 
 <div class="card">
@@ -639,6 +673,7 @@ Manage your digital assets and deposits.
 
 </div>
 
+
 <div class="card">
 
 <h3>📊 Signals</h3>
@@ -649,6 +684,7 @@ Access premium trading opportunities.
 
 </div>
 
+
 <div class="card">
 
 <h3>🎓 Academy</h3>
@@ -658,6 +694,7 @@ Learn trading through structured courses.
 </p>
 
 </div>
+
 
 <div class="card">
 
@@ -674,7 +711,9 @@ Unlock premium platform features.
 </section>
 
 
+<!-- ================================================= -->
 <!-- WALLET -->
+<!-- ================================================= -->
 
 <section
 id="wallet"
@@ -722,7 +761,9 @@ WITHDRAW
 </section>
 
 
+<!-- ================================================= -->
 <!-- DEPOSIT -->
+<!-- ================================================= -->
 
 <section
 id="deposit"
@@ -772,6 +813,7 @@ COPY ADDRESS
 
 </div>
 
+
 <div
 class="form-group"
 style="margin-top:18px">
@@ -787,6 +829,7 @@ placeholder="Paste transaction hash">
 
 </div>
 
+
 <button
 class="btn"
 onclick="submitDeposit()">
@@ -798,7 +841,9 @@ SUBMIT DEPOSIT
 </section>
 
 
+<!-- ================================================= -->
 <!-- PLANS -->
+<!-- ================================================= -->
 
 <section
 id="plans"
@@ -811,6 +856,7 @@ Plans
 <p class="subtitle">
 Choose your VELTRIX access
 </p>
+
 
 <div class="plan">
 
@@ -838,6 +884,7 @@ SELECT PLAN
 </button>
 
 </div>
+
 
 <div class="plan featured">
 
@@ -869,7 +916,9 @@ SELECT PLAN
 </section>
 
 
+<!-- ================================================= -->
 <!-- SIGNALS -->
+<!-- ================================================= -->
 
 <section
 id="signals"
@@ -897,6 +946,7 @@ BUY
 
 </div>
 
+
 <div class="signal-row">
 
 <span>
@@ -908,6 +958,7 @@ Entry
 </strong>
 
 </div>
+
 
 <div class="signal-row">
 
@@ -921,6 +972,7 @@ Stop Loss
 
 </div>
 
+
 <div class="signal-row">
 
 <span>
@@ -932,6 +984,7 @@ Take Profit
 </strong>
 
 </div>
+
 
 <div class="signal-row">
 
@@ -947,6 +1000,7 @@ Timeframe
 
 </div>
 
+
 <div class="notice">
 
 Trading signals are provided for informational and
@@ -957,7 +1011,9 @@ educational purposes.
 </section>
 
 
+<!-- ================================================= -->
 <!-- ACADEMY -->
+<!-- ================================================= -->
 
 <section
 id="academy"
@@ -970,6 +1026,7 @@ VELTRIX Academy
 <p class="subtitle">
 Learn trading step by step
 </p>
+
 
 <div class="course">
 
@@ -999,6 +1056,7 @@ VIEW COURSE
 
 </div>
 
+
 <div class="course">
 
 <div class="course-icon">
@@ -1026,6 +1084,7 @@ VIEW COURSE
 </button>
 
 </div>
+
 
 <div class="course">
 
@@ -1058,7 +1117,9 @@ VIEW COURSE
 </section>
 
 
+<!-- ================================================= -->
 <!-- NOTIFICATIONS -->
+<!-- ================================================= -->
 
 <section
 id="notifications"
@@ -1079,7 +1140,9 @@ No new notifications.
 </section>
 
 
+<!-- ================================================= -->
 <!-- PROFILE -->
+<!-- ================================================= -->
 
 <section
 id="profile"
@@ -1120,7 +1183,9 @@ LOGOUT
 </section>
 
 
-<!-- NAV -->
+<!-- ================================================= -->
+<!-- NAVIGATION -->
+<!-- ================================================= -->
 
 <nav class="nav">
 
@@ -1133,6 +1198,7 @@ Home
 
 </button>
 
+
 <button
 onclick="showPage('wallet')">
 
@@ -1140,6 +1206,7 @@ onclick="showPage('wallet')">
 Wallet
 
 </button>
+
 
 <button
 onclick="showPage('signals')">
@@ -1149,6 +1216,7 @@ Signals
 
 </button>
 
+
 <button
 onclick="showPage('academy')">
 
@@ -1156,6 +1224,7 @@ onclick="showPage('academy')">
 Academy
 
 </button>
+
 
 <button
 onclick="showPage('profile')">
@@ -1170,7 +1239,9 @@ Profile
 </div>
 
 
+<!-- ================================================= -->
 <!-- MODAL -->
+<!-- ================================================= -->
 
 <div
 id="modal"
@@ -1202,9 +1273,9 @@ style="color:#aaa;margin-top:12px;line-height:1.5">
 
 <script>
 
-/* ========================= */
-/* APPWRITE */
-/* ========================= */
+/* ================================================= */
+/* APPWRITE CONFIG */
+/* ================================================= */
 
 const client = new Appwrite.Client();
 
@@ -1215,74 +1286,94 @@ client
 const account = new Appwrite.Account(client);
 
 
-/* ========================= */
+/* ================================================= */
 /* STATE */
-/* ========================= */
+/* ================================================= */
 
 let currentUser = null;
 let selectedPlan = null;
 
 
-/* ========================= */
-/* SHOW REGISTER */
-/* ========================= */
+/* ================================================= */
+/* REGISTER SCREEN */
+/* ================================================= */
 
 function showRegister(){
 
-document.getElementById("loginScreen")
+document
+.getElementById("loginScreen")
 .classList.remove("active");
 
-document.getElementById("registerScreen")
+document
+.getElementById("registerScreen")
 .classList.add("active");
 
-document.getElementById("registerEmail").value="";
-document.getElementById("registerPassword").value="";
-document.getElementById("registerConfirmPassword").value="";
+document
+.getElementById("registerEmail")
+.value="";
+
+document
+.getElementById("registerPassword")
+.value="";
+
+document
+.getElementById("registerConfirmPassword")
+.value="";
 
 }
 
 
-/* ========================= */
-/* SHOW LOGIN */
-/* ========================= */
+/* ================================================= */
+/* LOGIN SCREEN */
+/* ================================================= */
 
 function showLogin(email=""){
 
-document.getElementById("registerScreen")
+document
+.getElementById("registerScreen")
 .classList.remove("active");
 
-document.getElementById("loginScreen")
+document
+.getElementById("loginScreen")
 .classList.add("active");
 
-document.getElementById("loginEmail").value=email;
-document.getElementById("loginPassword").value="";
+document
+.getElementById("loginEmail")
+.value=email;
+
+document
+.getElementById("loginPassword")
+.value="";
 
 }
 
 
-/* ========================= */
+/* ================================================= */
 /* CHECK SESSION */
-/* ========================= */
+/* ================================================= */
 
 async function checkSession(){
 
 try{
 
-const user = await account.get();
+const user =
+await account.get();
 
-currentUser = user;
+currentUser=user;
 
 enterApp();
 
 }catch(error){
 
-currentUser = null;
+currentUser=null;
 
-/*
-IMPORTANT:
-If there is no active session,
-always start with REGISTER.
-*/
+document
+.getElementById("app")
+.style.display="none";
+
+document
+.getElementById("auth")
+.style.display="flex";
 
 showRegister();
 
@@ -1291,31 +1382,58 @@ showRegister();
 }
 
 
-/* ========================= */
+/* ================================================= */
 /* REGISTER */
-/* ========================= */
+/* ================================================= */
 
 async function register(){
 
 const email =
-document.getElementById("registerEmail")
+document
+.getElementById("registerEmail")
 .value
 .trim();
 
 const password =
-document.getElementById("registerPassword")
+document
+.getElementById("registerPassword")
 .value;
 
 const confirmPassword =
-document.getElementById("registerConfirmPassword")
+document
+.getElementById("registerConfirmPassword")
 .value;
 
 
-if(!email || !password || !confirmPassword){
+if(!email){
 
 showModal(
 "VELTRIX",
-"Please enter your email, password and confirm password."
+"Please enter your email."
+);
+
+return;
+
+}
+
+
+if(!password){
+
+showModal(
+"VELTRIX",
+"Please enter your password."
+);
+
+return;
+
+}
+
+
+if(!confirmPassword){
+
+showModal(
+"VELTRIX",
+"Please confirm your password."
 );
 
 return;
@@ -1349,29 +1467,39 @@ return;
 
 try{
 
-await account.create(
-Appwrite.ID.unique(),
-email,
-password
-);
+/*
+IMPORTANT:
+Appwrite SDK v17 uses an object
+for account.create().
+*/
+
+await account.create({
+
+userId: Appwrite.ID.unique(),
+
+email: email,
+
+password: password
+
+});
 
 
 /*
-REGISTRATION SUCCESS
-
-DO NOT LOGIN AUTOMATICALLY.
-
-GO TO LOGIN SCREEN.
+Registration successful.
+DO NOT create a session here.
+Go to LOGIN.
 */
 
 showLogin(email);
 
 showModal(
 "Account Created",
-"Your VELTRIX account has been created successfully. Please login with your email and password."
+"Your VELTRIX account has been created successfully. Please enter your password to login."
 );
 
 }catch(error){
+
+console.error("REGISTER ERROR:",error);
 
 showModal(
 "Registration failed",
@@ -1383,19 +1511,21 @@ error.message || "Unable to create account."
 }
 
 
-/* ========================= */
+/* ================================================= */
 /* LOGIN */
-/* ========================= */
+/* ================================================= */
 
 async function login(){
 
 const email =
-document.getElementById("loginEmail")
+document
+.getElementById("loginEmail")
 .value
 .trim();
 
 const password =
-document.getElementById("loginPassword")
+document
+.getElementById("loginPassword")
 .value;
 
 
@@ -1413,10 +1543,18 @@ return;
 
 try{
 
-await account.createEmailPasswordSession(
-email,
-password
-);
+/*
+Appwrite v17 login method.
+*/
+
+await account.createEmailPasswordSession({
+
+email: email,
+
+password: password
+
+});
+
 
 currentUser =
 await account.get();
@@ -1424,6 +1562,8 @@ await account.get();
 enterApp();
 
 }catch(error){
+
+console.error("LOGIN ERROR:",error);
 
 showModal(
 "Login failed",
@@ -1435,22 +1575,25 @@ error.message || "Unable to login."
 }
 
 
-/* ========================= */
-/* ENTER APP */
-/* ========================= */
+/* ================================================= */
+/* ENTER MAIN APP */
+/* ================================================= */
 
 function enterApp(){
 
-document.getElementById("auth")
+document
+.getElementById("auth")
 .style.display="none";
 
-document.getElementById("app")
+document
+.getElementById("app")
 .style.display="block";
 
 
 if(currentUser){
 
-document.getElementById("profileEmail")
+document
+.getElementById("profileEmail")
 .textContent =
 currentUser.email || "—";
 
@@ -1461,16 +1604,18 @@ showPage("home");
 }
 
 
-/* ========================= */
+/* ================================================= */
 /* LOGOUT */
-/* ========================= */
+/* ================================================= */
 
 async function logout(){
 
 try{
 
 await account.deleteSession({
+
 sessionId:"current"
+
 });
 
 }catch(error){
@@ -1481,10 +1626,12 @@ console.log(error);
 
 currentUser=null;
 
-document.getElementById("app")
+document
+.getElementById("app")
 .style.display="none";
 
-document.getElementById("auth")
+document
+.getElementById("auth")
 .style.display="flex";
 
 showRegister();
@@ -1492,13 +1639,14 @@ showRegister();
 }
 
 
-/* ========================= */
+/* ================================================= */
 /* NAVIGATION */
-/* ========================= */
+/* ================================================= */
 
 function showPage(page){
 
-document.querySelectorAll(".page")
+document
+.querySelectorAll(".page")
 .forEach(function(p){
 
 p.classList.remove("active");
@@ -1516,7 +1664,8 @@ target.classList.add("active");
 }
 
 
-document.querySelectorAll(".nav button")
+document
+.querySelectorAll(".nav button")
 .forEach(function(b){
 
 b.classList.remove("active");
@@ -1526,36 +1675,42 @@ b.classList.remove("active");
 }
 
 
-/* ========================= */
+/* ================================================= */
 /* PLAN */
-/* ========================= */
+/* ================================================= */
 
 function selectPlan(name,price){
 
 selectedPlan={
+
 name:name,
+
 price:price
+
 };
 
 showPage("deposit");
 
 showModal(
 "Plan selected",
-name+" plan selected for "+price+
+name+
+" plan selected for "+
+price+
 ". Complete your crypto deposit and submit the transaction hash for admin review."
 );
 
 }
 
 
-/* ========================= */
+/* ================================================= */
 /* DEPOSIT */
-/* ========================= */
+/* ================================================= */
 
 function submitDeposit(){
 
 const hash =
-document.getElementById("transactionHash")
+document
+.getElementById("transactionHash")
 .value
 .trim();
 
@@ -1592,19 +1747,22 @@ showModal(
 }
 
 
-/* ========================= */
+/* ================================================= */
 /* MODAL */
-/* ========================= */
+/* ================================================= */
 
 function showModal(title,text){
 
-document.getElementById("modalTitle")
+document
+.getElementById("modalTitle")
 .textContent=title;
 
-document.getElementById("modalText")
+document
+.getElementById("modalText")
 .textContent=text;
 
-document.getElementById("modal")
+document
+.getElementById("modal")
 .classList.add("show");
 
 }
@@ -1612,15 +1770,16 @@ document.getElementById("modal")
 
 function closeModal(){
 
-document.getElementById("modal")
+document
+.getElementById("modal")
 .classList.remove("show");
 
 }
 
 
-/* ========================= */
+/* ================================================= */
 /* START */
-/* ========================= */
+/* ================================================= */
 
 checkSession();
 
