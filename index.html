@@ -6,404 +6,394 @@
 <meta name="theme-color" content="#050505">
 <title>VELTRIX</title>
 
-<!-- APPWRITE WEB SDK -->
 <script src="https://cdn.jsdelivr.net/npm/appwrite@17.0.0"></script>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#050505;
-  color:#fff;
-  min-height:100vh;
+font-family:Arial,Helvetica,sans-serif;
+background:#050505;
+color:#fff;
+min-height:100vh;
 }
 
 :root{
-  --gold:#d6a84f;
-  --gold2:#f1c96b;
-  --dark:#080808;
-  --card:#111;
-  --line:#252525;
-  --muted:#999;
+--gold:#d6a84f;
+--gold2:#f1c96b;
+--dark:#080808;
+--card:#111;
+--line:#252525;
+--muted:#999;
 }
 
 .app{
-  width:100%;
-  max-width:480px;
-  margin:auto;
-  min-height:100vh;
-  background:#070707;
-  padding-bottom:80px;
+width:100%;
+max-width:480px;
+margin:auto;
+min-height:100vh;
+background:#070707;
+padding-bottom:80px;
 }
 
 .header{
-  padding:22px 18px 14px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  border-bottom:1px solid var(--line);
+padding:22px 18px 14px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+border-bottom:1px solid var(--line);
 }
 
 .brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
+display:flex;
+align-items:center;
+gap:10px;
 }
 
 .logo{
-  width:42px;
-  height:42px;
-  border-radius:12px;
-  background:linear-gradient(135deg,#f1c96b,#8c641f);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#050505;
-  font-size:21px;
-  font-weight:900;
+width:42px;
+height:42px;
+border-radius:12px;
+background:linear-gradient(135deg,#f1c96b,#8c641f);
+display:flex;
+align-items:center;
+justify-content:center;
+color:#050505;
+font-size:21px;
+font-weight:900;
 }
 
 .brand h1{
-  color:var(--gold2);
-  font-size:22px;
-  letter-spacing:2px;
+color:var(--gold2);
+font-size:22px;
+letter-spacing:2px;
 }
 
 .header-btn{
-  width:40px;
-  height:40px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:#101010;
-  color:white;
+width:40px;
+height:40px;
+border:1px solid var(--line);
+border-radius:12px;
+background:#101010;
+color:white;
 }
 
 .page{
-  display:none;
-  padding:20px 16px;
+display:none;
+padding:20px 16px;
 }
 
 .page.active{
-  display:block;
+display:block;
 }
 
 .title{
-  font-size:25px;
-  margin-bottom:7px;
+font-size:25px;
+margin-bottom:7px;
 }
 
 .subtitle{
-  color:var(--muted);
-  font-size:14px;
-  margin-bottom:20px;
+color:var(--muted);
+font-size:14px;
+margin-bottom:20px;
 }
 
 .hero{
-  border:1px solid #3b2d14;
-  background:linear-gradient(145deg,#151108,#0b0b0b);
-  border-radius:20px;
-  padding:22px;
-  margin-bottom:18px;
+border:1px solid #3b2d14;
+background:linear-gradient(145deg,#151108,#0b0b0b);
+border-radius:20px;
+padding:22px;
+margin-bottom:18px;
 }
 
-.hero small{
-  color:var(--gold2);
-}
+.hero small{color:var(--gold2)}
 
 .hero h2{
-  font-size:28px;
-  margin:10px 0;
+font-size:28px;
+margin:10px 0;
 }
 
 .hero p{
-  color:#aaa;
-  line-height:1.5;
+color:#aaa;
+line-height:1.5;
 }
 
 .grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
 }
 
 .card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:17px;
+background:var(--card);
+border:1px solid var(--line);
+border-radius:16px;
+padding:17px;
 }
 
 .card h3{
-  font-size:16px;
-  margin-bottom:8px;
+font-size:16px;
+margin-bottom:8px;
 }
 
 .card p{
-  color:#999;
-  font-size:13px;
+color:#999;
+font-size:13px;
 }
 
-.gold{
-  color:var(--gold2);
-}
+.gold{color:var(--gold2)}
 
 .btn{
-  width:100%;
-  padding:14px;
-  border:0;
-  border-radius:12px;
-  background:linear-gradient(135deg,#f0c667,#a67628);
-  color:#080808;
-  font-weight:800;
-  margin-top:12px;
-  cursor:pointer;
+width:100%;
+padding:14px;
+border:0;
+border-radius:12px;
+background:linear-gradient(135deg,#f0c667,#a67628);
+color:#080808;
+font-weight:800;
+margin-top:12px;
+cursor:pointer;
 }
 
 .btn.dark{
-  background:#171717;
-  color:white;
-  border:1px solid var(--line);
+background:#171717;
+color:white;
+border:1px solid var(--line);
 }
 
 .balance{
-  font-size:31px;
-  font-weight:800;
-  color:var(--gold2);
-  margin:8px 0;
+font-size:31px;
+font-weight:800;
+color:var(--gold2);
+margin:8px 0;
 }
 
 .plan{
-  background:#101010;
-  border:1px solid #292929;
-  border-radius:18px;
-  padding:20px;
-  margin-bottom:14px;
+background:#101010;
+border:1px solid #292929;
+border-radius:18px;
+padding:20px;
+margin-bottom:14px;
 }
 
-.plan.featured{
-  border-color:#7d5c22;
-}
+.plan.featured{border-color:#7d5c22}
 
 .price{
-  font-size:28px;
-  color:var(--gold2);
-  font-weight:800;
-  margin:10px 0;
+font-size:28px;
+color:var(--gold2);
+font-weight:800;
+margin:10px 0;
 }
 
 .plan ul{
-  list-style:none;
-  color:#aaa;
-  line-height:2;
-  font-size:14px;
+list-style:none;
+color:#aaa;
+line-height:2;
+font-size:14px;
 }
 
 .signal{
-  border:1px solid #302712;
-  background:#0e0e0e;
-  border-radius:18px;
-  padding:18px;
-  margin-bottom:15px;
+border:1px solid #302712;
+background:#0e0e0e;
+border-radius:18px;
+padding:18px;
+margin-bottom:15px;
 }
 
 .signal-head{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:12px;
+display:flex;
+justify-content:space-between;
+margin-bottom:12px;
 }
 
 .buy{
-  color:#4ade80;
-  font-weight:800;
+color:#4ade80;
+font-weight:800;
 }
 
 .sell{
-  color:#f87171;
-  font-weight:800;
+color:#f87171;
+font-weight:800;
 }
 
 .signal-row{
-  display:flex;
-  justify-content:space-between;
-  padding:9px 0;
-  border-bottom:1px solid #1e1e1e;
-  color:#aaa;
+display:flex;
+justify-content:space-between;
+padding:9px 0;
+border-bottom:1px solid #1e1e1e;
+color:#aaa;
 }
 
-.signal-row strong{
-  color:#fff;
-}
+.signal-row strong{color:#fff}
 
 .course{
-  background:#101010;
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:18px;
-  margin-bottom:14px;
+background:#101010;
+border:1px solid var(--line);
+border-radius:18px;
+padding:18px;
+margin-bottom:14px;
 }
 
 .course-icon{
-  font-size:30px;
-  margin-bottom:10px;
+font-size:30px;
+margin-bottom:10px;
 }
 
-.course h3{
-  margin-bottom:7px;
-}
+.course h3{margin-bottom:7px}
 
 .course p{
-  color:#999;
-  font-size:13px;
-  line-height:1.5;
+color:#999;
+font-size:13px;
+line-height:1.5;
 }
 
 .form-group{
-  margin-bottom:14px;
+margin-bottom:14px;
 }
 
 .form-group label{
-  display:block;
-  color:#aaa;
-  font-size:13px;
-  margin-bottom:7px;
+display:block;
+color:#aaa;
+font-size:13px;
+margin-bottom:7px;
 }
 
 input{
-  width:100%;
-  padding:14px;
-  background:#111;
-  border:1px solid #292929;
-  border-radius:11px;
-  color:#fff;
-  outline:none;
+width:100%;
+padding:14px;
+background:#111;
+border:1px solid #292929;
+border-radius:11px;
+color:#fff;
+outline:none;
 }
 
-input:focus{
-  border-color:#80601f;
-}
+input:focus{border-color:#80601f}
 
 .nav{
-  position:fixed;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:100%;
-  max-width:480px;
-  height:68px;
-  background:#0b0b0b;
-  border-top:1px solid #242424;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  z-index:100;
+position:fixed;
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+width:100%;
+max-width:480px;
+height:68px;
+background:#0b0b0b;
+border-top:1px solid #242424;
+display:flex;
+justify-content:space-around;
+align-items:center;
+z-index:100;
 }
 
 .nav button{
-  background:none;
-  border:0;
-  color:#777;
-  font-size:11px;
+background:none;
+border:0;
+color:#777;
+font-size:11px;
 }
 
 .nav button span{
-  display:block;
-  font-size:21px;
-  margin-bottom:3px;
+display:block;
+font-size:21px;
+margin-bottom:3px;
 }
 
-.nav button.active{
-  color:var(--gold2);
-}
+.nav button.active{color:var(--gold2)}
 
 .notice{
-  padding:14px;
-  background:#111;
-  border-left:3px solid var(--gold);
-  border-radius:8px;
-  color:#aaa;
-  font-size:13px;
-  line-height:1.5;
-  margin-bottom:16px;
+padding:14px;
+background:#111;
+border-left:3px solid var(--gold);
+border-radius:8px;
+color:#aaa;
+font-size:13px;
+line-height:1.5;
+margin-bottom:16px;
 }
 
 .auth{
-  min-height:100vh;
-  max-width:480px;
-  margin:auto;
-  padding:35px 22px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
+min-height:100vh;
+max-width:480px;
+margin:auto;
+padding:35px 22px;
+display:flex;
+flex-direction:column;
+justify-content:center;
 }
 
 .auth-logo{
-  width:75px;
-  height:75px;
-  border-radius:22px;
-  background:linear-gradient(135deg,#f1c96b,#8c641f);
-  color:#050505;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:34px;
-  font-weight:900;
-  margin:0 auto 20px;
+width:75px;
+height:75px;
+border-radius:22px;
+background:linear-gradient(135deg,#f1c96b,#8c641f);
+color:#050505;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:34px;
+font-weight:900;
+margin:0 auto 20px;
 }
 
 .auth h1{
-  text-align:center;
-  color:var(--gold2);
-  letter-spacing:3px;
-  margin-bottom:7px;
+text-align:center;
+color:var(--gold2);
+letter-spacing:3px;
+margin-bottom:7px;
 }
 
 .auth-sub{
-  text-align:center;
-  color:#888;
-  margin-bottom:28px;
+text-align:center;
+color:#888;
+margin-bottom:28px;
+}
+
+.auth-link{
+text-align:center;
+margin-top:16px;
+color:#888;
+font-size:14px;
+}
+
+.auth-link span{
+color:var(--gold2);
+font-weight:bold;
+cursor:pointer;
 }
 
 .modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.8);
-  z-index:500;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.8);
+z-index:500;
+align-items:center;
+justify-content:center;
+padding:20px;
 }
 
-.modal.show{
-  display:flex;
-}
+.modal.show{display:flex}
 
 .modal-box{
-  width:100%;
-  max-width:430px;
-  background:#111;
-  border:1px solid #333;
-  border-radius:18px;
-  padding:22px;
+width:100%;
+max-width:430px;
+background:#111;
+border:1px solid #333;
+border-radius:18px;
+padding:22px;
 }
 
 .close{
-  float:right;
-  background:none;
-  border:0;
-  color:#aaa;
-  font-size:20px;
+float:right;
+background:none;
+border:0;
+color:#aaa;
+font-size:20px;
 }
 
 @media(max-width:360px){
-  .grid{
-    grid-template-columns:1fr;
-  }
+.grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -413,36 +403,42 @@ input:focus{
 <!-- AUTH -->
 <div id="auth" class="auth">
 
-  <div class="auth-logo">V</div>
+<div class="auth-logo">V</div>
 
-  <h1>VELTRIX</h1>
+<h1>VELTRIX</h1>
 
-  <div class="auth-sub">
-    Digital Trading & Education
-  </div>
+<div id="authSubtitle" class="auth-sub">
+Digital Trading & Education
+</div>
 
-  <div class="form-group">
-    <label>Email</label>
-    <input id="email" type="email" placeholder="Enter your email">
-  </div>
+<div class="form-group">
+<label>Email</label>
+<input id="email" type="email" placeholder="Enter your email">
+</div>
 
-  <div class="form-group">
-    <label>Password</label>
-    <input id="password" type="password" placeholder="Enter your password">
-  </div>
+<div class="form-group">
+<label>Password</label>
+<input id="password" type="password" placeholder="Enter your password">
+</div>
 
-  <button class="btn" onclick="login()">
-    LOGIN
-  </button>
+<button id="loginBtn" class="btn" onclick="login()">
+LOGIN
+</button>
 
-  <button class="btn dark" onclick="register()">
-    CREATE ACCOUNT
-  </button>
+<div id="registerLink" class="auth-link">
+Don’t have an account?
+<span onclick="showRegister()">Create Account</span>
+</div>
 
-  <div class="notice" style="margin-top:20px">
-    Access to premium trading signals and paid courses
-    requires an active subscription.
-  </div>
+<div id="registerLink2" class="auth-link" style="display:none">
+Already have an account?
+<span onclick="showLogin()">Login</span>
+</div>
+
+<div class="notice" style="margin-top:20px">
+Access to premium trading signals and paid courses
+requires an active subscription.
+</div>
 
 </div>
 
@@ -452,724 +448,727 @@ input:focus{
 
 <header class="header">
 
-  <div class="brand">
-    <div class="logo">V</div>
-    <h1>VELTRIX</h1>
-  </div>
+<div class="brand">
+<div class="logo">V</div>
+<h1>VELTRIX</h1>
+</div>
 
-  <button class="header-btn"
-          onclick="showPage('notifications')">
-    🔔
-  </button>
+<button class="header-btn"
+onclick="showPage('notifications')">
+🔔
+</button>
 
 </header>
 
 
-<!-- HOME -->
 <section id="home" class="page active">
 
-  <div class="hero">
+<div class="hero">
 
-    <small>VELTRIX PLATFORM</small>
+<small>VELTRIX PLATFORM</small>
 
-    <h2>Trade. Learn. Grow.</h2>
+<h2>Trade. Learn. Grow.</h2>
 
-    <p>
-      A professional platform for digital asset trading,
-      trading education and premium market signals.
-    </p>
+<p>
+A professional platform for digital asset trading,
+trading education and premium market signals.
+</p>
 
-    <button class="btn"
-            onclick="showPage('plans')">
-      VIEW PLANS
-    </button>
+<button class="btn"
+onclick="showPage('plans')">
+VIEW PLANS
+</button>
 
-  </div>
+</div>
 
-  <div class="grid">
+<div class="grid">
 
-    <div class="card">
-      <h3>💰 Wallet</h3>
-      <p>Manage your digital assets and deposits.</p>
-    </div>
+<div class="card">
+<h3>💰 Wallet</h3>
+<p>Manage your digital assets and deposits.</p>
+</div>
 
-    <div class="card">
-      <h3>📊 Signals</h3>
-      <p>Access premium trading opportunities.</p>
-    </div>
+<div class="card">
+<h3>📊 Signals</h3>
+<p>Access premium trading opportunities.</p>
+</div>
 
-    <div class="card">
-      <h3>🎓 Academy</h3>
-      <p>Learn trading through structured courses.</p>
-    </div>
+<div class="card">
+<h3>🎓 Academy</h3>
+<p>Learn trading through structured courses.</p>
+</div>
 
-    <div class="card">
-      <h3>💎 VIP</h3>
-      <p>Unlock premium platform features.</p>
-    </div>
+<div class="card">
+<h3>💎 VIP</h3>
+<p>Unlock premium platform features.</p>
+</div>
 
-  </div>
+</div>
 
 </section>
 
 
-<!-- WALLET -->
 <section id="wallet" class="page">
 
-  <h2 class="title">Wallet</h2>
-  <p class="subtitle">Your digital asset account</p>
+<h2 class="title">Wallet</h2>
+<p class="subtitle">Your digital asset account</p>
 
-  <div class="card">
+<div class="card">
 
-    <p>Available Balance</p>
+<p>Available Balance</p>
 
-    <div class="balance">
-      $0.00
-    </div>
+<div class="balance">$0.00</div>
 
-    <button class="btn"
-            onclick="showPage('deposit')">
-      DEPOSIT
-    </button>
+<button class="btn"
+onclick="showPage('deposit')">
+DEPOSIT
+</button>
 
-    <button class="btn dark"
-            onclick="showModal('VELTRIX','Withdrawals will be available after the wallet system is connected.')">
-      WITHDRAW
-    </button>
+<button class="btn dark"
+onclick="showModal('VELTRIX','Withdrawals will be available after the wallet system is connected.')">
+WITHDRAW
+</button>
 
-  </div>
+</div>
 
 </section>
 
 
-<!-- DEPOSIT -->
 <section id="deposit" class="page">
 
-  <h2 class="title">Deposit</h2>
-  <p class="subtitle">Crypto deposit</p>
+<h2 class="title">Deposit</h2>
+<p class="subtitle">Crypto deposit</p>
 
-  <div class="notice">
-    Network:
-    <strong class="gold">
-      BNB Smart Chain (BEP20)
-    </strong>
-  </div>
+<div class="notice">
+Network:
+<strong class="gold">
+BNB Smart Chain (BEP20)
+</strong>
+</div>
 
-  <div class="card">
+<div class="card">
 
-    <p style="color:#aaa;font-size:13px">
-      Deposit Address
-    </p>
+<p style="color:#aaa;font-size:13px">
+Deposit Address
+</p>
 
-    <p style="margin-top:10px;word-break:break-all">
-      Deposit wallet will be displayed here.
-    </p>
+<p style="margin-top:10px;word-break:break-all">
+Deposit wallet will be displayed here.
+</p>
 
-    <button class="btn"
-            onclick="showModal('VELTRIX','The deposit address will be configured from the admin system.')">
-      COPY ADDRESS
-    </button>
+<button class="btn"
+onclick="showModal('VELTRIX','The deposit address will be configured from the admin system.')">
+COPY ADDRESS
+</button>
 
-  </div>
+</div>
 
-  <div class="form-group" style="margin-top:18px">
+<div class="form-group" style="margin-top:18px">
 
-    <label>Transaction Hash</label>
+<label>Transaction Hash</label>
 
-    <input
-      id="transactionHash"
-      type="text"
-      placeholder="Paste transaction hash"
-    >
+<input
+id="transactionHash"
+type="text"
+placeholder="Paste transaction hash">
 
-  </div>
+</div>
 
-  <button class="btn"
-          onclick="submitDeposit()">
-    SUBMIT DEPOSIT
-  </button>
+<button class="btn"
+onclick="submitDeposit()">
+SUBMIT DEPOSIT
+</button>
 
 </section>
 
 
-<!-- PLANS -->
 <section id="plans" class="page">
 
-  <h2 class="title">Plans</h2>
-  <p class="subtitle">Choose your VELTRIX access</p>
+<h2 class="title">Plans</h2>
+<p class="subtitle">Choose your VELTRIX access</p>
 
-  <div class="plan">
+<div class="plan">
 
-    <h3>1 MONTH</h3>
+<h3>1 MONTH</h3>
 
-    <div class="price">$49</div>
+<div class="price">$49</div>
 
-    <ul>
-      <li>✓ Premium signals</li>
-      <li>✓ Trading education</li>
-      <li>✓ Member notifications</li>
-      <li>✓ VIP access</li>
-    </ul>
+<ul>
+<li>✓ Premium signals</li>
+<li>✓ Trading education</li>
+<li>✓ Member notifications</li>
+<li>✓ VIP access</li>
+</ul>
 
-    <button class="btn"
-            onclick="selectPlan('1 Month','$49')">
-      SELECT PLAN
-    </button>
+<button class="btn"
+onclick="selectPlan('1 Month','$49')">
+SELECT PLAN
+</button>
 
-  </div>
+</div>
 
-  <div class="plan featured">
+<div class="plan featured">
 
-    <h3>3 MONTHS</h3>
+<h3>3 MONTHS</h3>
 
-    <div class="price">$119</div>
+<div class="price">$119</div>
 
-    <ul>
-      <li>✓ Premium signals</li>
-      <li>✓ Trading education</li>
-      <li>✓ Member notifications</li>
-      <li>✓ VIP access</li>
-    </ul>
+<ul>
+<li>✓ Premium signals</li>
+<li>✓ Trading education</li>
+<li>✓ Member notifications</li>
+<li>✓ VIP access</li>
+</ul>
 
-    <button class="btn"
-            onclick="selectPlan('3 Months','$119')">
-      SELECT PLAN
-    </button>
+<button class="btn"
+onclick="selectPlan('3 Months','$119')">
+SELECT PLAN
+</button>
 
-  </div>
+</div>
 
 </section>
 
 
-<!-- SIGNALS -->
 <section id="signals" class="page">
 
-  <h2 class="title">Trading Signals</h2>
-  <p class="subtitle">Premium market analysis</p>
+<h2 class="title">Trading Signals</h2>
+<p class="subtitle">Premium market analysis</p>
 
-  <div class="signal">
+<div class="signal">
 
-    <div class="signal-head">
-      <strong>GOLD / XAUUSD</strong>
-      <span class="buy">BUY</span>
-    </div>
+<div class="signal-head">
+<strong>GOLD / XAUUSD</strong>
+<span class="buy">BUY</span>
+</div>
 
-    <div class="signal-row">
-      <span>Entry</span>
-      <strong>—</strong>
-    </div>
+<div class="signal-row">
+<span>Entry</span>
+<strong>—</strong>
+</div>
 
-    <div class="signal-row">
-      <span>Stop Loss</span>
-      <strong>—</strong>
-    </div>
+<div class="signal-row">
+<span>Stop Loss</span>
+<strong>—</strong>
+</div>
 
-    <div class="signal-row">
-      <span>Take Profit</span>
-      <strong>—</strong>
-    </div>
+<div class="signal-row">
+<span>Take Profit</span>
+<strong>—</strong>
+</div>
 
-    <div class="signal-row">
-      <span>Timeframe</span>
-      <strong>1H</strong>
-    </div>
+<div class="signal-row">
+<span>Timeframe</span>
+<strong>1H</strong>
+</div>
 
-  </div>
+</div>
 
-  <div class="notice">
-    Trading signals are provided for informational and
-    educational purposes.
-  </div>
+<div class="notice">
+Trading signals are provided for informational and
+educational purposes.
+</div>
 
 </section>
 
 
-<!-- ACADEMY -->
 <section id="academy" class="page">
 
-  <h2 class="title">VELTRIX Academy</h2>
-  <p class="subtitle">Learn trading step by step</p>
+<h2 class="title">VELTRIX Academy</h2>
+<p class="subtitle">Learn trading step by step</p>
 
-  <div class="course">
+<div class="course">
 
-    <div class="course-icon">📘</div>
+<div class="course-icon">📘</div>
 
-    <h3>Trading Fundamentals</h3>
+<h3>Trading Fundamentals</h3>
 
-    <p>
-      Learn market structure, orders, risk management
-      and essential trading concepts.
-    </p>
+<p>
+Learn market structure, orders, risk management
+and essential trading concepts.
+</p>
 
-    <button class="btn"
-            onclick="showModal('Trading Fundamentals','Course content will be connected to the Academy system.')">
-      VIEW COURSE
-    </button>
+<button class="btn"
+onclick="showModal('Trading Fundamentals','Course content will be connected to the Academy system.')">
+VIEW COURSE
+</button>
 
-  </div>
+</div>
 
-  <div class="course">
+<div class="course">
 
-    <div class="course-icon">📈</div>
+<div class="course-icon">📈</div>
 
-    <h3>Technical Analysis</h3>
+<h3>Technical Analysis</h3>
 
-    <p>
-      Learn charts, trends, support, resistance,
-      indicators and price action.
-    </p>
+<p>
+Learn charts, trends, support, resistance,
+indicators and price action.
+</p>
 
-    <button class="btn"
-            onclick="showModal('Technical Analysis','Course content will be connected to the Academy system.')">
-      VIEW COURSE
-    </button>
+<button class="btn"
+onclick="showModal('Technical Analysis','Course content will be connected to the Academy system.')">
+VIEW COURSE
+</button>
 
-  </div>
+</div>
 
-  <div class="course">
+<div class="course">
 
-    <div class="course-icon">🎯</div>
+<div class="course-icon">🎯</div>
 
-    <h3>Advanced Trading</h3>
+<h3>Advanced Trading</h3>
 
-    <p>
-      Advanced strategies, trade management
-      and professional risk control.
-    </p>
+<p>
+Advanced strategies, trade management
+and professional risk control.
+</p>
 
-    <button class="btn"
-            onclick="showModal('Advanced Trading','Course content will be connected to the Academy system.')">
-      VIEW COURSE
-    </button>
+<button class="btn"
+onclick="showModal('Advanced Trading','Course content will be connected to the Academy system.')">
+VIEW COURSE
+</button>
 
-  </div>
+</div>
 
 </section>
 
 
-<!-- NOTIFICATIONS -->
 <section id="notifications" class="page">
 
-  <h2 class="title">Notifications</h2>
-  <p class="subtitle">Latest updates</p>
+<h2 class="title">Notifications</h2>
+<p class="subtitle">Latest updates</p>
 
-  <div class="notice">
-    No new notifications.
-  </div>
+<div class="notice">
+No new notifications.
+</div>
 
 </section>
 
 
-<!-- PROFILE -->
 <section id="profile" class="page">
 
-  <h2 class="title">Profile</h2>
-  <p class="subtitle">Account settings</p>
+<h2 class="title">Profile</h2>
+<p class="subtitle">Account settings</p>
 
-  <div class="card">
+<div class="card">
 
-    <p>Email</p>
+<p>Email</p>
 
-    <p id="profileEmail"
-       style="margin-top:8px;color:#ddd">
-       —
-    </p>
+<p id="profileEmail"
+style="margin-top:8px;color:#ddd">
+—
+</p>
 
-    <button class="btn dark"
-            onclick="logout()">
-      LOGOUT
-    </button>
+<button class="btn dark"
+onclick="logout()">
+LOGOUT
+</button>
 
-  </div>
+</div>
 
 </section>
 
 
-<!-- NAVIGATION -->
 <nav class="nav">
 
-  <button class="active"
-          onclick="showPage('home')">
-    <span>⌂</span>
-    Home
-  </button>
+<button class="active"
+onclick="showPage('home')">
+<span>⌂</span>
+Home
+</button>
 
-  <button onclick="showPage('wallet')">
-    <span>◈</span>
-    Wallet
-  </button>
+<button onclick="showPage('wallet')">
+<span>◈</span>
+Wallet
+</button>
 
-  <button onclick="showPage('signals')">
-    <span>◉</span>
-    Signals
-  </button>
+<button onclick="showPage('signals')">
+<span>◉</span>
+Signals
+</button>
 
-  <button onclick="showPage('academy')">
-    <span>▣</span>
-    Academy
-  </button>
+<button onclick="showPage('academy')">
+<span>▣</span>
+Academy
+</button>
 
-  <button onclick="showPage('profile')">
-    <span>●</span>
-    Profile
-  </button>
+<button onclick="showPage('profile')">
+<span>●</span>
+Profile
+</button>
 
 </nav>
 
 </div>
 
 
-<!-- MODAL -->
 <div id="modal" class="modal">
 
-  <div class="modal-box">
+<div class="modal-box">
 
-    <button class="close"
-            onclick="closeModal()">
-      ×
-    </button>
+<button class="close"
+onclick="closeModal()">
+×
+</button>
 
-    <h2 id="modalTitle">
-      VELTRIX
-    </h2>
+<h2 id="modalTitle">VELTRIX</h2>
 
-    <p id="modalText"
-       style="color:#aaa;margin-top:12px;line-height:1.5">
-    </p>
+<p id="modalText"
+style="color:#aaa;margin-top:12px;line-height:1.5">
+</p>
 
-  </div>
+</div>
 
 </div>
 
 
 <script>
 
-/* ==========================================
-   APPWRITE CONFIGURATION
-   ========================================== */
+/* APPWRITE */
 
 const client = new Appwrite.Client();
 
 client
-  .setEndpoint("https://fra.cloud.appwrite.io/v1")
-  .setProject("6abfcc0f000549caeb36");
+.setEndpoint("https://fra.cloud.appwrite.io/v1")
+.setProject("6abfcc0f000549caeb36");
 
 const account = new Appwrite.Account(client);
 
 
-/* ==========================================
-   APP STATE
-   ========================================== */
+/* STATE */
 
 let currentUser = null;
 let selectedPlan = null;
 
 
-/* ==========================================
-   CHECK EXISTING SESSION
-   ========================================== */
+/* AUTH MODE */
+
+function showRegister(){
+
+document.getElementById("authSubtitle").textContent =
+"Create your VELTRIX account";
+
+document.getElementById("loginBtn").textContent =
+"CREATE ACCOUNT";
+
+document.getElementById("loginBtn").onclick =
+register;
+
+document.getElementById("registerLink").style.display =
+"none";
+
+document.getElementById("registerLink2").style.display =
+"block";
+
+document.getElementById("email").value="";
+document.getElementById("password").value="";
+
+}
+
+
+function showLogin(){
+
+document.getElementById("authSubtitle").textContent =
+"Digital Trading & Education";
+
+document.getElementById("loginBtn").textContent =
+"LOGIN";
+
+document.getElementById("loginBtn").onclick =
+login;
+
+document.getElementById("registerLink").style.display =
+"block";
+
+document.getElementById("registerLink2").style.display =
+"none";
+
+document.getElementById("email").value="";
+document.getElementById("password").value="";
+
+}
+
+
+/* CHECK SESSION */
 
 async function checkSession(){
 
-  try{
+try{
 
-    const user = await account.get();
+const user = await account.get();
 
-    currentUser = user;
+currentUser = user;
 
-    enterApp();
+enterApp();
 
-  }catch(error){
+}catch(error){
 
-    currentUser = null;
+currentUser = null;
 
-  }
+}
 
 }
 
 
-/* ==========================================
-   LOGIN
-   ========================================== */
+/* LOGIN */
 
 async function login(){
 
-  const email =
-    document.getElementById("email").value.trim();
+const email =
+document.getElementById("email").value.trim();
 
-  const password =
-    document.getElementById("password").value;
+const password =
+document.getElementById("password").value;
 
-  if(!email || !password){
+if(!email || !password){
 
-    showModal(
-      "VELTRIX",
-      "Please enter your email and password."
-    );
+showModal(
+"VELTRIX",
+"Please enter your email and password."
+);
 
-    return;
-  }
+return;
+}
 
-  try{
+try{
 
-    await account.createEmailPasswordSession({
-      email: email,
-      password: password
-    });
+await account.createEmailPasswordSession({
+email:email,
+password:password
+});
 
-    currentUser = await account.get();
+currentUser = await account.get();
 
-    enterApp();
+enterApp();
 
-  }catch(error){
+}catch(error){
 
-    showModal(
-      "Login failed",
-      error.message || "Unable to login."
-    );
+showModal(
+"Login failed",
+error.message || "Unable to login."
+);
 
-  }
+}
 
 }
 
 
-/* ==========================================
-   REGISTER
-   ========================================== */
+/* REGISTER */
 
 async function register(){
 
-  const email =
-    document.getElementById("email").value.trim();
+const email =
+document.getElementById("email").value.trim();
 
-  const password =
-    document.getElementById("password").value;
+const password =
+document.getElementById("password").value;
 
-  if(!email || !password){
+if(!email || !password){
 
-    showModal(
-      "VELTRIX",
-      "Please enter your email and password."
-    );
+showModal(
+"VELTRIX",
+"Please enter your email and password."
+);
 
-    return;
-  }
+return;
+}
 
-  if(password.length < 8){
+if(password.length < 8){
 
-    showModal(
-      "VELTRIX",
-      "Password must contain at least 8 characters."
-    );
+showModal(
+"VELTRIX",
+"Password must contain at least 8 characters."
+);
 
-    return;
-  }
+return;
+}
 
-  try{
+try{
 
-    await account.create({
-      userId: Appwrite.ID.unique(),
-      email: email,
-      password: password
-    });
+await account.create({
+userId:Appwrite.ID.unique(),
+email:email,
+password:password
+});
 
-    await account.createEmailPasswordSession({
-      email: email,
-      password: password
-    });
+await account.createEmailPasswordSession({
+email:email,
+password:password
+});
 
-    currentUser = await account.get();
+currentUser = await account.get();
 
-    enterApp();
+enterApp();
 
-  }catch(error){
+}catch(error){
 
-    showModal(
-      "Registration failed",
-      error.message || "Unable to create account."
-    );
+showModal(
+"Registration failed",
+error.message || "Unable to create account."
+);
 
-  }
+}
 
 }
 
 
-/* ==========================================
-   ENTER APP
-   ========================================== */
+/* ENTER APP */
 
 function enterApp(){
 
-  document.getElementById("auth")
-    .style.display="none";
+document.getElementById("auth").style.display="none";
 
-  document.getElementById("app")
-    .style.display="block";
+document.getElementById("app").style.display="block";
 
-  if(currentUser){
+if(currentUser){
 
-    document.getElementById("profileEmail")
-      .textContent =
-      currentUser.email || "—";
+document.getElementById("profileEmail").textContent =
+currentUser.email || "—";
 
-  }
+}
 
 }
 
 
-/* ==========================================
-   LOGOUT
-   ========================================== */
+/* LOGOUT */
 
 async function logout(){
 
-  try{
+try{
 
-    await account.deleteSession({
-      sessionId:"current"
-    });
+await account.deleteSession({
+sessionId:"current"
+});
 
-  }catch(error){
+}catch(error){
 
-    console.log(error);
+console.log(error);
 
-  }
+}
 
-  currentUser = null;
+currentUser = null;
 
-  document.getElementById("app")
-    .style.display="none";
+document.getElementById("app").style.display="none";
 
-  document.getElementById("auth")
-    .style.display="flex";
+document.getElementById("auth").style.display="flex";
 
-  document.getElementById("email").value="";
-  document.getElementById("password").value="";
+showLogin();
 
 }
 
 
-/* ==========================================
-   NAVIGATION
-   ========================================== */
+/* NAVIGATION */
 
 function showPage(page){
 
-  document.querySelectorAll(".page")
-    .forEach(function(p){
+document.querySelectorAll(".page")
+.forEach(function(p){
 
-      p.classList.remove("active");
+p.classList.remove("active");
 
-    });
+});
 
-  const target =
-    document.getElementById(page);
+const target =
+document.getElementById(page);
 
-  if(target){
+if(target){
 
-    target.classList.add("active");
+target.classList.add("active");
 
-  }
+}
 
-  document.querySelectorAll(".nav button")
-    .forEach(function(b){
+document.querySelectorAll(".nav button")
+.forEach(function(b){
 
-      b.classList.remove("active");
+b.classList.remove("active");
 
-    });
+});
 
 }
 
 
-/* ==========================================
-   SELECT PLAN
-   ========================================== */
+/* PLAN */
 
 function selectPlan(name,price){
 
-  selectedPlan = {
-    name:name,
-    price:price
-  };
+selectedPlan={
+name:name,
+price:price
+};
 
-  showPage("deposit");
+showPage("deposit");
 
-  showModal(
-    "Plan selected",
-    name + " plan selected for " + price +
-    ". Complete your crypto deposit and submit the transaction hash for admin review."
-  );
+showModal(
+"Plan selected",
+name+" plan selected for "+price+
+". Complete your crypto deposit and submit the transaction hash for admin review."
+);
 
 }
 
 
-/* ==========================================
-   SUBMIT DEPOSIT
-   ========================================== */
+/* DEPOSIT */
 
 function submitDeposit(){
 
-  const hash =
-    document.getElementById("transactionHash")
-      .value.trim();
+const hash =
+document.getElementById("transactionHash")
+.value.trim();
 
-  if(!hash){
+if(!hash){
 
-    showModal(
-      "VELTRIX",
-      "Please enter your transaction hash."
-    );
+showModal(
+"VELTRIX",
+"Please enter your transaction hash."
+);
 
-    return;
-  }
+return;
+}
 
-  if(!currentUser){
+if(!currentUser){
 
-    showModal(
-      "VELTRIX",
-      "Please login first."
-    );
+showModal(
+"VELTRIX",
+"Please login first."
+);
 
-    return;
-  }
+return;
+}
 
-  showModal(
-    "Deposit submitted",
-    "Your transaction hash has been recorded for review. The deposit approval system will be connected to the VELTRIX admin panel."
-  );
+showModal(
+"Deposit submitted",
+"Your transaction hash has been recorded for review. The deposit approval system will be connected to the VELTRIX admin panel."
+);
 
 }
 
 
-/* ==========================================
-   MODAL
-   ========================================== */
+/* MODAL */
 
 function showModal(title,text){
 
-  document.getElementById("modalTitle")
-    .textContent = title;
+document.getElementById("modalTitle")
+.textContent=title;
 
-  document.getElementById("modalText")
-    .textContent = text;
+document.getElementById("modalText")
+.textContent=text;
 
-  document.getElementById("modal")
-    .classList.add("show");
+document.getElementById("modal")
+.classList.add("show");
 
 }
 
 
 function closeModal(){
 
-  document.getElementById("modal")
-    .classList.remove("show");
+document.getElementById("modal")
+.classList.remove("show");
 
 }
 
 
-/* ==========================================
-   START
-   ========================================== */
+/* START */
 
 checkSession();
 
