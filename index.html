@@ -437,8 +437,7 @@ grid-template-columns:1fr
 <div id="auth" class="auth">
 
 <!-- ================================================= -->
-<!-- REGISTER -->
-<!-- FIRST SCREEN -->
+<!-- REGISTER SCREEN -->
 <!-- ================================================= -->
 
 <div id="registerScreen" class="auth-screen active">
@@ -454,8 +453,6 @@ Create your VELTRIX account
 </div>
 
 
-<!-- EMAIL -->
-
 <div class="form-group">
 
 <label>Email</label>
@@ -468,8 +465,6 @@ autocomplete="email">
 
 </div>
 
-
-<!-- PASSWORD -->
 
 <div class="form-group">
 
@@ -484,8 +479,6 @@ autocomplete="new-password">
 </div>
 
 
-<!-- CONFIRM PASSWORD -->
-
 <div class="form-group">
 
 <label>Confirm Password</label>
@@ -499,9 +492,8 @@ autocomplete="new-password">
 </div>
 
 
-<!-- CREATE ACCOUNT -->
-
 <button
+id="registerButton"
 class="btn"
 onclick="register()">
 
@@ -520,7 +512,7 @@ Create your VELTRIX account to continue.
 
 
 <!-- ================================================= -->
-<!-- LOGIN -->
+<!-- LOGIN SCREEN -->
 <!-- ================================================= -->
 
 <div id="loginScreen" class="auth-screen">
@@ -536,8 +528,6 @@ Login to your VELTRIX account
 </div>
 
 
-<!-- EMAIL -->
-
 <div class="form-group">
 
 <label>Email</label>
@@ -550,8 +540,6 @@ autocomplete="email">
 
 </div>
 
-
-<!-- PASSWORD -->
 
 <div class="form-group">
 
@@ -566,9 +554,8 @@ autocomplete="current-password">
 </div>
 
 
-<!-- LOGIN -->
-
 <button
+id="loginButton"
 class="btn"
 onclick="login()">
 
@@ -631,9 +618,7 @@ onclick="showPage('notifications')">
 </header>
 
 
-<!-- ================================================= -->
 <!-- HOME -->
-<!-- ================================================= -->
 
 <section
 id="home"
@@ -711,9 +696,7 @@ Unlock premium platform features.
 </section>
 
 
-<!-- ================================================= -->
 <!-- WALLET -->
-<!-- ================================================= -->
 
 <section
 id="wallet"
@@ -761,9 +744,7 @@ WITHDRAW
 </section>
 
 
-<!-- ================================================= -->
 <!-- DEPOSIT -->
-<!-- ================================================= -->
 
 <section
 id="deposit"
@@ -841,9 +822,7 @@ SUBMIT DEPOSIT
 </section>
 
 
-<!-- ================================================= -->
 <!-- PLANS -->
-<!-- ================================================= -->
 
 <section
 id="plans"
@@ -916,9 +895,7 @@ SELECT PLAN
 </section>
 
 
-<!-- ================================================= -->
 <!-- SIGNALS -->
-<!-- ================================================= -->
 
 <section
 id="signals"
@@ -1011,9 +988,7 @@ educational purposes.
 </section>
 
 
-<!-- ================================================= -->
 <!-- ACADEMY -->
-<!-- ================================================= -->
 
 <section
 id="academy"
@@ -1117,9 +1092,7 @@ VIEW COURSE
 </section>
 
 
-<!-- ================================================= -->
 <!-- NOTIFICATIONS -->
-<!-- ================================================= -->
 
 <section
 id="notifications"
@@ -1140,9 +1113,7 @@ No new notifications.
 </section>
 
 
-<!-- ================================================= -->
 <!-- PROFILE -->
-<!-- ================================================= -->
 
 <section
 id="profile"
@@ -1183,9 +1154,7 @@ LOGOUT
 </section>
 
 
-<!-- ================================================= -->
-<!-- NAVIGATION -->
-<!-- ================================================= -->
+<!-- NAV -->
 
 <nav class="nav">
 
@@ -1274,16 +1243,26 @@ style="color:#aaa;margin-top:12px;line-height:1.5">
 <script>
 
 /* ================================================= */
-/* APPWRITE CONFIG */
+/* APPWRITE */
 /* ================================================= */
 
-const client = new Appwrite.Client();
+const APPWRITE_ENDPOINT =
+"https://fra.cloud.appwrite.io/v1";
+
+const APPWRITE_PROJECT =
+"6abfcc0f000549caeb36";
+
+
+const client =
+new Appwrite.Client();
 
 client
-.setEndpoint("https://fra.cloud.appwrite.io/v1")
-.setProject("6abfcc0f000549caeb36");
+.setEndpoint(APPWRITE_ENDPOINT)
+.setProject(APPWRITE_PROJECT);
 
-const account = new Appwrite.Account(client);
+
+const account =
+new Appwrite.Account(client);
 
 
 /* ================================================= */
@@ -1295,7 +1274,7 @@ let selectedPlan = null;
 
 
 /* ================================================= */
-/* REGISTER SCREEN */
+/* SHOW REGISTER */
 /* ================================================= */
 
 function showRegister(){
@@ -1310,21 +1289,13 @@ document
 
 document
 .getElementById("registerEmail")
-.value="";
-
-document
-.getElementById("registerPassword")
-.value="";
-
-document
-.getElementById("registerConfirmPassword")
-.value="";
+.focus();
 
 }
 
 
 /* ================================================= */
-/* LOGIN SCREEN */
+/* SHOW LOGIN */
 /* ================================================= */
 
 function showLogin(email=""){
@@ -1345,39 +1316,9 @@ document
 .getElementById("loginPassword")
 .value="";
 
-}
-
-
-/* ================================================= */
-/* CHECK SESSION */
-/* ================================================= */
-
-async function checkSession(){
-
-try{
-
-const user =
-await account.get();
-
-currentUser=user;
-
-enterApp();
-
-}catch(error){
-
-currentUser=null;
-
 document
-.getElementById("app")
-.style.display="none";
-
-document
-.getElementById("auth")
-.style.display="flex";
-
-showRegister();
-
-}
+.getElementById("loginEmail")
+.focus();
 
 }
 
@@ -1465,29 +1406,75 @@ return;
 }
 
 
+const button =
+document.getElementById("registerButton");
+
+button.disabled=true;
+
+button.textContent="CREATING ACCOUNT...";
+
+
 try{
 
 /*
-IMPORTANT:
-Appwrite SDK v17 uses an object
-for account.create().
+=================================================
+DIRECT APPWRITE REST REGISTRATION
+=================================================
+
+We intentionally use the Appwrite REST endpoint
+here instead of account.create().
+
+This sends email explicitly in the request body.
 */
 
-await account.create({
+const response =
+await fetch(
+APPWRITE_ENDPOINT + "/account",
+{
+method:"POST",
 
-userId: Appwrite.ID.unique(),
+headers:{
+"Content-Type":"application/json",
+"X-Appwrite-Project":APPWRITE_PROJECT
+},
 
-email: email,
+body:JSON.stringify({
 
-password: password
+userId:
+Appwrite.ID.unique(),
 
-});
+email:
+email,
+
+password:
+password
+
+})
+
+}
+);
+
+
+const data =
+await response.json();
+
+
+if(!response.ok){
+
+throw new Error(
+data.message ||
+"Unable to create account."
+);
+
+}
 
 
 /*
-Registration successful.
-DO NOT create a session here.
-Go to LOGIN.
+ACCOUNT CREATED.
+
+DO NOT LOGIN AUTOMATICALLY.
+
+GO TO LOGIN SCREEN.
 */
 
 showLogin(email);
@@ -1497,14 +1484,25 @@ showModal(
 "Your VELTRIX account has been created successfully. Please enter your password to login."
 );
 
+
 }catch(error){
 
-console.error("REGISTER ERROR:",error);
+console.error(
+"REGISTRATION ERROR:",
+error
+);
 
 showModal(
 "Registration failed",
-error.message || "Unable to create account."
+error.message ||
+"Unable to create account."
 );
+
+}finally{
+
+button.disabled=false;
+
+button.textContent="CREATE ACCOUNT";
 
 }
 
@@ -1529,11 +1527,11 @@ document
 .value;
 
 
-if(!email || !password){
+if(!email){
 
 showModal(
 "VELTRIX",
-"Please enter your email and password."
+"Please enter your email."
 );
 
 return;
@@ -1541,17 +1539,37 @@ return;
 }
 
 
+if(!password){
+
+showModal(
+"VELTRIX",
+"Please enter your password."
+);
+
+return;
+
+}
+
+
+const button =
+document.getElementById("loginButton");
+
+button.disabled=true;
+
+button.textContent="LOGGING IN...";
+
+
 try{
 
 /*
-Appwrite v17 login method.
+Appwrite SDK v17 login.
 */
 
 await account.createEmailPasswordSession({
 
-email: email,
+email:email,
 
-password: password
+password:password
 
 });
 
@@ -1559,16 +1577,28 @@ password: password
 currentUser =
 await account.get();
 
+
 enterApp();
+
 
 }catch(error){
 
-console.error("LOGIN ERROR:",error);
+console.error(
+"LOGIN ERROR:",
+error
+);
 
 showModal(
 "Login failed",
-error.message || "Unable to login."
+error.message ||
+"Unable to login."
 );
+
+}finally{
+
+button.disabled=false;
+
+button.textContent="LOGIN";
 
 }
 
@@ -1576,7 +1606,46 @@ error.message || "Unable to login."
 
 
 /* ================================================= */
-/* ENTER MAIN APP */
+/* CHECK EXISTING SESSION */
+/* ================================================= */
+
+async function checkSession(){
+
+try{
+
+const user =
+await account.get();
+
+currentUser=user;
+
+enterApp();
+
+}catch(error){
+
+currentUser=null;
+
+document
+.getElementById("app")
+.style.display="none";
+
+document
+.getElementById("auth")
+.style.display="flex";
+
+/*
+No session:
+FIRST SCREEN = REGISTER
+*/
+
+showRegister();
+
+}
+
+}
+
+
+/* ================================================= */
+/* ENTER APP */
 /* ================================================= */
 
 function enterApp(){
@@ -1613,9 +1682,7 @@ async function logout(){
 try{
 
 await account.deleteSession({
-
 sessionId:"current"
-
 });
 
 }catch(error){
@@ -1666,9 +1733,9 @@ target.classList.add("active");
 
 document
 .querySelectorAll(".nav button")
-.forEach(function(b){
+.forEach(function(button){
 
-b.classList.remove("active");
+button.classList.remove("active");
 
 });
 
