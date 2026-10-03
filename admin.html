@@ -7,116 +7,416 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#050505;color:#fff;font-family:Arial,Helvetica,sans-serif;min-height:100vh}
+body{
+ background:#050505;
+ color:#fff;
+ font-family:Arial,Helvetica,sans-serif;
+ min-height:100vh
+}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 .hidden{display:none!important}
 .gold{color:#d6ad55}
 
 .login-page{
- min-height:100vh;display:flex;justify-content:center;align-items:center;
- padding:20px;background:radial-gradient(circle at top,#241b08 0,#090909 35%,#050505 70%)
+ min-height:100vh;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ padding:20px;
+ background:radial-gradient(circle at top,#241b08 0,#090909 35%,#050505 70%)
 }
+
 .login-box{
- width:100%;max-width:420px;background:#0d0d0d;border:1px solid #30240e;
- border-radius:22px;padding:30px 24px;box-shadow:0 20px 70px rgba(0,0,0,.65)
+ width:100%;
+ max-width:420px;
+ background:#0d0d0d;
+ border:1px solid #30240e;
+ border-radius:22px;
+ padding:30px 24px;
+ box-shadow:0 20px 70px rgba(0,0,0,.65)
 }
-.logo{text-align:center;font-size:30px;font-weight:900;letter-spacing:4px;color:#d6ad55;margin-bottom:8px}
-.admin-title{text-align:center;color:#999;margin-bottom:25px}
+
+.logo{
+ text-align:center;
+ font-size:30px;
+ font-weight:900;
+ letter-spacing:4px;
+ color:#d6ad55;
+ margin-bottom:8px
+}
+
+.admin-title{
+ text-align:center;
+ color:#999;
+ margin-bottom:25px
+}
+
 .field{margin-bottom:15px}
-.field label,.form-group label{display:block;color:#aaa;font-size:13px;margin-bottom:7px}
-.field input,.form-group input,.form-group select,.form-group textarea{
- width:100%;background:#151515;border:1px solid #333;color:#fff;padding:13px;border-radius:10px;outline:none
+
+.field label,
+.form-group label{
+ display:block;
+ color:#aaa;
+ font-size:13px;
+ margin-bottom:7px
 }
-.field input:focus,.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#d6ad55}
+
+.field input,
+.form-group input,
+.form-group select,
+.form-group textarea{
+ width:100%;
+ background:#151515;
+ border:1px solid #333;
+ color:#fff;
+ padding:13px;
+ border-radius:10px;
+ outline:none
+}
+
+.field input:focus,
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+ border-color:#d6ad55
+}
+
 .gold-btn{
- width:100%;border:0;border-radius:12px;padding:14px;background:#d6ad55;color:#080808;font-weight:900
+ width:100%;
+ border:0;
+ border-radius:12px;
+ padding:14px;
+ background:#d6ad55;
+ color:#080808;
+ font-weight:900
 }
-.message{margin-top:14px;text-align:center;color:#ff7777;font-size:13px}
 
-.admin{min-height:100vh;display:flex}
+.message{
+ margin-top:14px;
+ text-align:center;
+ color:#ff7777;
+ font-size:13px
+}
+
+.admin{
+ min-height:100vh;
+ display:flex
+}
+
 .sidebar{
- width:250px;min-height:100vh;background:#090909;border-right:1px solid #252525;
- padding:20px 14px;position:fixed;left:0;top:0;bottom:0;overflow-y:auto;z-index:50
+ width:250px;
+ min-height:100vh;
+ background:#090909;
+ border-right:1px solid #252525;
+ padding:20px 14px;
+ position:fixed;
+ left:0;
+ top:0;
+ bottom:0;
+ overflow-y:auto;
+ z-index:50
 }
-.brand{text-align:center;color:#d6ad55;font-size:24px;font-weight:900;letter-spacing:3px;margin:10px 0 28px}
+
+.brand{
+ text-align:center;
+ color:#d6ad55;
+ font-size:24px;
+ font-weight:900;
+ letter-spacing:3px;
+ margin:10px 0 28px
+}
+
 .nav-btn{
- width:100%;border:0;background:transparent;color:#aaa;text-align:left;padding:13px 14px;
- border-radius:12px;margin-bottom:7px;font-weight:700
+ width:100%;
+ border:0;
+ background:transparent;
+ color:#aaa;
+ text-align:left;
+ padding:13px 14px;
+ border-radius:12px;
+ margin-bottom:7px;
+ font-weight:700
 }
-.nav-btn:hover,.nav-btn.active{background:#1b160b;color:#d6ad55}
-.nav-icon{display:inline-block;width:27px;font-size:18px}
-.logout{margin-top:25px;color:#ff7777}
 
-.main{margin-left:250px;width:calc(100% - 250px);padding:24px}
-.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;gap:15px}
-.top-title{font-size:26px;font-weight:900}
-.admin-email{color:#999;font-size:13px}
-.page{display:none}.page.active{display:block}
-
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:22px}
-.stat{background:#0d0d0d;border:1px solid #252525;border-radius:16px;padding:20px}
-.stat-icon{font-size:25px;margin-bottom:10px}
-.stat-label{color:#999;font-size:13px}
-.stat-value{color:#d6ad55;font-size:27px;font-weight:900;margin-top:7px}
-
-.panel{background:#0c0c0c;border:1px solid #242424;border-radius:17px;padding:20px;margin-bottom:20px}
-.panel-title{font-size:19px;font-weight:900;margin-bottom:17px}
-.empty{padding:30px;text-align:center;color:#777}
-
-.user-card,.request-card,.image-card,.trade-card{
- background:#111;border:1px solid #292929;border-radius:15px;padding:16px;margin-bottom:12px
+.nav-btn:hover,
+.nav-btn.active{
+ background:#1b160b;
+ color:#d6ad55
 }
-.user-head{display:flex;justify-content:space-between;gap:10px;align-items:center}
+
+.nav-icon{
+ display:inline-block;
+ width:27px;
+ font-size:18px
+}
+
+.logout{
+ margin-top:25px;
+ color:#ff7777
+}
+
+.main{
+ margin-left:250px;
+ width:calc(100% - 250px);
+ padding:24px
+}
+
+.topbar{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:24px;
+ gap:15px
+}
+
+.top-title{
+ font-size:26px;
+ font-weight:900
+}
+
+.admin-email{
+ color:#999;
+ font-size:13px
+}
+
+.page{display:none}
+.page.active{display:block}
+
+.stats{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:15px;
+ margin-bottom:22px
+}
+
+.stat{
+ background:#0d0d0d;
+ border:1px solid #252525;
+ border-radius:16px;
+ padding:20px
+}
+
+.stat-icon{
+ font-size:25px;
+ margin-bottom:10px
+}
+
+.stat-label{
+ color:#999;
+ font-size:13px
+}
+
+.stat-value{
+ color:#d6ad55;
+ font-size:27px;
+ font-weight:900;
+ margin-top:7px
+}
+
+.panel{
+ background:#0c0c0c;
+ border:1px solid #242424;
+ border-radius:17px;
+ padding:20px;
+ margin-bottom:20px
+}
+
+.panel-title{
+ font-size:19px;
+ font-weight:900;
+ margin-bottom:17px
+}
+
+.empty{
+ padding:30px;
+ text-align:center;
+ color:#777
+}
+
+.user-card,
+.request-card,
+.image-card,
+.trade-card{
+ background:#111;
+ border:1px solid #292929;
+ border-radius:15px;
+ padding:16px;
+ margin-bottom:12px
+}
+
+.user-head{
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+ align-items:center
+}
+
 .user-name{font-weight:900}
-.user-email{color:#999;font-size:13px;margin-top:5px;word-break:break-all}
-.badge{padding:6px 9px;border-radius:20px;font-size:11px;font-weight:900;background:#211b0e;color:#d6ad55}
 
-.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.small-btn{
- border:1px solid #3b3b3b;background:#171717;color:#fff;padding:9px 12px;border-radius:9px;
- font-size:12px;font-weight:700
+.user-email{
+ color:#999;
+ font-size:13px;
+ margin-top:5px;
+ word-break:break-all
 }
-.small-btn.gold{border-color:#806529;color:#d6ad55}
-.small-btn.red{border-color:#662c2c;color:#ff7777}
-.small-btn.green{border-color:#315b39;color:#7dff96}
 
-.balance-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
-.balance-box{background:#090909;border:1px solid #222;border-radius:10px;padding:11px}
-.balance-label{color:#777;font-size:11px}
-.balance-value{color:#d6ad55;font-weight:900;margin-top:5px}
+.badge{
+ padding:6px 9px;
+ border-radius:20px;
+ font-size:11px;
+ font-weight:900;
+ background:#211b0e;
+ color:#d6ad55
+}
 
-.form-row{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.actions{
+ display:flex;
+ flex-wrap:wrap;
+ gap:8px;
+ margin-top:14px
+}
+
+.small-btn{
+ border:1px solid #3b3b3b;
+ background:#171717;
+ color:#fff;
+ padding:9px 12px;
+ border-radius:9px;
+ font-size:12px;
+ font-weight:700
+}
+
+.small-btn.gold{
+ border-color:#806529;
+ color:#d6ad55
+}
+
+.small-btn.red{
+ border-color:#662c2c;
+ color:#ff7777
+}
+
+.small-btn.green{
+ border-color:#315b39;
+ color:#7dff96
+}
+
+.balance-grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:10px;
+ margin-top:14px
+}
+
+.balance-box{
+ background:#090909;
+ border:1px solid #222;
+ border-radius:10px;
+ padding:11px
+}
+
+.balance-label{
+ color:#777;
+ font-size:11px
+}
+
+.balance-value{
+ color:#d6ad55;
+ font-weight:900;
+ margin-top:5px
+}
+
+.form-row{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:12px
+}
+
 .form-group{margin-bottom:13px}
-.form-group textarea{min-height:100px;resize:vertical}
+
+.form-group textarea{
+ min-height:100px;
+ resize:vertical
+}
 
 .request-line{
- color:#aaa;font-size:13px;line-height:1.7;margin-top:5px;word-break:break-word
+ color:#aaa;
+ font-size:13px;
+ line-height:1.7;
+ margin-top:5px;
+ word-break:break-word
 }
+
 .status-pending{color:#d6ad55}
 .status-approved{color:#75e889}
 .status-rejected{color:#ff7777}
 
 .image-preview{
- width:100%;max-height:320px;object-fit:contain;background:#050505;border-radius:10px
+ width:100%;
+ max-height:320px;
+ object-fit:contain;
+ background:#050505;
+ border-radius:10px
 }
+
 .mobile-menu{
- display:none;border:1px solid #333;background:#111;color:#d6ad55;border-radius:10px;padding:9px 12px
+ display:none;
+ border:1px solid #333;
+ background:#111;
+ color:#d6ad55;
+ border-radius:10px;
+ padding:9px 12px
 }
 
 @media(max-width:900px){
- .sidebar{transform:translateX(-100%);transition:.25s}
- .sidebar.open{transform:translateX(0)}
- .main{margin-left:0;width:100%;padding:15px}
+ .sidebar{
+  transform:translateX(-100%);
+  transition:.25s
+ }
+
+ .sidebar.open{
+  transform:translateX(0)
+ }
+
+ .main{
+  margin-left:0;
+  width:100%;
+  padding:15px
+ }
+
  .mobile-menu{display:block}
- .stats{grid-template-columns:repeat(2,1fr)}
+
+ .stats{
+  grid-template-columns:repeat(2,1fr)
+ }
 }
+
 @media(max-width:550px){
- .stats{grid-template-columns:1fr 1fr;gap:9px}
- .stat{padding:14px}.stat-value{font-size:21px}
- .form-row{grid-template-columns:1fr}
- .balance-grid{grid-template-columns:1fr}
- .top-title{font-size:20px}
+ .stats{
+  grid-template-columns:1fr 1fr;
+  gap:9px
+ }
+
+ .stat{
+  padding:14px
+ }
+
+ .stat-value{
+  font-size:21px
+ }
+
+ .form-row{
+  grid-template-columns:1fr
+ }
+
+ .balance-grid{
+  grid-template-columns:1fr
+ }
+
+ .top-title{
+  font-size:20px
+ }
 }
 </style>
 </head>
@@ -124,134 +424,322 @@ button{cursor:pointer}
 <body>
 
 <div id="loginPage" class="login-page">
+
  <div class="login-box">
+
   <div class="logo">TRADIX</div>
   <div class="admin-title">ADMIN PANEL</div>
 
   <div class="field">
    <label>Admin Email</label>
-   <input id="adminEmail" type="email" placeholder="Admin email">
+   <input
+    id="adminEmail"
+    type="email"
+    placeholder="Admin email">
   </div>
 
   <div class="field">
    <label>Password</label>
-   <input id="adminPassword" type="password" placeholder="Password">
+   <input
+    id="adminPassword"
+    type="password"
+    placeholder="Password">
   </div>
 
-  <button class="gold-btn" onclick="adminLogin()">LOGIN</button>
+  <button
+   class="gold-btn"
+   onclick="adminLogin()">
+   LOGIN
+  </button>
+
   <div id="loginMessage" class="message"></div>
+
  </div>
+
 </div>
+
 
 <div id="adminApp" class="admin hidden">
 
 <aside id="sidebar" class="sidebar">
+
  <div class="brand">TRADIX</div>
 
- <button class="nav-btn active" onclick="openPage('dashboard',this)">🏠 <span class="nav-icon"></span>Dashboard</button>
- <button class="nav-btn" onclick="openPage('users',this)">👥 <span class="nav-icon"></span>New Registrations</button>
- <button class="nav-btn" onclick="openPage('deposits',this)">💰 <span class="nav-icon"></span>Deposit Requests</button>
- <button class="nav-btn" onclick="openPage('withdrawals',this)">💸 <span class="nav-icon"></span>Withdrawal Requests</button>
- <button class="nav-btn" onclick="openPage('subscribers',this)">👤 <span class="nav-icon"></span>Subscribers</button>
- <button class="nav-btn" onclick="openPage('images',this)">🖼️ <span class="nav-icon"></span>Publish Images</button>
- <button class="nav-btn" onclick="openPage('signals',this)">📢 <span class="nav-icon"></span>Publish Trade</button>
- <button class="nav-btn" onclick="openPage('notifications',this)">🔔 <span class="nav-icon"></span>Notifications</button>
- <button class="nav-btn" onclick="openPage('settings',this)">⚙️ <span class="nav-icon"></span>Settings</button>
- <button class="nav-btn logout" onclick="adminLogout()">🚪 <span class="nav-icon"></span>Logout</button>
+ <button
+  class="nav-btn active"
+  onclick="openPage('dashboard',this)">
+  🏠 <span class="nav-icon"></span>Dashboard
+ </button>
+
+ <button
+  class="nav-btn"
+  onclick="openPage('users',this)">
+  👥 <span class="nav-icon"></span>New Registrations
+ </button>
+
+ <button
+  class="nav-btn"
+  onclick="openPage('deposits',this)">
+  💰 <span class="nav-icon"></span>Deposit Requests
+ </button>
+
+ <button
+  class="nav-btn"
+  onclick="openPage('withdrawals',this)">
+  💸 <span class="nav-icon"></span>Withdrawal Requests
+ </button>
+
+ <button
+  class="nav-btn"
+  onclick="openPage('subscribers',this)">
+  👤 <span class="nav-icon"></span>Subscribers
+ </button>
+
+ <button
+  class="nav-btn"
+  onclick="openPage('images',this)">
+  🖼️ <span class="nav-icon"></span>Publish Images
+ </button>
+
+ <button
+  class="nav-btn"
+  onclick="openPage('signals',this)">
+  📢 <span class="nav-icon"></span>Publish Trade
+ </button>
+
+ <button
+  class="nav-btn"
+  onclick="openPage('notifications',this)">
+  🔔 <span class="nav-icon"></span>Notifications
+ </button>
+
+ <button
+  class="nav-btn"
+  onclick="openPage('settings',this)">
+  ⚙️ <span class="nav-icon"></span>Settings
+ </button>
+
+ <button
+  class="nav-btn logout"
+  onclick="adminLogout()">
+  🚪 <span class="nav-icon"></span>Logout
+ </button>
+
 </aside>
+
 
 <main class="main">
 
 <div class="topbar">
+
  <div style="display:flex;align-items:center;gap:10px">
-  <button class="mobile-menu" onclick="toggleSidebar()">☰</button>
-  <div class="top-title"><span class="gold">TRADIX</span> ADMIN</div>
+
+  <button
+   class="mobile-menu"
+   onclick="toggleSidebar()">
+   ☰
+  </button>
+
+  <div class="top-title">
+   <span class="gold">TRADIX</span> ADMIN
+  </div>
+
  </div>
- <div id="adminEmailDisplay" class="admin-email"></div>
+
+ <div
+  id="adminEmailDisplay"
+  class="admin-email">
+ </div>
+
 </div>
 
+
 <section id="dashboard" class="page active">
+
  <div class="stats">
-  <div class="stat"><div class="stat-icon">👥</div><div class="stat-label">Members</div><div id="statUsers" class="stat-value">0</div></div>
-  <div class="stat"><div class="stat-icon">💰</div><div class="stat-label">Deposits</div><div id="statDeposits" class="stat-value">0</div></div>
-  <div class="stat"><div class="stat-icon">💸</div><div class="stat-label">Withdrawals</div><div id="statWithdrawals" class="stat-value">0</div></div>
-  <div class="stat"><div class="stat-icon">🖼️</div><div class="stat-label">Images</div><div id="statImages" class="stat-value">0</div></div>
+
+  <div class="stat">
+   <div class="stat-icon">👥</div>
+   <div class="stat-label">Members</div>
+   <div id="statUsers" class="stat-value">0</div>
+  </div>
+
+  <div class="stat">
+   <div class="stat-icon">💰</div>
+   <div class="stat-label">Deposits</div>
+   <div id="statDeposits" class="stat-value">0</div>
+  </div>
+
+  <div class="stat">
+   <div class="stat-icon">💸</div>
+   <div class="stat-label">Withdrawals</div>
+   <div id="statWithdrawals" class="stat-value">0</div>
+  </div>
+
+  <div class="stat">
+   <div class="stat-icon">🖼️</div>
+   <div class="stat-label">Images</div>
+   <div id="statImages" class="stat-value">0</div>
+  </div>
+
  </div>
 
+
  <div class="panel">
-  <div class="panel-title">System Overview</div>
+
+  <div class="panel-title">
+   System Overview
+  </div>
+
   <div class="empty">
-   TRADIX ADMIN PANEL<br><br>
+   TRADIX ADMIN PANEL
+   <br><br>
    Database connected to the current TRADIX Nhost project.
   </div>
+
  </div>
+
 </section>
+
 
 <section id="users" class="page">
+
  <div class="panel">
-  <div class="panel-title">👥 New Registrations</div>
-  <div id="usersList"><div class="empty">Loading...</div></div>
+
+  <div class="panel-title">
+   👥 New Registrations
+  </div>
+
+  <div id="usersList">
+   <div class="empty">Loading...</div>
+  </div>
+
  </div>
+
 </section>
+
 
 <section id="deposits" class="page">
+
  <div class="panel">
-  <div class="panel-title">💰 Deposit Requests</div>
-  <div id="depositsList"><div class="empty">Loading...</div></div>
+
+  <div class="panel-title">
+   💰 Deposit Requests
+  </div>
+
+  <div id="depositsList">
+   <div class="empty">Loading...</div>
+  </div>
+
  </div>
+
 </section>
+
 
 <section id="withdrawals" class="page">
+
  <div class="panel">
-  <div class="panel-title">💸 Withdrawal Requests</div>
-  <div id="withdrawalsList"><div class="empty">Loading...</div></div>
+
+  <div class="panel-title">
+   💸 Withdrawal Requests
+  </div>
+
+  <div id="withdrawalsList">
+   <div class="empty">Loading...</div>
+  </div>
+
  </div>
+
 </section>
 
+
 <section id="subscribers" class="page">
+
  <div class="panel">
-  <div class="panel-title">👤 Subscribers Management</div>
-  <div id="subscribersList"><div class="empty">Loading...</div></div>
+
+  <div class="panel-title">
+   👤 Subscribers Management
+  </div>
+
+  <div id="subscribersList">
+   <div class="empty">Loading...</div>
+  </div>
+
  </div>
+
 </section>
+
 
 <section id="images" class="page">
 
  <div class="panel">
-  <div class="panel-title">🖼️ Publish Image</div>
 
-  <div class="form-group">
-   <label>Image URL</label>
-   <input id="imageUrl" type="url" placeholder="https://...">
+  <div class="panel-title">
+   🖼️ Publish Image
   </div>
 
-  <button class="gold-btn" onclick="publishImage()">📤 PUBLISH IMAGE</button>
+  <div class="form-group">
+
+   <label>Image URL</label>
+
+   <input
+    id="imageUrl"
+    type="url"
+    placeholder="https://...">
+
+  </div>
+
+  <button
+   class="gold-btn"
+   onclick="publishImage()">
+   📤 PUBLISH IMAGE
+  </button>
+
  </div>
 
+
  <div class="panel">
-  <div class="panel-title">🖼️ Published Images</div>
-  <div id="imagesList"><div class="empty">Loading...</div></div>
+
+  <div class="panel-title">
+   🖼️ Published Images
+  </div>
+
+  <div id="imagesList">
+   <div class="empty">Loading...</div>
+  </div>
+
  </div>
 
 </section>
 
+
 <section id="signals" class="page">
 
  <div class="panel">
-  <div class="panel-title">📢 Publish Trade</div>
+
+  <div class="panel-title">
+   📢 Publish Trade
+  </div>
 
   <div class="form-row">
+
    <div class="form-group">
+
     <label>Action</label>
+
     <select id="tradeAction">
      <option value="BUY">BUY</option>
      <option value="SELL">SELL</option>
      <option value="WAIT">WAIT</option>
     </select>
+
    </div>
 
+
    <div class="form-group">
+
     <label>Timeframe</label>
+
     <select id="tradeTimeframe">
      <option>1m</option>
      <option>5m</option>
@@ -259,73 +747,158 @@ button{cursor:pointer}
      <option>1h</option>
      <option>1d</option>
     </select>
+
    </div>
+
   </div>
+
 
   <div class="form-row">
+
    <div class="form-group">
+
     <label>Entry</label>
-    <input id="tradeEntry" type="number" step="any" placeholder="Entry">
+
+    <input
+     id="tradeEntry"
+     type="number"
+     step="any"
+     placeholder="Entry">
+
    </div>
+
 
    <div class="form-group">
+
     <label>Stop Loss</label>
-    <input id="tradeSL" type="number" step="any" placeholder="Stop Loss">
+
+    <input
+     id="tradeSL"
+     type="number"
+     step="any"
+     placeholder="Stop Loss">
+
    </div>
+
   </div>
 
+
   <div class="form-group">
+
    <label>Take Profit</label>
-   <input id="tradeTP" type="number" step="any" placeholder="Take Profit">
+
+   <input
+    id="tradeTP"
+    type="number"
+    step="any"
+    placeholder="Take Profit">
+
   </div>
+
 
   <div class="form-group">
+
    <label>Reason / Message</label>
-   <textarea id="tradeMessage" placeholder="Trade reason"></textarea>
+
+   <textarea
+    id="tradeMessage"
+    placeholder="Trade reason"></textarea>
+
   </div>
 
-  <button class="gold-btn" onclick="publishTrade()">📢 PUBLISH TRADE</button>
+
+  <button
+   class="gold-btn"
+   onclick="publishTrade()">
+   📢 PUBLISH TRADE
+  </button>
+
  </div>
 
+
  <div class="panel">
-  <div class="panel-title">Published Trades</div>
-  <div id="tradesList"><div class="empty">Loading...</div></div>
+
+  <div class="panel-title">
+   Published Trades
+  </div>
+
+  <div id="tradesList">
+   <div class="empty">Loading...</div>
+  </div>
+
  </div>
 
 </section>
+
 
 <section id="notifications" class="page">
+
  <div class="panel">
-  <div class="panel-title">🔔 Send Notification</div>
+
+  <div class="panel-title">
+   🔔 Send Notification
+  </div>
 
   <div class="form-group">
+
    <label>Message</label>
-   <textarea id="notificationMessage" placeholder="Notification message"></textarea>
+
+   <textarea
+    id="notificationMessage"
+    placeholder="Notification message"></textarea>
+
   </div>
 
-  <button class="gold-btn" onclick="sendNotification()">🔔 SEND TO ALL MEMBERS</button>
+  <button
+   class="gold-btn"
+   onclick="sendNotification()">
+   🔔 SEND TO ALL MEMBERS
+  </button>
+
  </div>
+
 </section>
+
 
 <section id="settings" class="page">
+
  <div class="panel">
-  <div class="panel-title">⚙️ Admin Settings</div>
-  <div class="empty">
-   Admin account:<br><br>
-   <strong id="settingsEmail">-</strong>
-   <br><br>
-   TRADIX Nhost project:<br><br>
-   <span class="gold">ocjpynkhncowxcjpnorl</span>
+
+  <div class="panel-title">
+   ⚙️ Admin Settings
   </div>
+
+  <div class="empty">
+
+   Admin account:
+   <br><br>
+
+   <strong id="settingsEmail">-</strong>
+
+   <br><br>
+
+   TRADIX Nhost project:
+   <br><br>
+
+   <span class="gold">
+    ocjpynkhncowxcjpnorl
+   </span>
+
+  </div>
+
  </div>
+
 </section>
+
 
 </main>
 </div>
 
+
 <script>
 
 const NHOST_SUBDOMAIN="ocjpynkhncowxcjpnorl";
+
 const NHOST_REGION="eu-central-1";
 
 const NHOST_AUTH=
@@ -335,34 +908,251 @@ const NHOST_GRAPHQL=
 `https://${NHOST_SUBDOMAIN}.graphql.${NHOST_REGION}.nhost.run/v1`;
 
 const ADMIN_EMAIL="mmatrix081@gmail.com";
+
 const ADMIN_SESSION_KEY="tradix_admin_session";
 
 
+/* =========================
+   SESSION
+========================= */
+
 function getAdminSession(){
+
  try{
-  const x=localStorage.getItem(ADMIN_SESSION_KEY);
+
+  const x=
+   localStorage.getItem(ADMIN_SESSION_KEY);
+
   return x?JSON.parse(x):null;
- }catch{return null}
+
+ }catch(error){
+
+  return null;
+
+ }
+
 }
 
 
+/* Decode JWT expiration */
+function getTokenExpiration(token){
+
+ try{
+
+  const parts=token.split(".");
+
+  if(parts.length!==3)
+   return 0;
+
+  const payload=
+   JSON.parse(
+    atob(
+     parts[1]
+      .replace(/-/g,"+")
+      .replace(/_/g,"/")
+    )
+   );
+
+  return Number(payload.exp||0)*1000;
+
+ }catch(error){
+
+  return 0;
+
+ }
+
+}
+
+
+/* =========================
+   REFRESH SESSION
+========================= */
+
+let refreshPromise=null;
+
+async function refreshAdminSession(){
+
+ if(refreshPromise)
+  return refreshPromise;
+
+ refreshPromise=(async()=>{
+
+  const oldSession=getAdminSession();
+
+  if(!oldSession?.refreshToken){
+
+   localStorage.removeItem(ADMIN_SESSION_KEY);
+
+   throw new Error(
+    "Admin session expired. Please login again."
+   );
+
+  }
+
+
+  const response=await fetch(
+   `${NHOST_AUTH}/token`,
+   {
+    method:"POST",
+
+    headers:{
+     "Content-Type":"application/json"
+    },
+
+    body:JSON.stringify({
+     refreshToken:oldSession.refreshToken
+    })
+   }
+  );
+
+
+  const data=await response.json();
+
+
+  if(!response.ok){
+
+   localStorage.removeItem(
+    ADMIN_SESSION_KEY
+   );
+
+   throw new Error(
+    data.message||
+    "Admin session expired. Please login again."
+   );
+
+  }
+
+
+  /*
+   Nhost /token returns the new
+   session directly.
+  */
+
+  const newSession={
+
+   ...oldSession,
+
+   ...data,
+
+   user:data.user||oldSession.user
+
+  };
+
+
+  localStorage.setItem(
+   ADMIN_SESSION_KEY,
+   JSON.stringify(newSession)
+  );
+
+
+  return newSession;
+
+ })();
+
+
+ try{
+
+  return await refreshPromise;
+
+ }finally{
+
+  refreshPromise=null;
+
+ }
+
+}
+
+
+/* =========================
+   VALID SESSION
+========================= */
+
+async function getValidAdminSession(){
+
+ let session=getAdminSession();
+
+
+ if(!session?.accessToken){
+
+  throw new Error(
+   "Admin session expired. Please login again."
+  );
+
+ }
+
+
+ const jwtExpiration=
+  getTokenExpiration(
+   session.accessToken
+  );
+
+
+ /*
+  Refresh 60 seconds before expiry.
+ */
+
+ if(
+  jwtExpiration &&
+  Date.now()>=jwtExpiration-60000
+ ){
+
+  session=
+   await refreshAdminSession();
+
+ }
+
+
+ return session;
+
+}
+
+
+/* =========================
+   ADMIN LOGIN
+========================= */
+
 async function adminLogin(){
 
- const email=document.getElementById("adminEmail").value.trim();
- const password=document.getElementById("adminPassword").value;
- const message=document.getElementById("loginMessage");
+ const email=
+  document
+   .getElementById("adminEmail")
+   .value
+   .trim();
+
+ const password=
+  document
+   .getElementById("adminPassword")
+   .value;
+
+ const message=
+  document.getElementById("loginMessage");
+
 
  message.textContent="";
 
+
  if(!email||!password){
-  message.textContent="Enter email and password.";
+
+  message.textContent=
+   "Enter email and password.";
+
   return;
+
  }
 
- if(email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()){
-  message.textContent="This account is not authorized as Admin.";
+
+ if(
+  email.toLowerCase()!==
+  ADMIN_EMAIL.toLowerCase()
+ ){
+
+  message.textContent=
+   "This account is not authorized as Admin.";
+
   return;
+
  }
+
 
  try{
 
@@ -370,400 +1160,627 @@ async function adminLogin(){
    `${NHOST_AUTH}/signin/email-password`,
    {
     method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({email,password})
+
+    headers:{
+     "Content-Type":"application/json"
+    },
+
+    body:JSON.stringify({
+     email,
+     password
+    })
    }
   );
 
+
   const data=await response.json();
 
-  if(!response.ok)
-   throw new Error(data.message||"Admin login failed.");
 
-  if(!data.session)
-   throw new Error("No active session returned.");
+  if(!response.ok){
+
+   throw new Error(
+    data.message||
+    "Admin login failed."
+   );
+
+  }
+
+
+  if(!data.session){
+
+   throw new Error(
+    "No active session returned."
+   );
+
+  }
+
+
+  const session=data.session;
+
 
   localStorage.setItem(
    ADMIN_SESSION_KEY,
-   JSON.stringify(data.session)
+   JSON.stringify(session)
   );
 
-  showAdmin(data.session);
+
+  showAdmin(session);
+
 
  }catch(error){
-  message.textContent=error.message||"Login failed.";
+
+  message.textContent=
+   error.message||
+   "Login failed.";
+
  }
+
 }
 
+
+/* =========================
+   SHOW ADMIN
+========================= */
 
 function showAdmin(session){
 
- document.getElementById("loginPage").classList.add("hidden");
- document.getElementById("adminApp").classList.remove("hidden");
+ document
+  .getElementById("loginPage")
+  .classList.add("hidden");
 
- const email=session.user?.email||ADMIN_EMAIL;
+ document
+  .getElementById("adminApp")
+  .classList.remove("hidden");
 
- document.getElementById("adminEmailDisplay").textContent=email;
- document.getElementById("settingsEmail").textContent=email;
+
+ const email=
+  session.user?.email||
+  ADMIN_EMAIL;
+
+
+ document
+  .getElementById("adminEmailDisplay")
+  .textContent=email;
+
+
+ document
+  .getElementById("settingsEmail")
+  .textContent=email;
+
 
  loadDashboard();
+
 }
 
+
+/* =========================
+   LOGOUT
+========================= */
 
 function adminLogout(){
- localStorage.removeItem(ADMIN_SESSION_KEY);
+
+ localStorage.removeItem(
+  ADMIN_SESSION_KEY
+ );
+
  location.reload();
+
 }
 
+
+/* =========================
+   NAVIGATION
+========================= */
 
 function openPage(id,button){
 
- document.querySelectorAll(".page")
- .forEach(x=>x.classList.remove("active"));
+ document
+  .querySelectorAll(".page")
+  .forEach(
+   x=>x.classList.remove("active")
+  );
 
- document.querySelectorAll(".nav-btn")
- .forEach(x=>x.classList.remove("active"));
 
- document.getElementById(id).classList.add("active");
+ document
+  .querySelectorAll(".nav-btn")
+  .forEach(
+   x=>x.classList.remove("active")
+  );
 
- if(button)button.classList.add("active");
 
- if(id==="dashboard")loadDashboard();
- if(id==="users")loadMembers();
- if(id==="subscribers")loadMembers();
- if(id==="deposits")loadDeposits();
- if(id==="withdrawals")loadWithdrawals();
- if(id==="images")loadImages();
- if(id==="signals")loadTrades();
+ document
+  .getElementById(id)
+  .classList.add("active");
 
- document.getElementById("sidebar").classList.remove("open");
+
+ if(button)
+  button.classList.add("active");
+
+
+ if(id==="dashboard")
+  loadDashboard();
+
+ if(id==="users")
+  loadMembers();
+
+ if(id==="subscribers")
+  loadMembers();
+
+ if(id==="deposits")
+  loadDeposits();
+
+ if(id==="withdrawals")
+  loadWithdrawals();
+
+ if(id==="images")
+  loadImages();
+
+ if(id==="signals")
+  loadTrades();
+
+
+ document
+  .getElementById("sidebar")
+  .classList.remove("open");
+
 }
 
 
 function toggleSidebar(){
- document.getElementById("sidebar").classList.toggle("open");
+
+ document
+  .getElementById("sidebar")
+  .classList.toggle("open");
+
 }
 
 
-async function graphqlRequest(query,variables={}){
+/* =========================
+   GRAPHQL REQUEST
+   AUTO JWT REFRESH
+========================= */
 
- const session=getAdminSession();
+async function graphqlRequest(
+ query,
+ variables={},
+ retry=true
+){
 
- if(!session?.accessToken)
-  throw new Error("Admin session expired. Please login again.");
+ let session=
+  await getValidAdminSession();
 
- const response=await fetch(
+
+ let response=await fetch(
   NHOST_GRAPHQL,
   {
    method:"POST",
+
    headers:{
     "Content-Type":"application/json",
-    "Authorization":`Bearer ${session.accessToken}`
+    "Authorization":
+     `Bearer ${session.accessToken}`
    },
-   body:JSON.stringify({query,variables})
+
+   body:JSON.stringify({
+    query,
+    variables
+   })
   }
  );
 
- const result=await response.json();
 
- if(result.errors?.length)
-  throw new Error(result.errors[0].message||"GraphQL request failed.");
+ let result=
+  await response.json();
+
+
+ /*
+  If JWT has expired despite
+  pre-refresh, refresh once.
+ */
+
+ const jwtExpired=
+  result.errors?.some(error=>{
+
+   const text=
+    String(
+     error.message||""
+    ).toLowerCase();
+
+   return(
+    text.includes("jwtexpired")||
+    text.includes("jwt expired")||
+    text.includes("could not verify jwt")||
+    text.includes("invalid jwt")
+   );
+
+  });
+
+
+ if(
+  retry &&
+  jwtExpired
+ ){
+
+  session=
+   await refreshAdminSession();
+
+
+  response=await fetch(
+   NHOST_GRAPHQL,
+   {
+    method:"POST",
+
+    headers:{
+     "Content-Type":"application/json",
+     "Authorization":
+      `Bearer ${session.accessToken}`
+    },
+
+    body:JSON.stringify({
+     query,
+     variables
+    })
+   }
+  );
+
+
+  result=
+   await response.json();
+
+ }
+
+
+ if(result.errors?.length){
+
+  throw new Error(
+   result.errors[0].message||
+   "GraphQL request failed."
+  );
+
+ }
+
 
  return result.data;
+
 }
 
 
-/* DASHBOARD */
+/* =========================
+   DASHBOARD
+========================= */
 
 async function loadDashboard(){
 
  try{
 
-  const data=await graphqlRequest(`
-   query Dashboard{
-    members_aggregate{aggregate{count}}
-    deposits_aggregate{aggregate{count}}
-    withdrawals_aggregate{aggregate{count}}
-    completed_trades_aggregate{aggregate{count}}
-   }
-  `);
+  const data=
+   await graphqlRequest(`
 
-  document.getElementById("statUsers").textContent=
-   data.members_aggregate.aggregate.count;
+    query Dashboard{
 
-  document.getElementById("statDeposits").textContent=
-   data.deposits_aggregate.aggregate.count;
+     members_aggregate{
+      aggregate{
+       count
+      }
+     }
 
-  document.getElementById("statWithdrawals").textContent=
-   data.withdrawals_aggregate.aggregate.count;
+     deposits_aggregate{
+      aggregate{
+       count
+      }
+     }
 
-  document.getElementById("statImages").textContent=
-   data.completed_trades_aggregate.aggregate.count;
+     withdrawals_aggregate{
+      aggregate{
+       count
+      }
+     }
+
+     completed_trades_aggregate{
+      aggregate{
+       count
+      }
+     }
+
+    }
+
+   `);
+
+
+  document
+   .getElementById("statUsers")
+   .textContent=
+   data
+    .members_aggregate
+    .aggregate
+    .count;
+
+
+  document
+   .getElementById("statDeposits")
+   .textContent=
+   data
+    .deposits_aggregate
+    .aggregate
+    .count;
+
+
+  document
+   .getElementById("statWithdrawals")
+   .textContent=
+   data
+    .withdrawals_aggregate
+    .aggregate
+    .count;
+
+
+  document
+   .getElementById("statImages")
+   .textContent=
+   data
+    .completed_trades_aggregate
+    .aggregate
+    .count;
+
 
  }catch(error){
-  console.log(error);
+
+  console.log(
+   "Dashboard error:",
+   error
+  );
+
+  /*
+   Do not replace the real number
+   with zero when there is an error.
+  */
+
  }
+
 }
 
 
-/* MEMBERS */
+/* =========================
+   MEMBERS
+========================= */
 
 async function loadMembers(){
 
- const a=document.getElementById("usersList");
- const b=document.getElementById("subscribersList");
+ const a=
+  document.getElementById("usersList");
 
- a.innerHTML='<div class="empty">Loading...</div>';
- b.innerHTML='<div class="empty">Loading...</div>';
+ const b=
+  document.getElementById("subscribersList");
+
+
+ a.innerHTML=
+  '<div class="empty">Loading...</div>';
+
+ b.innerHTML=
+  '<div class="empty">Loading...</div>';
+
 
  try{
 
-  const data=await graphqlRequest(`
-   query Members{
-    members(order_by:{created_at:desc}){
-     id
-     email
-     full_name
-     investor
-     investment
-     profit
-     available_to_withdraw
-     created_at
+  const data=
+   await graphqlRequest(`
+
+    query Members{
+
+     members(
+      order_by:{
+       created_at:desc
+      }
+     ){
+
+      id
+      email
+      full_name
+      investor
+      investment
+      profit
+      available_to_withdraw
+      created_at
+
+     }
+
     }
-   }
-  `);
 
-  const members=data.members||[];
+   `);
 
-  document.getElementById("statUsers").textContent=members.length;
 
-  renderMembers(a,members);
-  renderMembers(b,members);
+  const members=
+   data.members||[];
+
+
+  document
+   .getElementById("statUsers")
+   .textContent=
+   members.length;
+
+
+  renderMembers(
+   a,
+   members
+  );
+
+
+  renderMembers(
+   b,
+   members
+  );
+
 
  }catch(error){
 
   const html=
-  `<div class="empty">
-   Unable to load members.<br><br>
-   ${escapeHtml(error.message)}
-  </div>`;
+   `<div class="empty">
+    Unable to load members.
+    <br><br>
+    ${escapeHtml(error.message)}
+   </div>`;
+
 
   a.innerHTML=html;
   b.innerHTML=html;
+
  }
+
 }
 
 
-function renderMembers(container,members){
+/* =========================
+   RENDER MEMBERS
+========================= */
+
+function renderMembers(
+ container,
+ members
+){
 
  if(!members.length){
-  container.innerHTML='<div class="empty">No members found.</div>';
+
+  container.innerHTML=
+   '<div class="empty">No members found.</div>';
+
   return;
+
  }
 
- container.innerHTML=members.map(member=>`
 
- <div class="user-card">
+ container.innerHTML=
+  members.map(member=>`
 
-  <div class="user-head">
-   <div>
-    <div class="user-name">
-     👤 ${escapeHtml(member.full_name||"Unnamed User")}
-    </div>
-    <div class="user-email">
-     ${escapeHtml(member.email||"")}
-    </div>
-   </div>
+   <div class="user-card">
 
-   <div class="badge">
-    ${member.investor?"INVESTOR":"MEMBER"}
-   </div>
-  </div>
+    <div class="user-head">
 
-  <div class="balance-grid">
+     <div>
 
-   <div class="balance-box">
-    <div class="balance-label">Investment</div>
-    <div class="balance-value">
-     $${money(member.investment)}
-    </div>
-   </div>
+      <div class="user-name">
+       👤
+       ${escapeHtml(
+        member.full_name||
+        "Unnamed User"
+       )}
+      </div>
 
-   <div class="balance-box">
-    <div class="balance-label">Available Withdraw</div>
-    <div class="balance-value">
-     $${money(member.available_to_withdraw)}
-    </div>
-   </div>
+      <div class="user-email">
+       ${escapeHtml(
+        member.email||""
+       )}
+      </div>
 
-   <div class="balance-box">
-    <div class="balance-label">Profits</div>
-    <div class="balance-value">
-     $${money(member.profit)}
-    </div>
-   </div>
+     </div>
 
-  </div>
+     <div class="badge">
+      ${
+       member.investor
+       ?"INVESTOR"
+       :"MEMBER"
+      }
+     </div>
 
-  <div class="actions">
-
-   <button class="small-btn gold"
-    onclick="editMember('${member.id}','investment','Investment',${Number(member.investment||0)})">
-    💳 Balance
-   </button>
-
-   <button class="small-btn gold"
-    onclick="editMember('${member.id}','available_to_withdraw','Available to Withdraw',${Number(member.available_to_withdraw||0)})">
-    💰 Withdrawable
-   </button>
-
-   <button class="small-btn gold"
-    onclick="editMember('${member.id}','profit','Profits',${Number(member.profit||0)})">
-    📈 Profits
-   </button>
-
-   <button class="small-btn red"
-    onclick="deleteMember('${member.id}')">
-    🗑️ Delete
-   </button>
-
-  </div>
-
- </div>
-
- `).join("");
-}
-
-
-async function editMember(id,column,label,current){
-
- const value=prompt(
-  `Enter new ${label}:`,
-  current
- );
-
- if(value===null)return;
-
- const number=Number(value);
-
- if(!Number.isFinite(number)||number<0){
-  alert("Enter a valid amount.");
-  return;
- }
-
- try{
-
-  const mutation=`
-   mutation UpdateMember(
-    $id:uuid!,
-    $value:numeric!
-   ){
-    update_members_by_pk(
-     pk_columns:{id:$id},
-     _set:{${column}:$value}
-    ){
-     id
-    }
-   }
-  `;
-
-  await graphqlRequest(mutation,{id,value:number});
-
-  alert("Updated successfully.");
-  loadMembers();
-
- }catch(error){
-  alert(error.message||"Update failed.");
- }
-}
-
-
-async function deleteMember(id){
-
- if(!confirm("Delete this member record?"))return;
-
- try{
-
-  await graphqlRequest(`
-   mutation DeleteMember($id:uuid!){
-    delete_members_by_pk(id:$id){
-     id
-    }
-   }
-  `,{id});
-
-  alert("Member deleted.");
-  loadMembers();
-
- }catch(error){
-  alert(error.message||"Delete failed.");
- }
-}
-
-
-/* DEPOSITS */
-
-async function loadDeposits(){
-
- const box=document.getElementById("depositsList");
- box.innerHTML='<div class="empty">Loading...</div>';
-
- try{
-
-  const data=await graphqlRequest(`
-   query Deposits{
-    deposits(order_by:{created_at:desc}){
-     id
-     member_id
-     email
-     amount
-     transaction_hash
-     status
-     created_at
-    }
-   }
-  `);
-
-  const rows=data.deposits||[];
-
-  document.getElementById("statDeposits").textContent=rows.length;
-
-  if(!rows.length){
-   box.innerHTML='<div class="empty">No deposit requests.</div>';
-   return;
-  }
-
-  box.innerHTML=rows.map(x=>`
-
-   <div class="request-card">
-
-    <div class="user-name">💰 ${escapeHtml(x.email||"Unknown")}</div>
-
-    <div class="request-line">
-     Amount: <strong>$${money(x.amount)}</strong>
     </div>
 
-    <div class="request-line">
-     Transaction: ${escapeHtml(x.transaction_hash||"-")}
+
+    <div class="balance-grid">
+
+     <div class="balance-box">
+
+      <div class="balance-label">
+       Investment
+      </div>
+
+      <div class="balance-value">
+       $${money(member.investment)}
+      </div>
+
+     </div>
+
+
+     <div class="balance-box">
+
+      <div class="balance-label">
+       Available Withdraw
+      </div>
+
+      <div class="balance-value">
+       $${money(
+        member.available_to_withdraw
+       )}
+      </div>
+
+     </div>
+
+
+     <div class="balance-box">
+
+      <div class="balance-label">
+       Profits
+      </div>
+
+      <div class="balance-value">
+       $${money(member.profit)}
+      </div>
+
+     </div>
+
     </div>
 
-    <div class="request-line">
-     Status:
-     <strong class="status-${escapeHtml(String(x.status||"pending").toLowerCase())}">
-      ${escapeHtml(x.status||"pending")}
-     </strong>
-    </div>
 
     <div class="actions">
 
-     <button class="small-btn green"
-      onclick="changeDeposit('${x.id}','approved','${x.member_id||""}',${Number(x.amount||0)})">
-      ✅ APPROVE
+     <button
+      class="small-btn gold"
+      onclick="
+       editMember(
+        '${member.id}',
+        'investment',
+        'Investment',
+        ${Number(member.investment||0)}
+       )
+      ">
+      💳 Balance
      </button>
 
-     <button class="small-btn red"
-      onclick="changeDeposit('${x.id}','rejected','${x.member_id||""}',0)">
-      ❌ REJECT
+
+     <button
+      class="small-btn gold"
+      onclick="
+       editMember(
+        '${member.id}',
+        'available_to_withdraw',
+        'Available to Withdraw',
+        ${Number(
+         member.available_to_withdraw||0
+        )}
+       )
+      ">
+      💰 Withdrawable
+     </button>
+
+
+     <button
+      class="small-btn gold"
+      onclick="
+       editMember(
+        '${member.id}',
+        'profit',
+        'Profits',
+        ${Number(member.profit||0)}
+       )
+      ">
+      📈 Profits
+     </button>
+
+
+     <button
+      class="small-btn red"
+      onclick="
+       deleteMember('${member.id}')
+      ">
+      🗑️ Delete
      </button>
 
     </div>
@@ -772,517 +1789,1452 @@ async function loadDeposits(){
 
   `).join("");
 
- }catch(error){
-
-  box.innerHTML=
-  `<div class="empty">${escapeHtml(error.message)}</div>`;
- }
 }
 
 
-async function changeDeposit(id,status,memberId,amount){
+/* =========================
+   EDIT MEMBER
+========================= */
+
+async function editMember(
+ id,
+ column,
+ label,
+ current
+){
+
+ const value=
+  prompt(
+   `Enter new ${label}:`,
+   current
+  );
+
+
+ if(value===null)
+  return;
+
+
+ const number=
+  Number(value);
+
+
+ if(
+  !Number.isFinite(number)||
+  number<0
+ ){
+
+  alert(
+   "Enter a valid amount."
+  );
+
+  return;
+
+ }
+
+
+ try{
+
+  const mutation=`
+
+   mutation UpdateMember(
+    $id:uuid!,
+    $value:numeric!
+   ){
+
+    update_members_by_pk(
+     pk_columns:{
+      id:$id
+     },
+
+     _set:{
+      ${column}:$value
+     }
+
+    ){
+
+     id
+
+    }
+
+   }
+
+  `;
+
+
+  await graphqlRequest(
+   mutation,
+   {
+    id,
+    value:number
+   }
+  );
+
+
+  alert(
+   "Updated successfully."
+  );
+
+
+  loadMembers();
+
+
+ }catch(error){
+
+  alert(
+   error.message||
+   "Update failed."
+  );
+
+ }
+
+}
+
+
+/* =========================
+   DELETE MEMBER
+========================= */
+
+async function deleteMember(id){
+
+ if(
+  !confirm(
+   "Delete this member record?"
+  )
+ )
+  return;
+
 
  try{
 
   await graphqlRequest(`
-   mutation UpdateDeposit($id:uuid!,$status:String!){
-    update_deposits_by_pk(
-     pk_columns:{id:$id},
-     _set:{status:$status}
-    ){id}
+
+   mutation DeleteMember(
+    $id:uuid!
+   ){
+
+    delete_members_by_pk(
+     id:$id
+    ){
+     id
+    }
+
    }
-  `,{id,status});
+
+  `,{id});
+
+
+  alert(
+   "Member deleted."
+  );
+
+
+  loadMembers();
+
+
+ }catch(error){
+
+  alert(
+   error.message||
+   "Delete failed."
+  );
+
+ }
+
+}
+
+
+/* =========================
+   DEPOSITS
+========================= */
+
+async function loadDeposits(){
+
+ const box=
+  document.getElementById(
+   "depositsList"
+  );
+
+
+ box.innerHTML=
+  '<div class="empty">Loading...</div>';
+
+
+ try{
+
+  const data=
+   await graphqlRequest(`
+
+    query Deposits{
+
+     deposits(
+      order_by:{
+       created_at:desc
+      }
+     ){
+
+      id
+      member_id
+      email
+      amount
+      transaction_hash
+      status
+      created_at
+
+     }
+
+    }
+
+   `);
+
+
+  const rows=
+   data.deposits||[];
+
+
+  document
+   .getElementById("statDeposits")
+   .textContent=
+   rows.length;
+
+
+  if(!rows.length){
+
+   box.innerHTML=
+    '<div class="empty">No deposit requests.</div>';
+
+   return;
+
+  }
+
+
+  box.innerHTML=
+   rows.map(x=>`
+
+    <div class="request-card">
+
+     <div class="user-name">
+      💰
+      ${escapeHtml(
+       x.email||"Unknown"
+      )}
+     </div>
+
+
+     <div class="request-line">
+      Amount:
+      <strong>
+       $${money(x.amount)}
+      </strong>
+     </div>
+
+
+     <div class="request-line">
+      Transaction:
+      ${escapeHtml(
+       x.transaction_hash||"-"
+      )}
+     </div>
+
+
+     <div class="request-line">
+
+      Status:
+
+      <strong
+       class="status-${
+        escapeHtml(
+         String(
+          x.status||"pending"
+         ).toLowerCase()
+        )
+       }">
+
+       ${escapeHtml(
+        x.status||"pending"
+       )}
+
+      </strong>
+
+     </div>
+
+
+     <div class="actions">
+
+      <button
+       class="small-btn green"
+       onclick="
+        changeDeposit(
+         '${x.id}',
+         'approved',
+         '${x.member_id||""}',
+         ${Number(x.amount||0)}
+        )
+       ">
+       ✅ APPROVE
+      </button>
+
+
+      <button
+       class="small-btn red"
+       onclick="
+        changeDeposit(
+         '${x.id}',
+         'rejected',
+         '${x.member_id||""}',
+         0
+        )
+       ">
+       ❌ REJECT
+      </button>
+
+     </div>
+
+    </div>
+
+   `).join("");
+
+
+ }catch(error){
+
+  box.innerHTML=
+   `<div class="empty">
+    ${escapeHtml(error.message)}
+   </div>`;
+
+ }
+
+}
+
+
+/* =========================
+   CHANGE DEPOSIT
+========================= */
+
+async function changeDeposit(
+ id,
+ status,
+ memberId,
+ amount
+){
+
+ try{
+
+  await graphqlRequest(`
+
+   mutation UpdateDeposit(
+    $id:uuid!,
+    $status:String!
+   ){
+
+    update_deposits_by_pk(
+
+     pk_columns:{
+      id:$id
+     },
+
+     _set:{
+      status:$status
+     }
+
+    ){
+     id
+     status
+    }
+
+   }
+
+  `,{
+   id,
+   status
+  });
+
 
   if(memberId){
 
    if(status==="approved"){
 
     await graphqlRequest(`
-     mutation AddInvestment($id:uuid!,$amount:numeric!){
+
+     mutation AddInvestment(
+      $id:uuid!,
+      $amount:numeric!
+     ){
+
       update_members_by_pk(
-       pk_columns:{id:$id},
-       _inc:{investment:$amount}
-      ){id}
+
+       pk_columns:{
+        id:$id
+       },
+
+       _inc:{
+        investment:$amount
+       }
+
+      ){
+       id
+      }
+
      }
-    `,{id:memberId,amount});
+
+    `,{
+     id:memberId,
+     amount
+    });
+
    }
 
+
    await createNotification(
+
     memberId,
+
     status==="approved"
     ?"Your deposit has been approved."
     :"Your deposit has been rejected."
+
    );
+
   }
 
-  alert("Deposit updated.");
+
+  alert(
+   "Deposit updated."
+  );
+
+
   loadDeposits();
 
+
+  /*
+   Refresh dashboard too.
+  */
+
+  loadDashboard();
+
+
  }catch(error){
-  alert(error.message||"Update failed.");
+
+  alert(
+   error.message||
+   "Update failed."
+  );
+
  }
+
 }
 
 
-/* WITHDRAWALS */
+/* =========================
+   WITHDRAWALS
+========================= */
 
 async function loadWithdrawals(){
 
- const box=document.getElementById("withdrawalsList");
- box.innerHTML='<div class="empty">Loading...</div>';
+ const box=
+  document.getElementById(
+   "withdrawalsList"
+  );
+
+
+ box.innerHTML=
+  '<div class="empty">Loading...</div>';
+
 
  try{
 
-  const data=await graphqlRequest(`
-   query Withdrawals{
-    withdrawals(order_by:{created_at:desc}){
-     id
-     member_id
-     email
-     wallet_address
-     amount
-     status
-     created_at
+  const data=
+   await graphqlRequest(`
+
+    query Withdrawals{
+
+     withdrawals(
+      order_by:{
+       created_at:desc
+      }
+     ){
+
+      id
+      member_id
+      email
+      wallet_address
+      amount
+      status
+      created_at
+
+     }
+
     }
-   }
-  `);
 
-  const rows=data.withdrawals||[];
+   `);
 
-  document.getElementById("statWithdrawals").textContent=rows.length;
+
+  const rows=
+   data.withdrawals||[];
+
+
+  document
+   .getElementById("statWithdrawals")
+   .textContent=
+   rows.length;
+
 
   if(!rows.length){
-   box.innerHTML='<div class="empty">No withdrawal requests.</div>';
+
+   box.innerHTML=
+    '<div class="empty">No withdrawal requests.</div>';
+
    return;
+
   }
 
-  box.innerHTML=rows.map(x=>`
 
-   <div class="request-card">
+  box.innerHTML=
+   rows.map(x=>`
 
-    <div class="user-name">💸 ${escapeHtml(x.email||"Unknown")}</div>
+    <div class="request-card">
 
-    <div class="request-line">
-     Amount: <strong>$${money(x.amount)}</strong>
+     <div class="user-name">
+      💸
+      ${escapeHtml(
+       x.email||"Unknown"
+      )}
+     </div>
+
+
+     <div class="request-line">
+      Amount:
+      <strong>
+       $${money(x.amount)}
+      </strong>
+     </div>
+
+
+     <div class="request-line">
+      Wallet:
+      ${escapeHtml(
+       x.wallet_address||"-"
+      )}
+     </div>
+
+
+     <div class="request-line">
+
+      Status:
+
+      <strong
+       class="status-${
+        escapeHtml(
+         String(
+          x.status||"pending"
+         ).toLowerCase()
+        )
+       }">
+
+       ${escapeHtml(
+        x.status||"pending"
+       )}
+
+      </strong>
+
+     </div>
+
+
+     <div class="actions">
+
+      <button
+       class="small-btn green"
+       onclick="
+        changeWithdrawal(
+         '${x.id}',
+         'approved',
+         '${x.member_id||""}'
+        )
+       ">
+       ✅ APPROVE
+      </button>
+
+
+      <button
+       class="small-btn red"
+       onclick="
+        changeWithdrawal(
+         '${x.id}',
+         'rejected',
+         '${x.member_id||""}'
+        )
+       ">
+       ❌ REJECT
+      </button>
+
+     </div>
+
     </div>
 
-    <div class="request-line">
-     Wallet: ${escapeHtml(x.wallet_address||"-")}
-    </div>
+   `).join("");
 
-    <div class="request-line">
-     Status:
-     <strong class="status-${escapeHtml(String(x.status||"pending").toLowerCase())}">
-      ${escapeHtml(x.status||"pending")}
-     </strong>
-    </div>
-
-    <div class="actions">
-
-     <button class="small-btn green"
-      onclick="changeWithdrawal('${x.id}','approved','${x.member_id||""}')">
-      ✅ APPROVE
-     </button>
-
-     <button class="small-btn red"
-      onclick="changeWithdrawal('${x.id}','rejected','${x.member_id||""}')">
-      ❌ REJECT
-     </button>
-
-    </div>
-
-   </div>
-
-  `).join("");
 
  }catch(error){
 
   box.innerHTML=
-  `<div class="empty">${escapeHtml(error.message)}</div>`;
+   `<div class="empty">
+    ${escapeHtml(error.message)}
+   </div>`;
+
  }
+
 }
 
 
-async function changeWithdrawal(id,status,memberId){
+/* =========================
+   CHANGE WITHDRAWAL
+========================= */
+
+async function changeWithdrawal(
+ id,
+ status,
+ memberId
+){
 
  try{
 
   await graphqlRequest(`
-   mutation UpdateWithdrawal($id:uuid!,$status:String!){
+
+   mutation UpdateWithdrawal(
+    $id:uuid!,
+    $status:String!
+   ){
+
     update_withdrawals_by_pk(
-     pk_columns:{id:$id},
-     _set:{status:$status}
-    ){id}
+
+     pk_columns:{
+      id:$id
+     },
+
+     _set:{
+      status:$status
+     }
+
+    ){
+     id
+     status
+    }
+
    }
-  `,{id,status});
+
+  `,{
+   id,
+   status
+  });
+
 
   if(memberId){
 
    await createNotification(
+
     memberId,
+
     status==="approved"
     ?"Your withdrawal has been approved."
     :"Your withdrawal has been rejected."
+
    );
+
   }
 
-  alert("Withdrawal updated.");
+
+  alert(
+   "Withdrawal updated."
+  );
+
+
   loadWithdrawals();
 
+  loadDashboard();
+
+
  }catch(error){
-  alert(error.message||"Update failed.");
+
+  alert(
+   error.message||
+   "Update failed."
+  );
+
  }
+
 }
 
 
-/* IMAGES */
+/* =========================
+   IMAGES
+========================= */
 
 async function publishImage(){
 
- const url=document.getElementById("imageUrl").value.trim();
+ const url=
+  document
+   .getElementById("imageUrl")
+   .value
+   .trim();
+
 
  if(!url){
-  alert("Enter an image URL.");
+
+  alert(
+   "Enter an image URL."
+  );
+
   return;
+
  }
+
 
  try{
 
   await graphqlRequest(`
-   mutation AddImage($url:String!){
+
+   mutation AddImage(
+    $url:String!
+   ){
+
     insert_completed_trades_one(
-     object:{image_url:$url}
+
+     object:{
+      image_url:$url
+     }
+
     ){
      id
     }
+
    }
+
   `,{url});
 
-  document.getElementById("imageUrl").value="";
 
-  alert("Image published.");
+  document
+   .getElementById("imageUrl")
+   .value="";
+
+
+  alert(
+   "Image published."
+  );
+
+
   loadImages();
 
+  loadDashboard();
+
+
  }catch(error){
-  alert(error.message||"Image publishing failed.");
+
+  alert(
+   error.message||
+   "Image publishing failed."
+  );
+
  }
+
 }
 
 
 async function loadImages(){
 
- const box=document.getElementById("imagesList");
- box.innerHTML='<div class="empty">Loading...</div>';
+ const box=
+  document.getElementById(
+   "imagesList"
+  );
+
+
+ box.innerHTML=
+  '<div class="empty">Loading...</div>';
+
 
  try{
 
-  const data=await graphqlRequest(`
-   query Images{
-    completed_trades(order_by:{created_at:desc}){
-     id
-     image_url
-     created_at
+  const data=
+   await graphqlRequest(`
+
+    query Images{
+
+     completed_trades(
+      order_by:{
+       created_at:desc
+      }
+     ){
+
+      id
+      image_url
+      created_at
+
+     }
+
     }
-   }
-  `);
 
-  const rows=data.completed_trades||[];
+   `);
 
-  document.getElementById("statImages").textContent=rows.length;
+
+  const rows=
+   data.completed_trades||[];
+
+
+  document
+   .getElementById("statImages")
+   .textContent=
+   rows.length;
+
 
   if(!rows.length){
-   box.innerHTML='<div class="empty">No images published.</div>';
+
+   box.innerHTML=
+    '<div class="empty">No images published.</div>';
+
    return;
+
   }
 
-  box.innerHTML=rows.map(x=>`
 
-   <div class="image-card">
+  box.innerHTML=
+   rows.map(x=>`
 
-    <img class="image-preview"
-     src="${escapeAttribute(x.image_url)}"
-     onerror="this.style.display='none'">
+    <div class="image-card">
 
-    <div class="request-line">
-     ${escapeHtml(x.created_at||"")}
+     <img
+      class="image-preview"
+      src="${escapeAttribute(
+       x.image_url
+      )}"
+      onerror="
+       this.style.display='none'
+      ">
+
+
+     <div class="request-line">
+      ${escapeHtml(
+       x.created_at||""
+      )}
+     </div>
+
+
+     <div class="actions">
+
+      <button
+       class="small-btn red"
+       onclick="
+        deleteImage('${x.id}')
+       ">
+       🗑️ Delete Image
+      </button>
+
+     </div>
+
     </div>
 
-    <div class="actions">
-     <button class="small-btn red"
-      onclick="deleteImage('${x.id}')">
-      🗑️ Delete Image
-     </button>
-    </div>
+   `).join("");
 
-   </div>
-
-  `).join("");
 
  }catch(error){
 
   box.innerHTML=
-  `<div class="empty">${escapeHtml(error.message)}</div>`;
+   `<div class="empty">
+    ${escapeHtml(error.message)}
+   </div>`;
+
  }
+
 }
 
 
 async function deleteImage(id){
 
- if(!confirm("Delete this image?"))return;
-
- try{
-
-  await graphqlRequest(`
-   mutation DeleteImage($id:uuid!){
-    delete_completed_trades_by_pk(id:$id){
-     id
-    }
-   }
-  `,{id});
-
-  loadImages();
-
- }catch(error){
-  alert(error.message||"Delete failed.");
- }
-}
-
-
-/* TRADES */
-
-async function publishTrade(){
-
- const action=document.getElementById("tradeAction").value;
- const timeframe=document.getElementById("tradeTimeframe").value;
- const entry=document.getElementById("tradeEntry").value;
- const sl=document.getElementById("tradeSL").value;
- const tp=document.getElementById("tradeTP").value;
- const message=document.getElementById("tradeMessage").value.trim();
-
- if(!message){
-  alert("Enter a trade message/reason.");
+ if(
+  !confirm(
+   "Delete this image?"
+  )
+ )
   return;
- }
+
 
  try{
 
   await graphqlRequest(`
-   mutation AddTrade(
-    $action:String!,
-    $timeframe:String!,
-    $entry:numeric,
-    $sl:numeric,
-    $tp:numeric,
-    $message:String
+
+   mutation DeleteImage(
+    $id:uuid!
    ){
-    insert_trades_one(
-     object:{
-      action:$action,
-      timeframe:$timeframe,
-      entry:$entry,
-      stop_loss:$sl,
-      take_profit:$tp,
-      message:$message
-     }
+
+    delete_completed_trades_by_pk(
+     id:$id
     ){
      id
     }
+
    }
-  `,{
-   action,
-   timeframe,
-   entry:entry?Number(entry):null,
-   sl:sl?Number(sl):null,
-   tp:tp?Number(tp):null,
-   message
-  });
 
-  await notifyAllMembers(
-   `TRADIX TRADE: ${action} ${timeframe} | Entry ${entry||"-"} | SL ${sl||"-"} | TP ${tp||"-"} | ${message}`
-  );
+  `,{id});
 
-  document.getElementById("tradeEntry").value="";
-  document.getElementById("tradeSL").value="";
-  document.getElementById("tradeTP").value="";
-  document.getElementById("tradeMessage").value="";
 
-  alert("Trade published and members notified.");
-  loadTrades();
+  loadImages();
+
+  loadDashboard();
+
 
  }catch(error){
-  alert(error.message||"Trade publishing failed.");
+
+  alert(
+   error.message||
+   "Delete failed."
+  );
+
  }
+
+}
+
+
+/* =========================
+   TRADES
+========================= */
+
+async function publishTrade(){
+
+ const action=
+  document
+   .getElementById("tradeAction")
+   .value;
+
+ const timeframe=
+  document
+   .getElementById("tradeTimeframe")
+   .value;
+
+ const entry=
+  document
+   .getElementById("tradeEntry")
+   .value;
+
+ const sl=
+  document
+   .getElementById("tradeSL")
+   .value;
+
+ const tp=
+  document
+   .getElementById("tradeTP")
+   .value;
+
+ const message=
+  document
+   .getElementById("tradeMessage")
+   .value
+   .trim();
+
+
+ if(!message){
+
+  alert(
+   "Enter a trade message/reason."
+  );
+
+  return;
+
+ }
+
+
+ try{
+
+  await graphqlRequest(`
+
+   mutation AddTrade(
+
+    $action:String!,
+
+    $timeframe:String!,
+
+    $entry:numeric,
+
+    $sl:numeric,
+
+    $tp:numeric,
+
+    $message:String
+
+   ){
+
+    insert_trades_one(
+
+     object:{
+
+      action:$action
+
+      timeframe:$timeframe
+
+      entry:$entry
+
+      stop_loss:$sl
+
+      take_profit:$tp
+
+      message:$message
+
+     }
+
+    ){
+
+     id
+
+    }
+
+   }
+
+  `,{
+
+   action,
+
+   timeframe,
+
+   entry:
+    entry?
+    Number(entry):
+    null,
+
+   sl:
+    sl?
+    Number(sl):
+    null,
+
+   tp:
+    tp?
+    Number(tp):
+    null,
+
+   message
+
+  });
+
+
+  await notifyAllMembers(
+
+   `TRADIX TRADE: ${action} ${timeframe} | Entry ${entry||"-"} | SL ${sl||"-"} | TP ${tp||"-"} | ${message}`
+
+  );
+
+
+  document
+   .getElementById("tradeEntry")
+   .value="";
+
+  document
+   .getElementById("tradeSL")
+   .value="";
+
+  document
+   .getElementById("tradeTP")
+   .value="";
+
+  document
+   .getElementById("tradeMessage")
+   .value="";
+
+
+  alert(
+   "Trade published and members notified."
+  );
+
+
+  loadTrades();
+
+
+ }catch(error){
+
+  alert(
+   error.message||
+   "Trade publishing failed."
+  );
+
+ }
+
 }
 
 
 async function loadTrades(){
 
- const box=document.getElementById("tradesList");
- box.innerHTML='<div class="empty">Loading...</div>';
+ const box=
+  document.getElementById(
+   "tradesList"
+  );
+
+
+ box.innerHTML=
+  '<div class="empty">Loading...</div>';
+
 
  try{
 
-  const data=await graphqlRequest(`
-   query Trades{
-    trades(order_by:{created_at:desc}){
-     id
-     action
-     timeframe
-     entry
-     stop_loss
-     take_profit
-     message
-     created_at
-    }
-   }
-  `);
+  const data=
+   await graphqlRequest(`
 
-  const rows=data.trades||[];
+    query Trades{
+
+     trades(
+      order_by:{
+       created_at:desc
+      }
+     ){
+
+      id
+      action
+      timeframe
+      entry
+      stop_loss
+      take_profit
+      message
+      created_at
+
+     }
+
+    }
+
+   `);
+
+
+  const rows=
+   data.trades||[];
+
 
   if(!rows.length){
-   box.innerHTML='<div class="empty">No trades published.</div>';
+
+   box.innerHTML=
+    '<div class="empty">No trades published.</div>';
+
    return;
+
   }
 
-  box.innerHTML=rows.map(x=>`
 
-   <div class="trade-card">
+  box.innerHTML=
+   rows.map(x=>`
 
-    <div class="user-name">
-     📢 ${escapeHtml(x.action)} · ${escapeHtml(x.timeframe||"")}
+    <div class="trade-card">
+
+     <div class="user-name">
+
+      📢
+      ${escapeHtml(x.action)}
+      ·
+      ${escapeHtml(
+       x.timeframe||""
+      )}
+
+     </div>
+
+
+     <div class="request-line">
+
+      Entry:
+      ${money(x.entry)}
+
+      · SL:
+      ${money(x.stop_loss)}
+
+      · TP:
+      ${money(x.take_profit)}
+
+     </div>
+
+
+     <div class="request-line">
+      ${escapeHtml(
+       x.message||""
+      )}
+     </div>
+
     </div>
 
-    <div class="request-line">
-     Entry: ${money(x.entry)}
-     · SL: ${money(x.stop_loss)}
-     · TP: ${money(x.take_profit)}
-    </div>
+   `).join("");
 
-    <div class="request-line">
-     ${escapeHtml(x.message||"")}
-    </div>
-
-   </div>
-
-  `).join("");
 
  }catch(error){
 
   box.innerHTML=
-  `<div class="empty">${escapeHtml(error.message)}</div>`;
+   `<div class="empty">
+    ${escapeHtml(error.message)}
+   </div>`;
+
  }
+
 }
 
 
-/* NOTIFICATIONS */
+/* =========================
+   NOTIFICATIONS
+========================= */
 
-async function createNotification(memberId,message){
+async function createNotification(
+ memberId,
+ message
+){
 
- if(!memberId)return;
+ if(!memberId)
+  return;
+
 
  await graphqlRequest(`
+
   mutation AddNotification(
+
    $member_id:uuid!,
+
    $message:String!
+
   ){
+
    insert_notifications_one(
+
     object:{
-     member_id:$member_id,
+
+     member_id:$member_id
+
      message:$message
+
     }
+
    ){
+
     id
+
    }
+
   }
- `,{member_id:memberId,message});
+
+ `,{
+  member_id:memberId,
+  message
+ });
+
 }
 
 
-async function notifyAllMembers(message){
+async function notifyAllMembers(
+ message
+){
 
- const data=await graphqlRequest(`
-  query AllMemberIds{
-   members{
-    id
+ const data=
+  await graphqlRequest(`
+
+   query AllMemberIds{
+
+    members{
+     id
+    }
+
    }
-  }
- `);
 
- const members=data.members||[];
+  `);
 
- for(const member of members){
+
+ const members=
+  data.members||[];
+
+
+ for(
+  const member of members
+ ){
 
   try{
-   await createNotification(member.id,message);
+
+   await createNotification(
+    member.id,
+    message
+   );
+
   }catch(error){
-   console.log("Notification failed:",error);
+
+   console.log(
+    "Notification failed:",
+    error
+   );
+
   }
 
  }
+
 }
 
 
 async function sendNotification(){
 
  const message=
- document.getElementById("notificationMessage")
- .value.trim();
+  document
+   .getElementById(
+    "notificationMessage"
+   )
+   .value
+   .trim();
+
 
  if(!message){
-  alert("Enter a message.");
+
+  alert(
+   "Enter a message."
+  );
+
   return;
+
  }
+
 
  try{
 
-  await notifyAllMembers(message);
+  await notifyAllMembers(
+   message
+  );
 
-  document.getElementById("notificationMessage").value="";
 
-  alert("Notification sent to all members.");
+  document
+   .getElementById(
+    "notificationMessage"
+   )
+   .value="";
+
+
+  alert(
+   "Notification sent to all members."
+  );
+
 
  }catch(error){
-  alert(error.message||"Notification failed.");
+
+  alert(
+   error.message||
+   "Notification failed."
+  );
+
  }
+
 }
 
 
-/* HELPERS */
+/* =========================
+   HELPERS
+========================= */
 
 function money(value){
- const n=Number(value||0);
- return Number.isFinite(n)?n.toFixed(2):"0.00";
+
+ const n=
+  Number(value||0);
+
+
+ return Number.isFinite(n)
+  ?n.toFixed(2)
+  :"0.00";
+
 }
 
 
 function escapeHtml(value){
 
- return String(value??"")
- .replace(/&/g,"&amp;")
- .replace(/</g,"&lt;")
- .replace(/>/g,"&gt;")
- .replace(/"/g,"&quot;")
- .replace(/'/g,"&#039;");
+ return String(
+  value??""
+ )
+ .replace(
+  /&/g,
+  "&amp;"
+ )
+ .replace(
+  /</g,
+  "&lt;"
+ )
+ .replace(
+  />/g,
+  "&gt;"
+ )
+ .replace(
+  /"/g,
+  "&quot;"
+ )
+ .replace(
+  /'/g,
+  "&#039;"
+ );
+
 }
 
 
 function escapeAttribute(value){
- return String(value??"")
- .replace(/&/g,"&amp;")
- .replace(/"/g,"&quot;")
- .replace(/</g,"&lt;")
- .replace(/>/g,"&gt;");
+
+ return String(
+  value??""
+ )
+ .replace(
+  /&/g,
+  "&amp;"
+ )
+ .replace(
+  /"/g,
+  "&quot;"
+ )
+ .replace(
+  /</g,
+  "&lt;"
+ )
+ .replace(
+  />/g,
+  "&gt;"
+ );
+
 }
 
 
-/* START */
+/* =========================
+   START
+========================= */
 
-(function(){
+(async function(){
 
- const session=getAdminSession();
+ const session=
+  getAdminSession();
 
- if(session){
-  showAdmin(session);
+
+ if(!session)
+  return;
+
+
+ try{
+
+  /*
+   Validate and refresh the
+   existing session before
+   loading any database data.
+  */
+
+  const validSession=
+   await getValidAdminSession();
+
+
+  showAdmin(
+   validSession
+  );
+
+
+ }catch(error){
+
+  console.log(
+   "Admin session:",
+   error.message
+  );
+
+
+  localStorage.removeItem(
+   ADMIN_SESSION_KEY
+  );
+
+
+  /*
+   Do not touch the database.
+   Only the expired login session
+   is removed.
+  */
+
  }
 
 })();
