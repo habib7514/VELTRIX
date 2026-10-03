@@ -7,1831 +7,1283 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-
-body{
-    background:#050505;
-    color:#fff;
-    font-family:Arial,Helvetica,sans-serif;
-    min-height:100vh;
-}
-
-button,input{
-    font:inherit;
-}
-
-button{
-    cursor:pointer;
-}
-
-.hidden{
-    display:none!important;
-}
-
-.gold{
-    color:#d6ad55;
-}
-
-/* LOGIN */
+body{background:#050505;color:#fff;font-family:Arial,Helvetica,sans-serif;min-height:100vh}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+.gold{color:#d6ad55}
 
 .login-page{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    background:
-      radial-gradient(circle at top,#241b08 0,#090909 35%,#050505 70%);
+ min-height:100vh;display:flex;justify-content:center;align-items:center;
+ padding:20px;background:radial-gradient(circle at top,#241b08 0,#090909 35%,#050505 70%)
 }
-
 .login-box{
-    width:100%;
-    max-width:420px;
-    background:#0d0d0d;
-    border:1px solid #30240e;
-    border-radius:22px;
-    padding:30px 24px;
-    box-shadow:0 20px 70px rgba(0,0,0,.65);
+ width:100%;max-width:420px;background:#0d0d0d;border:1px solid #30240e;
+ border-radius:22px;padding:30px 24px;box-shadow:0 20px 70px rgba(0,0,0,.65)
 }
-
-.logo{
-    text-align:center;
-    font-size:30px;
-    font-weight:900;
-    letter-spacing:4px;
-    color:#d6ad55;
-    margin-bottom:8px;
+.logo{text-align:center;font-size:30px;font-weight:900;letter-spacing:4px;color:#d6ad55;margin-bottom:8px}
+.admin-title{text-align:center;color:#999;margin-bottom:25px}
+.field{margin-bottom:15px}
+.field label,.form-group label{display:block;color:#aaa;font-size:13px;margin-bottom:7px}
+.field input,.form-group input,.form-group select,.form-group textarea{
+ width:100%;background:#151515;border:1px solid #333;color:#fff;padding:13px;border-radius:10px;outline:none
 }
-
-.admin-title{
-    text-align:center;
-    color:#999;
-    margin-bottom:25px;
-}
-
-.field{
-    margin-bottom:15px;
-}
-
-.field label{
-    display:block;
-    color:#aaa;
-    font-size:13px;
-    margin-bottom:7px;
-}
-
-.field input{
-    width:100%;
-    background:#151515;
-    border:1px solid #333;
-    color:#fff;
-    padding:14px;
-    border-radius:12px;
-    outline:none;
-}
-
-.field input:focus{
-    border-color:#d6ad55;
-}
-
+.field input:focus,.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#d6ad55}
 .gold-btn{
-    width:100%;
-    border:0;
-    border-radius:12px;
-    padding:14px;
-    background:#d6ad55;
-    color:#080808;
-    font-weight:900;
+ width:100%;border:0;border-radius:12px;padding:14px;background:#d6ad55;color:#080808;font-weight:900
 }
+.message{margin-top:14px;text-align:center;color:#ff7777;font-size:13px}
 
-.message{
-    margin-top:14px;
-    text-align:center;
-    color:#ff7777;
-    font-size:13px;
-}
-
-/* ADMIN */
-
-.admin{
-    min-height:100vh;
-    display:flex;
-}
-
+.admin{min-height:100vh;display:flex}
 .sidebar{
-    width:250px;
-    min-height:100vh;
-    background:#090909;
-    border-right:1px solid #252525;
-    padding:20px 14px;
-    position:fixed;
-    left:0;
-    top:0;
-    bottom:0;
-    overflow-y:auto;
+ width:250px;min-height:100vh;background:#090909;border-right:1px solid #252525;
+ padding:20px 14px;position:fixed;left:0;top:0;bottom:0;overflow-y:auto;z-index:50
 }
-
-.brand{
-    text-align:center;
-    color:#d6ad55;
-    font-size:24px;
-    font-weight:900;
-    letter-spacing:3px;
-    margin:10px 0 28px;
-}
-
+.brand{text-align:center;color:#d6ad55;font-size:24px;font-weight:900;letter-spacing:3px;margin:10px 0 28px}
 .nav-btn{
-    width:100%;
-    border:0;
-    background:transparent;
-    color:#aaa;
-    text-align:left;
-    padding:13px 14px;
-    border-radius:12px;
-    margin-bottom:7px;
-    font-weight:700;
+ width:100%;border:0;background:transparent;color:#aaa;text-align:left;padding:13px 14px;
+ border-radius:12px;margin-bottom:7px;font-weight:700
 }
+.nav-btn:hover,.nav-btn.active{background:#1b160b;color:#d6ad55}
+.nav-icon{display:inline-block;width:27px;font-size:18px}
+.logout{margin-top:25px;color:#ff7777}
 
-.nav-btn:hover,
-.nav-btn.active{
-    background:#1b160b;
-    color:#d6ad55;
+.main{margin-left:250px;width:calc(100% - 250px);padding:24px}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;gap:15px}
+.top-title{font-size:26px;font-weight:900}
+.admin-email{color:#999;font-size:13px}
+.page{display:none}.page.active{display:block}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:22px}
+.stat{background:#0d0d0d;border:1px solid #252525;border-radius:16px;padding:20px}
+.stat-icon{font-size:25px;margin-bottom:10px}
+.stat-label{color:#999;font-size:13px}
+.stat-value{color:#d6ad55;font-size:27px;font-weight:900;margin-top:7px}
+
+.panel{background:#0c0c0c;border:1px solid #242424;border-radius:17px;padding:20px;margin-bottom:20px}
+.panel-title{font-size:19px;font-weight:900;margin-bottom:17px}
+.empty{padding:30px;text-align:center;color:#777}
+
+.user-card,.request-card,.image-card,.trade-card{
+ background:#111;border:1px solid #292929;border-radius:15px;padding:16px;margin-bottom:12px
 }
+.user-head{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.user-name{font-weight:900}
+.user-email{color:#999;font-size:13px;margin-top:5px;word-break:break-all}
+.badge{padding:6px 9px;border-radius:20px;font-size:11px;font-weight:900;background:#211b0e;color:#d6ad55}
 
-.nav-icon{
-    display:inline-block;
-    width:27px;
-    font-size:18px;
-}
-
-.logout{
-    margin-top:25px;
-    color:#ff7777;
-}
-
-.main{
-    margin-left:250px;
-    width:calc(100% - 250px);
-    padding:24px;
-}
-
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:24px;
-    gap:15px;
-}
-
-.top-title{
-    font-size:26px;
-    font-weight:900;
-}
-
-.admin-email{
-    color:#999;
-    font-size:13px;
-}
-
-.page{
-    display:none;
-}
-
-.page.active{
-    display:block;
-}
-
-/* CARDS */
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    margin-bottom:22px;
-}
-
-.stat{
-    background:#0d0d0d;
-    border:1px solid #252525;
-    border-radius:16px;
-    padding:20px;
-}
-
-.stat-icon{
-    font-size:25px;
-    margin-bottom:10px;
-}
-
-.stat-label{
-    color:#999;
-    font-size:13px;
-}
-
-.stat-value{
-    color:#d6ad55;
-    font-size:27px;
-    font-weight:900;
-    margin-top:7px;
-}
-
-/* PANEL */
-
-.panel{
-    background:#0c0c0c;
-    border:1px solid #242424;
-    border-radius:17px;
-    padding:20px;
-    margin-bottom:20px;
-}
-
-.panel-title{
-    font-size:19px;
-    font-weight:900;
-    margin-bottom:17px;
-}
-
-.empty{
-    padding:30px;
-    text-align:center;
-    color:#777;
-}
-
-/* USERS */
-
-.user-card,
-.request-card,
-.image-card{
-    background:#111;
-    border:1px solid #292929;
-    border-radius:15px;
-    padding:16px;
-    margin-bottom:12px;
-}
-
-.user-head{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    align-items:center;
-}
-
-.user-name{
-    font-weight:900;
-}
-
-.user-email{
-    color:#999;
-    font-size:13px;
-    margin-top:5px;
-    word-break:break-all;
-}
-
-.badge{
-    padding:6px 9px;
-    border-radius:20px;
-    font-size:11px;
-    font-weight:900;
-    background:#211b0e;
-    color:#d6ad55;
-}
-
-.actions{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin-top:14px;
-}
-
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .small-btn{
-    border:1px solid #3b3b3b;
-    background:#171717;
-    color:#fff;
-    padding:9px 12px;
-    border-radius:9px;
-    font-size:12px;
-    font-weight:700;
+ border:1px solid #3b3b3b;background:#171717;color:#fff;padding:9px 12px;border-radius:9px;
+ font-size:12px;font-weight:700
 }
+.small-btn.gold{border-color:#806529;color:#d6ad55}
+.small-btn.red{border-color:#662c2c;color:#ff7777}
+.small-btn.green{border-color:#315b39;color:#7dff96}
 
-.small-btn.gold{
-    border-color:#806529;
-    color:#d6ad55;
+.balance-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.balance-box{background:#090909;border:1px solid #222;border-radius:10px;padding:11px}
+.balance-label{color:#777;font-size:11px}
+.balance-value{color:#d6ad55;font-weight:900;margin-top:5px}
+
+.form-row{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.form-group{margin-bottom:13px}
+.form-group textarea{min-height:100px;resize:vertical}
+
+.request-line{
+ color:#aaa;font-size:13px;line-height:1.7;margin-top:5px;word-break:break-word
 }
+.status-pending{color:#d6ad55}
+.status-approved{color:#75e889}
+.status-rejected{color:#ff7777}
 
-.small-btn.red{
-    border-color:#662c2c;
-    color:#ff7777;
+.image-preview{
+ width:100%;max-height:320px;object-fit:contain;background:#050505;border-radius:10px
 }
-
-/* BALANCE */
-
-.balance-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-    margin-top:14px;
-}
-
-.balance-box{
-    background:#090909;
-    border:1px solid #222;
-    border-radius:10px;
-    padding:11px;
-}
-
-.balance-label{
-    color:#777;
-    font-size:11px;
-}
-
-.balance-value{
-    color:#d6ad55;
-    font-weight:900;
-    margin-top:5px;
-}
-
-/* FORMS */
-
-.form-row{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-}
-
-.form-row input,
-.form-row select,
-textarea{
-    width:100%;
-    background:#151515;
-    border:1px solid #303030;
-    color:#fff;
-    padding:12px;
-    border-radius:10px;
-    outline:none;
-}
-
-textarea{
-    min-height:100px;
-    resize:vertical;
-}
-
-.form-group{
-    margin-bottom:13px;
-}
-
-.form-group label{
-    display:block;
-    color:#999;
-    font-size:12px;
-    margin-bottom:6px;
-}
-
-/* MOBILE */
-
 .mobile-menu{
-    display:none;
+ display:none;border:1px solid #333;background:#111;color:#d6ad55;border-radius:10px;padding:9px 12px
 }
 
 @media(max-width:900px){
-
-    .sidebar{
-        transform:translateX(-100%);
-        transition:.25s;
-        z-index:50;
-    }
-
-    .sidebar.open{
-        transform:translateX(0);
-    }
-
-    .main{
-        margin-left:0;
-        width:100%;
-        padding:15px;
-    }
-
-    .mobile-menu{
-        display:block;
-        border:1px solid #333;
-        background:#111;
-        color:#d6ad55;
-        border-radius:10px;
-        padding:9px 12px;
-    }
-
-    .stats{
-        grid-template-columns:repeat(2,1fr);
-    }
+ .sidebar{transform:translateX(-100%);transition:.25s}
+ .sidebar.open{transform:translateX(0)}
+ .main{margin-left:0;width:100%;padding:15px}
+ .mobile-menu{display:block}
+ .stats{grid-template-columns:repeat(2,1fr)}
 }
-
 @media(max-width:550px){
-
-    .stats{
-        grid-template-columns:1fr 1fr;
-        gap:9px;
-    }
-
-    .stat{
-        padding:14px;
-    }
-
-    .stat-value{
-        font-size:21px;
-    }
-
-    .form-row{
-        grid-template-columns:1fr;
-    }
-
-    .balance-grid{
-        grid-template-columns:1fr;
-    }
-
-    .top-title{
-        font-size:20px;
-    }
+ .stats{grid-template-columns:1fr 1fr;gap:9px}
+ .stat{padding:14px}.stat-value{font-size:21px}
+ .form-row{grid-template-columns:1fr}
+ .balance-grid{grid-template-columns:1fr}
+ .top-title{font-size:20px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
-
 <div id="loginPage" class="login-page">
+ <div class="login-box">
+  <div class="logo">TRADIX</div>
+  <div class="admin-title">ADMIN PANEL</div>
 
-    <div class="login-box">
+  <div class="field">
+   <label>Admin Email</label>
+   <input id="adminEmail" type="email" placeholder="Admin email">
+  </div>
 
-        <div class="logo">TRADIX</div>
+  <div class="field">
+   <label>Password</label>
+   <input id="adminPassword" type="password" placeholder="Password">
+  </div>
 
-        <div class="admin-title">
-            ADMIN PANEL
-        </div>
-
-        <div class="field">
-            <label>Admin Email</label>
-            <input id="adminEmail"
-                   type="email"
-                   placeholder="Admin email">
-        </div>
-
-        <div class="field">
-            <label>Password</label>
-            <input id="adminPassword"
-                   type="password"
-                   placeholder="Password">
-        </div>
-
-        <button class="gold-btn" onclick="adminLogin()">
-            LOGIN
-        </button>
-
-        <div id="loginMessage" class="message"></div>
-
-    </div>
-
+  <button class="gold-btn" onclick="adminLogin()">LOGIN</button>
+  <div id="loginMessage" class="message"></div>
+ </div>
 </div>
-
-
-<!-- ADMIN -->
 
 <div id="adminApp" class="admin hidden">
 
-    <aside id="sidebar" class="sidebar">
-
-        <div class="brand">TRADIX</div>
-
-        <button class="nav-btn active" onclick="openPage('dashboard',this)">
-            <span class="nav-icon">🏠</span>
-            Dashboard
-        </button>
-
-        <button class="nav-btn" onclick="openPage('users',this)">
-            <span class="nav-icon">👥</span>
-            New Registrations
-        </button>
-
-        <button class="nav-btn" onclick="openPage('deposits',this)">
-            <span class="nav-icon">💰</span>
-            Deposit Requests
-        </button>
-
-        <button class="nav-btn" onclick="openPage('withdrawals',this)">
-            <span class="nav-icon">💸</span>
-            Withdrawal Requests
-        </button>
-
-        <button class="nav-btn" onclick="openPage('subscribers',this)">
-            <span class="nav-icon">👤</span>
-            Subscribers
-        </button>
-
-        <button class="nav-btn" onclick="openPage('images',this)">
-            <span class="nav-icon">🖼️</span>
-            Publish Images
-        </button>
-
-        <button class="nav-btn" onclick="openPage('signals',this)">
-            <span class="nav-icon">📢</span>
-            Publish Trade
-        </button>
-
-        <button class="nav-btn" onclick="openPage('notifications',this)">
-            <span class="nav-icon">🔔</span>
-            Notifications
-        </button>
-
-        <button class="nav-btn" onclick="openPage('settings',this)">
-            <span class="nav-icon">⚙️</span>
-            Settings
-        </button>
-
-        <button class="nav-btn logout" onclick="adminLogout()">
-            <span class="nav-icon">🚪</span>
-            Logout
-        </button>
-
-    </aside>
-
-
-    <main class="main">
-
-        <div class="topbar">
-
-            <div style="display:flex;align-items:center;gap:10px">
-
-                <button class="mobile-menu"
-                        onclick="toggleSidebar()">
-                    ☰
-                </button>
-
-                <div class="top-title">
-                    <span class="gold">TRADIX</span> ADMIN
-                </div>
-
-            </div>
-
-            <div id="adminEmailDisplay"
-                 class="admin-email"></div>
-
-        </div>
-
-
-        <!-- DASHBOARD -->
-
-        <section id="dashboard" class="page active">
-
-            <div class="stats">
-
-                <div class="stat">
-                    <div class="stat-icon">👥</div>
-                    <div class="stat-label">Users</div>
-                    <div id="statUsers" class="stat-value">0</div>
-                </div>
-
-                <div class="stat">
-                    <div class="stat-icon">💰</div>
-                    <div class="stat-label">Deposits</div>
-                    <div id="statDeposits" class="stat-value">0</div>
-                </div>
-
-                <div class="stat">
-                    <div class="stat-icon">💸</div>
-                    <div class="stat-label">Withdrawals</div>
-                    <div id="statWithdrawals" class="stat-value">0</div>
-                </div>
-
-                <div class="stat">
-                    <div class="stat-icon">🖼️</div>
-                    <div class="stat-label">Published Images</div>
-                    <div id="statImages" class="stat-value">0</div>
-                </div>
-
-            </div>
-
-            <div class="panel">
-
-                <div class="panel-title">
-                    System Overview
-                </div>
-
-                <div class="empty">
-                    TRADIX ADMIN PANEL
-                    <br><br>
-                    Use the menu to manage users,
-                    deposits, withdrawals, images,
-                    trades and notifications.
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- USERS -->
-
-        <section id="users" class="page">
-
-            <div class="panel">
-
-                <div class="panel-title">
-                    👥 New Registrations
-                </div>
-
-                <div id="usersList">
-                    <div class="empty">
-                        Loading users...
-                    </div>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- DEPOSITS -->
-
-        <section id="deposits" class="page">
-
-            <div class="panel">
-
-                <div class="panel-title">
-                    💰 Deposit Requests
-                </div>
-
-                <div id="depositsList">
-
-                    <div class="empty">
-                        No deposit requests loaded.
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- WITHDRAWALS -->
-
-        <section id="withdrawals" class="page">
-
-            <div class="panel">
-
-                <div class="panel-title">
-                    💸 Withdrawal Requests
-                </div>
-
-                <div id="withdrawalsList">
-
-                    <div class="empty">
-                        No withdrawal requests loaded.
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- SUBSCRIBERS -->
-
-        <section id="subscribers" class="page">
-
-            <div class="panel">
-
-                <div class="panel-title">
-                    👤 Subscribers Management
-                </div>
-
-                <div id="subscribersList">
-
-                    <div class="empty">
-                        Loading subscribers...
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- IMAGES -->
-
-        <section id="images" class="page">
-
-            <div class="panel">
-
-                <div class="panel-title">
-                    🖼️ Publish Image
-                </div>
-
-                <div class="form-group">
-                    <label>Select Image</label>
-                    <input id="imageFile"
-                           type="file"
-                           accept="image/*">
-                </div>
-
-                <div class="form-group">
-                    <label>Caption</label>
-                    <textarea id="imageCaption"
-                              placeholder="Image caption"></textarea>
-                </div>
-
-                <button class="gold-btn"
-                        onclick="publishImage()">
-                    📤 PUBLISH IMAGE
-                </button>
-
-            </div>
-
-
-            <div class="panel">
-
-                <div class="panel-title">
-                    🖼️ Published Images
-                </div>
-
-                <div id="imagesList">
-
-                    <div class="empty">
-                        No images published.
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- SIGNAL -->
-
-        <section id="signals" class="page">
-
-            <div class="panel">
-
-                <div class="panel-title">
-                    📢 Publish Trade
-                </div>
-
-                <div class="form-row">
-
-                    <div class="form-group">
-                        <label>Action</label>
-                        <select id="tradeAction">
-                            <option value="BUY">BUY</option>
-                            <option value="SELL">SELL</option>
-                            <option value="WAIT">WAIT</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Timeframe</label>
-                        <select id="tradeTimeframe">
-                            <option>1m</option>
-                            <option>5m</option>
-                            <option>30m</option>
-                            <option>1h</option>
-                            <option>1d</option>
-                        </select>
-                    </div>
-
-                </div>
-
-                <div class="form-row">
-
-                    <div class="form-group">
-                        <label>Entry</label>
-                        <input id="tradeEntry"
-                               type="text"
-                               placeholder="Entry">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Stop Loss</label>
-                        <input id="tradeSL"
-                               type="text"
-                               placeholder="Stop Loss">
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-                    <label>Take Profit</label>
-                    <input id="tradeTP"
-                           type="text"
-                           placeholder="Take Profit">
-                </div>
-
-                <div class="form-group">
-                    <label>Reason / Message</label>
-                    <textarea id="tradeMessage"
-                              placeholder="Trade reason"></textarea>
-                </div>
-
-                <button class="gold-btn"
-                        onclick="publishTrade()">
-                    📢 PUBLISH TRADE
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- NOTIFICATIONS -->
-
-        <section id="notifications" class="page">
-
-            <div class="panel">
-
-                <div class="panel-title">
-                    🔔 Send Notification
-                </div>
-
-                <div class="form-group">
-                    <label>Title</label>
-                    <input id="notificationTitle"
-                           type="text"
-                           placeholder="Notification title">
-                </div>
-
-                <div class="form-group">
-                    <label>Message</label>
-                    <textarea id="notificationMessage"
-                              placeholder="Notification message"></textarea>
-                </div>
-
-                <button class="gold-btn"
-                        onclick="sendNotification()">
-                    🔔 SEND NOTIFICATION
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- SETTINGS -->
-
-        <section id="settings" class="page">
-
-            <div class="panel">
-
-                <div class="panel-title">
-                    ⚙️ Admin Settings
-                </div>
-
-                <div class="empty">
-
-                    Admin account:
-                    <br><br>
-
-                    <strong id="settingsEmail">
-                        -
-                    </strong>
-
-                    <br><br>
-
-                    TRADIX Nhost project:
-                    <br><br>
-
-                    <span class="gold">
-                        ocjpynkhncowxcjpnorl
-                    </span>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
+<aside id="sidebar" class="sidebar">
+ <div class="brand">TRADIX</div>
+
+ <button class="nav-btn active" onclick="openPage('dashboard',this)">🏠 <span class="nav-icon"></span>Dashboard</button>
+ <button class="nav-btn" onclick="openPage('users',this)">👥 <span class="nav-icon"></span>New Registrations</button>
+ <button class="nav-btn" onclick="openPage('deposits',this)">💰 <span class="nav-icon"></span>Deposit Requests</button>
+ <button class="nav-btn" onclick="openPage('withdrawals',this)">💸 <span class="nav-icon"></span>Withdrawal Requests</button>
+ <button class="nav-btn" onclick="openPage('subscribers',this)">👤 <span class="nav-icon"></span>Subscribers</button>
+ <button class="nav-btn" onclick="openPage('images',this)">🖼️ <span class="nav-icon"></span>Publish Images</button>
+ <button class="nav-btn" onclick="openPage('signals',this)">📢 <span class="nav-icon"></span>Publish Trade</button>
+ <button class="nav-btn" onclick="openPage('notifications',this)">🔔 <span class="nav-icon"></span>Notifications</button>
+ <button class="nav-btn" onclick="openPage('settings',this)">⚙️ <span class="nav-icon"></span>Settings</button>
+ <button class="nav-btn logout" onclick="adminLogout()">🚪 <span class="nav-icon"></span>Logout</button>
+</aside>
+
+<main class="main">
+
+<div class="topbar">
+ <div style="display:flex;align-items:center;gap:10px">
+  <button class="mobile-menu" onclick="toggleSidebar()">☰</button>
+  <div class="top-title"><span class="gold">TRADIX</span> ADMIN</div>
+ </div>
+ <div id="adminEmailDisplay" class="admin-email"></div>
 </div>
 
+<section id="dashboard" class="page active">
+ <div class="stats">
+  <div class="stat"><div class="stat-icon">👥</div><div class="stat-label">Members</div><div id="statUsers" class="stat-value">0</div></div>
+  <div class="stat"><div class="stat-icon">💰</div><div class="stat-label">Deposits</div><div id="statDeposits" class="stat-value">0</div></div>
+  <div class="stat"><div class="stat-icon">💸</div><div class="stat-label">Withdrawals</div><div id="statWithdrawals" class="stat-value">0</div></div>
+  <div class="stat"><div class="stat-icon">🖼️</div><div class="stat-label">Images</div><div id="statImages" class="stat-value">0</div></div>
+ </div>
+
+ <div class="panel">
+  <div class="panel-title">System Overview</div>
+  <div class="empty">
+   TRADIX ADMIN PANEL<br><br>
+   Database connected to the current TRADIX Nhost project.
+  </div>
+ </div>
+</section>
+
+<section id="users" class="page">
+ <div class="panel">
+  <div class="panel-title">👥 New Registrations</div>
+  <div id="usersList"><div class="empty">Loading...</div></div>
+ </div>
+</section>
+
+<section id="deposits" class="page">
+ <div class="panel">
+  <div class="panel-title">💰 Deposit Requests</div>
+  <div id="depositsList"><div class="empty">Loading...</div></div>
+ </div>
+</section>
+
+<section id="withdrawals" class="page">
+ <div class="panel">
+  <div class="panel-title">💸 Withdrawal Requests</div>
+  <div id="withdrawalsList"><div class="empty">Loading...</div></div>
+ </div>
+</section>
+
+<section id="subscribers" class="page">
+ <div class="panel">
+  <div class="panel-title">👤 Subscribers Management</div>
+  <div id="subscribersList"><div class="empty">Loading...</div></div>
+ </div>
+</section>
+
+<section id="images" class="page">
+
+ <div class="panel">
+  <div class="panel-title">🖼️ Publish Image</div>
+
+  <div class="form-group">
+   <label>Image URL</label>
+   <input id="imageUrl" type="url" placeholder="https://...">
+  </div>
+
+  <button class="gold-btn" onclick="publishImage()">📤 PUBLISH IMAGE</button>
+ </div>
+
+ <div class="panel">
+  <div class="panel-title">🖼️ Published Images</div>
+  <div id="imagesList"><div class="empty">Loading...</div></div>
+ </div>
+
+</section>
+
+<section id="signals" class="page">
+
+ <div class="panel">
+  <div class="panel-title">📢 Publish Trade</div>
+
+  <div class="form-row">
+   <div class="form-group">
+    <label>Action</label>
+    <select id="tradeAction">
+     <option value="BUY">BUY</option>
+     <option value="SELL">SELL</option>
+     <option value="WAIT">WAIT</option>
+    </select>
+   </div>
+
+   <div class="form-group">
+    <label>Timeframe</label>
+    <select id="tradeTimeframe">
+     <option>1m</option>
+     <option>5m</option>
+     <option>30m</option>
+     <option>1h</option>
+     <option>1d</option>
+    </select>
+   </div>
+  </div>
+
+  <div class="form-row">
+   <div class="form-group">
+    <label>Entry</label>
+    <input id="tradeEntry" type="number" step="any" placeholder="Entry">
+   </div>
+
+   <div class="form-group">
+    <label>Stop Loss</label>
+    <input id="tradeSL" type="number" step="any" placeholder="Stop Loss">
+   </div>
+  </div>
+
+  <div class="form-group">
+   <label>Take Profit</label>
+   <input id="tradeTP" type="number" step="any" placeholder="Take Profit">
+  </div>
+
+  <div class="form-group">
+   <label>Reason / Message</label>
+   <textarea id="tradeMessage" placeholder="Trade reason"></textarea>
+  </div>
+
+  <button class="gold-btn" onclick="publishTrade()">📢 PUBLISH TRADE</button>
+ </div>
+
+ <div class="panel">
+  <div class="panel-title">Published Trades</div>
+  <div id="tradesList"><div class="empty">Loading...</div></div>
+ </div>
+
+</section>
+
+<section id="notifications" class="page">
+ <div class="panel">
+  <div class="panel-title">🔔 Send Notification</div>
+
+  <div class="form-group">
+   <label>Message</label>
+   <textarea id="notificationMessage" placeholder="Notification message"></textarea>
+  </div>
+
+  <button class="gold-btn" onclick="sendNotification()">🔔 SEND TO ALL MEMBERS</button>
+ </div>
+</section>
+
+<section id="settings" class="page">
+ <div class="panel">
+  <div class="panel-title">⚙️ Admin Settings</div>
+  <div class="empty">
+   Admin account:<br><br>
+   <strong id="settingsEmail">-</strong>
+   <br><br>
+   TRADIX Nhost project:<br><br>
+   <span class="gold">ocjpynkhncowxcjpnorl</span>
+  </div>
+ </div>
+</section>
+
+</main>
+</div>
 
 <script>
 
-/* =========================
-   TRADIX NHOST CONFIG
-========================= */
+const NHOST_SUBDOMAIN="ocjpynkhncowxcjpnorl";
+const NHOST_REGION="eu-central-1";
 
-const NHOST_SUBDOMAIN =
-    "ocjpynkhncowxcjpnorl";
+const NHOST_AUTH=
+`https://${NHOST_SUBDOMAIN}.auth.${NHOST_REGION}.nhost.run/v1`;
 
-const NHOST_REGION =
-    "eu-central-1";
+const NHOST_GRAPHQL=
+`https://${NHOST_SUBDOMAIN}.graphql.${NHOST_REGION}.nhost.run/v1`;
 
-const NHOST_AUTH =
-    `https://${NHOST_SUBDOMAIN}.auth.${NHOST_REGION}.nhost.run/v1`;
-
-const NHOST_GRAPHQL =
-    `https://${NHOST_SUBDOMAIN}.graphql.${NHOST_REGION}.nhost.run/v1`;
-
-const ADMIN_EMAIL =
-    "mmatrix081@gmail.com";
-
-const ADMIN_SESSION_KEY =
-    "tradix_admin_session";
+const ADMIN_EMAIL="mmatrix081@gmail.com";
+const ADMIN_SESSION_KEY="tradix_admin_session";
 
 
-/* =========================
-   LOGIN
-========================= */
-
-async function adminLogin(){
-
-    const email =
-        document.getElementById("adminEmail")
-        .value.trim();
-
-    const password =
-        document.getElementById("adminPassword")
-        .value;
-
-    const message =
-        document.getElementById("loginMessage");
-
-    message.textContent = "";
-
-    if(!email || !password){
-
-        message.textContent =
-            "Enter email and password.";
-
-        return;
-    }
-
-    if(email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()){
-
-        message.textContent =
-            "This account is not authorized as Admin.";
-
-        return;
-    }
-
-    try{
-
-        const response =
-            await fetch(
-                `${NHOST_AUTH}/signin/email-password`,
-                {
-                    method:"POST",
-                    headers:{
-                        "Content-Type":"application/json"
-                    },
-                    body:JSON.stringify({
-                        email,
-                        password
-                    })
-                }
-            );
-
-        const data =
-            await response.json();
-
-        if(!response.ok){
-
-            throw new Error(
-                data.message ||
-                "Admin login failed."
-            );
-        }
-
-        if(!data.session){
-
-            throw new Error(
-                "No active session returned."
-            );
-        }
-
-        localStorage.setItem(
-            ADMIN_SESSION_KEY,
-            JSON.stringify(data.session)
-        );
-
-        showAdmin(data.session);
-
-    }catch(error){
-
-        message.textContent =
-            error.message ||
-            "Login failed.";
-
-    }
-
+function getAdminSession(){
+ try{
+  const x=localStorage.getItem(ADMIN_SESSION_KEY);
+  return x?JSON.parse(x):null;
+ }catch{return null}
 }
 
 
-/* =========================
-   SESSION
-========================= */
+async function adminLogin(){
 
-function getAdminSession(){
+ const email=document.getElementById("adminEmail").value.trim();
+ const password=document.getElementById("adminPassword").value;
+ const message=document.getElementById("loginMessage");
 
-    try{
+ message.textContent="";
 
-        const value =
-            localStorage.getItem(
-                ADMIN_SESSION_KEY
-            );
+ if(!email||!password){
+  message.textContent="Enter email and password.";
+  return;
+ }
 
-        return value
-            ? JSON.parse(value)
-            : null;
+ if(email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()){
+  message.textContent="This account is not authorized as Admin.";
+  return;
+ }
 
-    }catch{
+ try{
 
-        return null;
+  const response=await fetch(
+   `${NHOST_AUTH}/signin/email-password`,
+   {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({email,password})
+   }
+  );
 
-    }
+  const data=await response.json();
 
+  if(!response.ok)
+   throw new Error(data.message||"Admin login failed.");
+
+  if(!data.session)
+   throw new Error("No active session returned.");
+
+  localStorage.setItem(
+   ADMIN_SESSION_KEY,
+   JSON.stringify(data.session)
+  );
+
+  showAdmin(data.session);
+
+ }catch(error){
+  message.textContent=error.message||"Login failed.";
+ }
 }
 
 
 function showAdmin(session){
 
-    document.getElementById(
-        "loginPage"
-    ).classList.add("hidden");
+ document.getElementById("loginPage").classList.add("hidden");
+ document.getElementById("adminApp").classList.remove("hidden");
 
-    document.getElementById(
-        "adminApp"
-    ).classList.remove("hidden");
+ const email=session.user?.email||ADMIN_EMAIL;
 
-    const email =
-        session.user?.email ||
-        ADMIN_EMAIL;
+ document.getElementById("adminEmailDisplay").textContent=email;
+ document.getElementById("settingsEmail").textContent=email;
 
-    document.getElementById(
-        "adminEmailDisplay"
-    ).textContent = email;
-
-    document.getElementById(
-        "settingsEmail"
-    ).textContent = email;
-
-    loadUsers();
-
+ loadDashboard();
 }
 
 
 function adminLogout(){
-
-    localStorage.removeItem(
-        ADMIN_SESSION_KEY
-    );
-
-    location.reload();
-
+ localStorage.removeItem(ADMIN_SESSION_KEY);
+ location.reload();
 }
 
 
-/* =========================
-   NAVIGATION
-========================= */
-
 function openPage(id,button){
 
-    document.querySelectorAll(".page")
-        .forEach(page =>
-            page.classList.remove("active")
-        );
+ document.querySelectorAll(".page")
+ .forEach(x=>x.classList.remove("active"));
 
-    document.querySelectorAll(".nav-btn")
-        .forEach(btn =>
-            btn.classList.remove("active")
-        );
+ document.querySelectorAll(".nav-btn")
+ .forEach(x=>x.classList.remove("active"));
 
-    document.getElementById(id)
-        .classList.add("active");
+ document.getElementById(id).classList.add("active");
 
-    if(button){
-        button.classList.add("active");
-    }
+ if(button)button.classList.add("active");
 
-    if(id === "users"){
-        loadUsers();
-    }
+ if(id==="dashboard")loadDashboard();
+ if(id==="users")loadMembers();
+ if(id==="subscribers")loadMembers();
+ if(id==="deposits")loadDeposits();
+ if(id==="withdrawals")loadWithdrawals();
+ if(id==="images")loadImages();
+ if(id==="signals")loadTrades();
 
-    if(id === "subscribers"){
-        loadUsers();
-    }
-
-    if(id === "images"){
-        loadImages();
-    }
-
-    document.getElementById(
-        "sidebar"
-    ).classList.remove("open");
-
+ document.getElementById("sidebar").classList.remove("open");
 }
 
 
 function toggleSidebar(){
-
-    document.getElementById(
-        "sidebar"
-    ).classList.toggle("open");
-
+ document.getElementById("sidebar").classList.toggle("open");
 }
 
-
-/* =========================
-   GRAPHQL
-========================= */
 
 async function graphqlRequest(query,variables={}){
 
-    const session =
-        getAdminSession();
+ const session=getAdminSession();
 
-    if(!session?.accessToken){
+ if(!session?.accessToken)
+  throw new Error("Admin session expired. Please login again.");
 
-        throw new Error(
-            "Admin session expired."
-        );
-    }
+ const response=await fetch(
+  NHOST_GRAPHQL,
+  {
+   method:"POST",
+   headers:{
+    "Content-Type":"application/json",
+    "Authorization":`Bearer ${session.accessToken}`
+   },
+   body:JSON.stringify({query,variables})
+  }
+ );
 
-    const response =
-        await fetch(
-            NHOST_GRAPHQL,
-            {
-                method:"POST",
-                headers:{
-                    "Content-Type":"application/json",
-                    "Authorization":
-                        `Bearer ${session.accessToken}`
-                },
-                body:JSON.stringify({
-                    query,
-                    variables
-                })
-            }
-        );
+ const result=await response.json();
 
-    const result =
-        await response.json();
+ if(result.errors?.length)
+  throw new Error(result.errors[0].message||"GraphQL request failed.");
 
-    if(result.errors?.length){
-
-        throw new Error(
-            result.errors[0].message ||
-            "GraphQL request failed."
-        );
-    }
-
-    return result.data;
-
+ return result.data;
 }
 
 
-/* =========================
-   LOAD USERS
-========================= */
+/* DASHBOARD */
 
-async function loadUsers(){
+async function loadDashboard(){
 
-    const container =
-        document.getElementById(
-            "usersList"
-        );
+ try{
 
-    const subscribers =
-        document.getElementById(
-            "subscribersList"
-        );
+  const data=await graphqlRequest(`
+   query Dashboard{
+    members_aggregate{aggregate{count}}
+    deposits_aggregate{aggregate{count}}
+    withdrawals_aggregate{aggregate{count}}
+    completed_trades_aggregate{aggregate{count}}
+   }
+  `);
 
-    container.innerHTML =
-        `<div class="empty">Loading users...</div>`;
+  document.getElementById("statUsers").textContent=
+   data.members_aggregate.aggregate.count;
 
-    try{
+  document.getElementById("statDeposits").textContent=
+   data.deposits_aggregate.aggregate.count;
 
-        const query = `
-        query GetUsers {
-            users(
-                order_by:{createdAt:desc}
-            ){
-                id
-                email
-                displayName
-                createdAt
-                metadata
-            }
-        }
-        `;
+  document.getElementById("statWithdrawals").textContent=
+   data.withdrawals_aggregate.aggregate.count;
 
-        const data =
-            await graphqlRequest(query);
+  document.getElementById("statImages").textContent=
+   data.completed_trades_aggregate.aggregate.count;
 
-        const users =
-            data?.users || [];
-
-        document.getElementById(
-            "statUsers"
-        ).textContent =
-            users.length;
-
-        renderUsers(
-            container,
-            users
-        );
-
-        renderUsers(
-            subscribers,
-            users
-        );
-
-    }catch(error){
-
-        const html = `
-            <div class="empty">
-                Unable to load users.<br><br>
-                ${escapeHtml(error.message)}
-            </div>
-        `;
-
-        container.innerHTML = html;
-        subscribers.innerHTML = html;
-
-    }
-
+ }catch(error){
+  console.log(error);
+ }
 }
 
 
-function renderUsers(container,users){
+/* MEMBERS */
 
-    if(!users.length){
+async function loadMembers(){
 
-        container.innerHTML =
-            `<div class="empty">
-                No registered users found.
-            </div>`;
+ const a=document.getElementById("usersList");
+ const b=document.getElementById("subscribersList");
 
-        return;
+ a.innerHTML='<div class="empty">Loading...</div>';
+ b.innerHTML='<div class="empty">Loading...</div>';
+
+ try{
+
+  const data=await graphqlRequest(`
+   query Members{
+    members(order_by:{created_at:desc}){
+     id
+     email
+     full_name
+     investor
+     investment
+     profit
+     available_to_withdraw
+     created_at
     }
+   }
+  `);
 
-    container.innerHTML =
-        users.map(user => {
+  const members=data.members||[];
 
-            const metadata =
-                user.metadata || {};
+  document.getElementById("statUsers").textContent=members.length;
 
-            const balance =
-                Number(
-                    metadata.balance || 0
-                );
+  renderMembers(a,members);
+  renderMembers(b,members);
 
-            const withdrawable =
-                Number(
-                    metadata.availableToWithdraw || 0
-                );
+ }catch(error){
 
-            const profits =
-                Number(
-                    metadata.profits || 0
-                );
+  const html=
+  `<div class="empty">
+   Unable to load members.<br><br>
+   ${escapeHtml(error.message)}
+  </div>`;
 
-            const name =
-                user.displayName ||
-                metadata.fullName ||
-                "Unnamed User";
-
-            return `
-            <div class="user-card">
-
-                <div class="user-head">
-
-                    <div>
-
-                        <div class="user-name">
-                            👤 ${escapeHtml(name)}
-                        </div>
-
-                        <div class="user-email">
-                            ${escapeHtml(user.email || "")}
-                        </div>
-
-                    </div>
-
-                    <div class="badge">
-                        REGISTERED
-                    </div>
-
-                </div>
-
-                <div class="balance-grid">
-
-                    <div class="balance-box">
-                        <div class="balance-label">
-                            Balance
-                        </div>
-                        <div class="balance-value">
-                            $${balance.toFixed(2)}
-                        </div>
-                    </div>
-
-                    <div class="balance-box">
-                        <div class="balance-label">
-                            Available Withdraw
-                        </div>
-                        <div class="balance-value">
-                            $${withdrawable.toFixed(2)}
-                        </div>
-                    </div>
-
-                    <div class="balance-box">
-                        <div class="balance-label">
-                            Profits
-                        </div>
-                        <div class="balance-value">
-                            $${profits.toFixed(2)}
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="actions">
-
-                    <button class="small-btn gold"
-                        onclick="editBalance('${user.id}')">
-                        💳 Balance
-                    </button>
-
-                    <button class="small-btn gold"
-                        onclick="editWithdrawable('${user.id}')">
-                        💰 Withdrawable
-                    </button>
-
-                    <button class="small-btn gold"
-                        onclick="editProfits('${user.id}')">
-                        📈 Profits
-                    </button>
-
-                    <button class="small-btn red"
-                        onclick="deleteSubscriber('${user.id}')">
-                        🗑️ Delete
-                    </button>
-
-                </div>
-
-            </div>
-            `;
-
-        }).join("");
-
+  a.innerHTML=html;
+  b.innerHTML=html;
+ }
 }
 
 
-/* =========================
-   USER BALANCE FUNCTIONS
-========================= */
+function renderMembers(container,members){
 
-async function updateUserMetadata(userId,metadata){
+ if(!members.length){
+  container.innerHTML='<div class="empty">No members found.</div>';
+  return;
+ }
 
-    const mutation = `
-    mutation UpdateUser(
-        $id: uuid!,
-        $metadata: jsonb!
+ container.innerHTML=members.map(member=>`
+
+ <div class="user-card">
+
+  <div class="user-head">
+   <div>
+    <div class="user-name">
+     👤 ${escapeHtml(member.full_name||"Unnamed User")}
+    </div>
+    <div class="user-email">
+     ${escapeHtml(member.email||"")}
+    </div>
+   </div>
+
+   <div class="badge">
+    ${member.investor?"INVESTOR":"MEMBER"}
+   </div>
+  </div>
+
+  <div class="balance-grid">
+
+   <div class="balance-box">
+    <div class="balance-label">Investment</div>
+    <div class="balance-value">
+     $${money(member.investment)}
+    </div>
+   </div>
+
+   <div class="balance-box">
+    <div class="balance-label">Available Withdraw</div>
+    <div class="balance-value">
+     $${money(member.available_to_withdraw)}
+    </div>
+   </div>
+
+   <div class="balance-box">
+    <div class="balance-label">Profits</div>
+    <div class="balance-value">
+     $${money(member.profit)}
+    </div>
+   </div>
+
+  </div>
+
+  <div class="actions">
+
+   <button class="small-btn gold"
+    onclick="editMember('${member.id}','investment','Investment',${Number(member.investment||0)})">
+    💳 Balance
+   </button>
+
+   <button class="small-btn gold"
+    onclick="editMember('${member.id}','available_to_withdraw','Available to Withdraw',${Number(member.available_to_withdraw||0)})">
+    💰 Withdrawable
+   </button>
+
+   <button class="small-btn gold"
+    onclick="editMember('${member.id}','profit','Profits',${Number(member.profit||0)})">
+    📈 Profits
+   </button>
+
+   <button class="small-btn red"
+    onclick="deleteMember('${member.id}')">
+    🗑️ Delete
+   </button>
+
+  </div>
+
+ </div>
+
+ `).join("");
+}
+
+
+async function editMember(id,column,label,current){
+
+ const value=prompt(
+  `Enter new ${label}:`,
+  current
+ );
+
+ if(value===null)return;
+
+ const number=Number(value);
+
+ if(!Number.isFinite(number)||number<0){
+  alert("Enter a valid amount.");
+  return;
+ }
+
+ try{
+
+  const mutation=`
+   mutation UpdateMember(
+    $id:uuid!,
+    $value:numeric!
+   ){
+    update_members_by_pk(
+     pk_columns:{id:$id},
+     _set:{${column}:$value}
     ){
-        updateUser(
-            pk_columns:{id:$id},
-            _set:{metadata:$metadata}
-        ){
-            id
-            metadata
-        }
+     id
     }
-    `;
+   }
+  `;
 
-    return graphqlRequest(
-        mutation,
-        {
-            id:userId,
-            metadata
-        }
-    );
+  await graphqlRequest(mutation,{id,value:number});
 
+  alert("Updated successfully.");
+  loadMembers();
+
+ }catch(error){
+  alert(error.message||"Update failed.");
+ }
 }
 
 
-async function editBalance(userId){
+async function deleteMember(id){
 
-    const value =
-        prompt(
-            "Enter new Balance:"
-        );
+ if(!confirm("Delete this member record?"))return;
 
-    if(value === null) return;
+ try{
 
-    const number =
-        Number(value);
-
-    if(!Number.isFinite(number) || number < 0){
-
-        alert(
-            "Enter a valid amount."
-        );
-
-        return;
+  await graphqlRequest(`
+   mutation DeleteMember($id:uuid!){
+    delete_members_by_pk(id:$id){
+     id
     }
+   }
+  `,{id});
 
-    await editMetadataNumber(
-        userId,
-        "balance",
-        number
-    );
+  alert("Member deleted.");
+  loadMembers();
 
+ }catch(error){
+  alert(error.message||"Delete failed.");
+ }
 }
 
 
-async function editWithdrawable(userId){
+/* DEPOSITS */
 
-    const value =
-        prompt(
-            "Enter Available to Withdraw:"
-        );
+async function loadDeposits(){
 
-    if(value === null) return;
+ const box=document.getElementById("depositsList");
+ box.innerHTML='<div class="empty">Loading...</div>';
 
-    const number =
-        Number(value);
+ try{
 
-    if(!Number.isFinite(number) || number < 0){
-
-        alert(
-            "Enter a valid amount."
-        );
-
-        return;
+  const data=await graphqlRequest(`
+   query Deposits{
+    deposits(order_by:{created_at:desc}){
+     id
+     member_id
+     email
+     amount
+     transaction_hash
+     status
+     created_at
     }
+   }
+  `);
 
-    await editMetadataNumber(
-        userId,
-        "availableToWithdraw",
-        number
-    );
+  const rows=data.deposits||[];
 
+  document.getElementById("statDeposits").textContent=rows.length;
+
+  if(!rows.length){
+   box.innerHTML='<div class="empty">No deposit requests.</div>';
+   return;
+  }
+
+  box.innerHTML=rows.map(x=>`
+
+   <div class="request-card">
+
+    <div class="user-name">💰 ${escapeHtml(x.email||"Unknown")}</div>
+
+    <div class="request-line">
+     Amount: <strong>$${money(x.amount)}</strong>
+    </div>
+
+    <div class="request-line">
+     Transaction: ${escapeHtml(x.transaction_hash||"-")}
+    </div>
+
+    <div class="request-line">
+     Status:
+     <strong class="status-${escapeHtml(String(x.status||"pending").toLowerCase())}">
+      ${escapeHtml(x.status||"pending")}
+     </strong>
+    </div>
+
+    <div class="actions">
+
+     <button class="small-btn green"
+      onclick="changeDeposit('${x.id}','approved','${x.member_id||""}',${Number(x.amount||0)})">
+      ✅ APPROVE
+     </button>
+
+     <button class="small-btn red"
+      onclick="changeDeposit('${x.id}','rejected','${x.member_id||""}',0)">
+      ❌ REJECT
+     </button>
+
+    </div>
+
+   </div>
+
+  `).join("");
+
+ }catch(error){
+
+  box.innerHTML=
+  `<div class="empty">${escapeHtml(error.message)}</div>`;
+ }
 }
 
 
-async function editProfits(userId){
+async function changeDeposit(id,status,memberId,amount){
 
-    const value =
-        prompt(
-            "Enter Profits:"
-        );
+ try{
 
-    if(value === null) return;
+  await graphqlRequest(`
+   mutation UpdateDeposit($id:uuid!,$status:String!){
+    update_deposits_by_pk(
+     pk_columns:{id:$id},
+     _set:{status:$status}
+    ){id}
+   }
+  `,{id,status});
 
-    const number =
-        Number(value);
+  if(memberId){
 
-    if(!Number.isFinite(number) || number < 0){
+   if(status==="approved"){
 
-        alert(
-            "Enter a valid amount."
-        );
+    await graphqlRequest(`
+     mutation AddInvestment($id:uuid!,$amount:numeric!){
+      update_members_by_pk(
+       pk_columns:{id:$id},
+       _inc:{investment:$amount}
+      ){id}
+     }
+    `,{id:memberId,amount});
+   }
 
-        return;
+   await createNotification(
+    memberId,
+    status==="approved"
+    ?"Your deposit has been approved."
+    :"Your deposit has been rejected."
+   );
+  }
+
+  alert("Deposit updated.");
+  loadDeposits();
+
+ }catch(error){
+  alert(error.message||"Update failed.");
+ }
+}
+
+
+/* WITHDRAWALS */
+
+async function loadWithdrawals(){
+
+ const box=document.getElementById("withdrawalsList");
+ box.innerHTML='<div class="empty">Loading...</div>';
+
+ try{
+
+  const data=await graphqlRequest(`
+   query Withdrawals{
+    withdrawals(order_by:{created_at:desc}){
+     id
+     member_id
+     email
+     wallet_address
+     amount
+     status
+     created_at
     }
+   }
+  `);
 
-    await editMetadataNumber(
-        userId,
-        "profits",
-        number
-    );
+  const rows=data.withdrawals||[];
 
+  document.getElementById("statWithdrawals").textContent=rows.length;
+
+  if(!rows.length){
+   box.innerHTML='<div class="empty">No withdrawal requests.</div>';
+   return;
+  }
+
+  box.innerHTML=rows.map(x=>`
+
+   <div class="request-card">
+
+    <div class="user-name">💸 ${escapeHtml(x.email||"Unknown")}</div>
+
+    <div class="request-line">
+     Amount: <strong>$${money(x.amount)}</strong>
+    </div>
+
+    <div class="request-line">
+     Wallet: ${escapeHtml(x.wallet_address||"-")}
+    </div>
+
+    <div class="request-line">
+     Status:
+     <strong class="status-${escapeHtml(String(x.status||"pending").toLowerCase())}">
+      ${escapeHtml(x.status||"pending")}
+     </strong>
+    </div>
+
+    <div class="actions">
+
+     <button class="small-btn green"
+      onclick="changeWithdrawal('${x.id}','approved','${x.member_id||""}')">
+      ✅ APPROVE
+     </button>
+
+     <button class="small-btn red"
+      onclick="changeWithdrawal('${x.id}','rejected','${x.member_id||""}')">
+      ❌ REJECT
+     </button>
+
+    </div>
+
+   </div>
+
+  `).join("");
+
+ }catch(error){
+
+  box.innerHTML=
+  `<div class="empty">${escapeHtml(error.message)}</div>`;
+ }
 }
 
 
-async function editMetadataNumber(
-    userId,
-    key,
-    value
-){
+async function changeWithdrawal(id,status,memberId){
 
-    try{
+ try{
 
-        const query = `
-        query GetOneUser($id:uuid!){
-            user(id:$id){
-                id
-                metadata
-            }
-        }
-        `;
+  await graphqlRequest(`
+   mutation UpdateWithdrawal($id:uuid!,$status:String!){
+    update_withdrawals_by_pk(
+     pk_columns:{id:$id},
+     _set:{status:$status}
+    ){id}
+   }
+  `,{id,status});
 
-        const data =
-            await graphqlRequest(
-                query,
-                {id:userId}
-            );
+  if(memberId){
 
-        const metadata =
-            data?.user?.metadata || {};
+   await createNotification(
+    memberId,
+    status==="approved"
+    ?"Your withdrawal has been approved."
+    :"Your withdrawal has been rejected."
+   );
+  }
 
-        metadata[key] = value;
+  alert("Withdrawal updated.");
+  loadWithdrawals();
 
-        await updateUserMetadata(
-            userId,
-            metadata
-        );
+ }catch(error){
+  alert(error.message||"Update failed.");
+ }
+}
 
-        alert(
-            "Updated successfully."
-        );
 
-        loadUsers();
+/* IMAGES */
 
-    }catch(error){
+async function publishImage(){
 
-        alert(
-            error.message ||
-            "Update failed."
-        );
+ const url=document.getElementById("imageUrl").value.trim();
 
+ if(!url){
+  alert("Enter an image URL.");
+  return;
+ }
+
+ try{
+
+  await graphqlRequest(`
+   mutation AddImage($url:String!){
+    insert_completed_trades_one(
+     object:{image_url:$url}
+    ){
+     id
     }
+   }
+  `,{url});
 
+  document.getElementById("imageUrl").value="";
+
+  alert("Image published.");
+  loadImages();
+
+ }catch(error){
+  alert(error.message||"Image publishing failed.");
+ }
 }
 
 
-/* =========================
-   DELETE USER
-========================= */
+async function loadImages(){
 
-async function deleteSubscriber(userId){
+ const box=document.getElementById("imagesList");
+ box.innerHTML='<div class="empty">Loading...</div>';
 
-    const confirmed =
-        confirm(
-            "Delete this subscriber permanently?"
-        );
+ try{
 
-    if(!confirmed) return;
-
-    try{
-
-        const mutation = `
-        mutation DeleteUser($id:uuid!){
-            deleteUser(id:$id){
-                id
-            }
-        }
-        `;
-
-        await graphqlRequest(
-            mutation,
-            {id:userId}
-        );
-
-        alert(
-            "Subscriber deleted."
-        );
-
-        loadUsers();
-
-    }catch(error){
-
-        alert(
-            error.message ||
-            "Delete failed."
-        );
-
+  const data=await graphqlRequest(`
+   query Images{
+    completed_trades(order_by:{created_at:desc}){
+     id
+     image_url
+     created_at
     }
+   }
+  `);
 
+  const rows=data.completed_trades||[];
+
+  document.getElementById("statImages").textContent=rows.length;
+
+  if(!rows.length){
+   box.innerHTML='<div class="empty">No images published.</div>';
+   return;
+  }
+
+  box.innerHTML=rows.map(x=>`
+
+   <div class="image-card">
+
+    <img class="image-preview"
+     src="${escapeAttribute(x.image_url)}"
+     onerror="this.style.display='none'">
+
+    <div class="request-line">
+     ${escapeHtml(x.created_at||"")}
+    </div>
+
+    <div class="actions">
+     <button class="small-btn red"
+      onclick="deleteImage('${x.id}')">
+      🗑️ Delete Image
+     </button>
+    </div>
+
+   </div>
+
+  `).join("");
+
+ }catch(error){
+
+  box.innerHTML=
+  `<div class="empty">${escapeHtml(error.message)}</div>`;
+ }
 }
 
 
-/* =========================
-   IMAGES
-========================= */
+async function deleteImage(id){
 
-function publishImage(){
+ if(!confirm("Delete this image?"))return;
 
-    const file =
-        document.getElementById(
-            "imageFile"
-        ).files[0];
+ try{
 
-    const caption =
-        document.getElementById(
-            "imageCaption"
-        ).value.trim();
-
-    if(!file){
-
-        alert(
-            "Select an image first."
-        );
-
-        return;
+  await graphqlRequest(`
+   mutation DeleteImage($id:uuid!){
+    delete_completed_trades_by_pk(id:$id){
+     id
     }
+   }
+  `,{id});
 
-    if(!file.type.startsWith("image/")){
+  loadImages();
 
-        alert(
-            "Please select an image file."
-        );
+ }catch(error){
+  alert(error.message||"Delete failed.");
+ }
+}
 
-        return;
+
+/* TRADES */
+
+async function publishTrade(){
+
+ const action=document.getElementById("tradeAction").value;
+ const timeframe=document.getElementById("tradeTimeframe").value;
+ const entry=document.getElementById("tradeEntry").value;
+ const sl=document.getElementById("tradeSL").value;
+ const tp=document.getElementById("tradeTP").value;
+ const message=document.getElementById("tradeMessage").value.trim();
+
+ if(!message){
+  alert("Enter a trade message/reason.");
+  return;
+ }
+
+ try{
+
+  await graphqlRequest(`
+   mutation AddTrade(
+    $action:String!,
+    $timeframe:String!,
+    $entry:numeric,
+    $sl:numeric,
+    $tp:numeric,
+    $message:String
+   ){
+    insert_trades_one(
+     object:{
+      action:$action,
+      timeframe:$timeframe,
+      entry:$entry,
+      stop_loss:$sl,
+      take_profit:$tp,
+      message:$message
+     }
+    ){
+     id
     }
+   }
+  `,{
+   action,
+   timeframe,
+   entry:entry?Number(entry):null,
+   sl:sl?Number(sl):null,
+   tp:tp?Number(tp):null,
+   message
+  });
 
-    const reader =
-        new FileReader();
+  await notifyAllMembers(
+   `TRADIX TRADE: ${action} ${timeframe} | Entry ${entry||"-"} | SL ${sl||"-"} | TP ${tp||"-"} | ${message}`
+  );
 
-    reader.onload = function(){
+  document.getElementById("tradeEntry").value="";
+  document.getElementById("tradeSL").value="";
+  document.getElementById("tradeTP").value="";
+  document.getElementById("tradeMessage").value="";
 
-        const images =
-            getLocalImages();
+  alert("Trade published and members notified.");
+  loadTrades();
 
-        images.unshift({
-            id:
-                Date.now().toString(),
-            name:file.name,
-            caption,
-            src:reader.result,
-            createdAt:
-                new Date().toISOString()
-        });
-
-        localStorage.setItem(
-            "tradix_admin_images",
-            JSON.stringify(images)
-        );
-
-        document.getElementById(
-            "imageFile"
-        ).value = "";
-
-        document.getElementById(
-            "imageCaption"
-        ).value = "";
-
-        alert(
-            "Image published."
-        );
-
-        loadImages();
-
-    };
-
-    reader.readAsDataURL(file);
-
+ }catch(error){
+  alert(error.message||"Trade publishing failed.");
+ }
 }
 
 
-function getLocalImages(){
+async function loadTrades(){
 
-    try{
+ const box=document.getElementById("tradesList");
+ box.innerHTML='<div class="empty">Loading...</div>';
 
-        return JSON.parse(
-            localStorage.getItem(
-                "tradix_admin_images"
-            ) || "[]"
-        );
+ try{
 
-    }catch{
-
-        return [];
-
+  const data=await graphqlRequest(`
+   query Trades{
+    trades(order_by:{created_at:desc}){
+     id
+     action
+     timeframe
+     entry
+     stop_loss
+     take_profit
+     message
+     created_at
     }
+   }
+  `);
 
+  const rows=data.trades||[];
+
+  if(!rows.length){
+   box.innerHTML='<div class="empty">No trades published.</div>';
+   return;
+  }
+
+  box.innerHTML=rows.map(x=>`
+
+   <div class="trade-card">
+
+    <div class="user-name">
+     📢 ${escapeHtml(x.action)} · ${escapeHtml(x.timeframe||"")}
+    </div>
+
+    <div class="request-line">
+     Entry: ${money(x.entry)}
+     · SL: ${money(x.stop_loss)}
+     · TP: ${money(x.take_profit)}
+    </div>
+
+    <div class="request-line">
+     ${escapeHtml(x.message||"")}
+    </div>
+
+   </div>
+
+  `).join("");
+
+ }catch(error){
+
+  box.innerHTML=
+  `<div class="empty">${escapeHtml(error.message)}</div>`;
+ }
 }
 
 
-function loadImages(){
+/* NOTIFICATIONS */
 
-    const container =
-        document.getElementById(
-            "imagesList"
-        );
+async function createNotification(memberId,message){
 
-    const images =
-        getLocalImages();
+ if(!memberId)return;
 
-    document.getElementById(
-        "statImages"
-    ).textContent =
-        images.length;
-
-    if(!images.length){
-
-        container.innerHTML =
-            `<div class="empty">
-                No images published.
-            </div>`;
-
-        return;
+ await graphqlRequest(`
+  mutation AddNotification(
+   $member_id:uuid!,
+   $message:String!
+  ){
+   insert_notifications_one(
+    object:{
+     member_id:$member_id,
+     message:$message
     }
-
-    container.innerHTML =
-        images.map(image => `
-            <div class="image-card">
-
-                <img src="${image.src}"
-                     style="width:100%;
-                            max-height:320px;
-                            object-fit:contain;
-                            background:#050505;
-                            border-radius:10px">
-
-                <div style="margin-top:10px;color:#aaa">
-                    ${escapeHtml(image.caption || "")}
-                </div>
-
-                <div class="actions">
-
-                    <button class="small-btn red"
-                        onclick="deleteImage('${image.id}')">
-                        🗑️ Delete Image
-                    </button>
-
-                </div>
-
-            </div>
-        `).join("");
-
+   ){
+    id
+   }
+  }
+ `,{member_id:memberId,message});
 }
 
 
-function deleteImage(id){
+async function notifyAllMembers(message){
 
-    if(!confirm(
-        "Delete this image?"
-    )) return;
+ const data=await graphqlRequest(`
+  query AllMemberIds{
+   members{
+    id
+   }
+  }
+ `);
 
-    const images =
-        getLocalImages()
-        .filter(image =>
-            image.id !== id
-        );
+ const members=data.members||[];
 
-    localStorage.setItem(
-        "tradix_admin_images",
-        JSON.stringify(images)
-    );
+ for(const member of members){
 
-    loadImages();
+  try{
+   await createNotification(member.id,message);
+  }catch(error){
+   console.log("Notification failed:",error);
+  }
 
+ }
 }
 
 
-/* =========================
-   PLACEHOLDER REQUESTS
-========================= */
+async function sendNotification(){
 
-function publishTrade(){
+ const message=
+ document.getElementById("notificationMessage")
+ .value.trim();
 
-    alert(
-        "Trade publishing interface is ready. Database signal storage will be connected after the TRADIX signal table is confirmed."
-    );
+ if(!message){
+  alert("Enter a message.");
+  return;
+ }
 
+ try{
+
+  await notifyAllMembers(message);
+
+  document.getElementById("notificationMessage").value="";
+
+  alert("Notification sent to all members.");
+
+ }catch(error){
+  alert(error.message||"Notification failed.");
+ }
 }
 
 
-function sendNotification(){
+/* HELPERS */
 
-    alert(
-        "Notification interface is ready. User notification storage will be connected after the TRADIX notification table is confirmed."
-    );
-
+function money(value){
+ const n=Number(value||0);
+ return Number.isFinite(n)?n.toFixed(2):"0.00";
 }
 
-
-/* =========================
-   SAFE HTML
-========================= */
 
 function escapeHtml(value){
 
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-
+ return String(value??"")
+ .replace(/&/g,"&amp;")
+ .replace(/</g,"&lt;")
+ .replace(/>/g,"&gt;")
+ .replace(/"/g,"&quot;")
+ .replace(/'/g,"&#039;");
 }
 
 
-/* =========================
-   START
-========================= */
+function escapeAttribute(value){
+ return String(value??"")
+ .replace(/&/g,"&amp;")
+ .replace(/"/g,"&quot;")
+ .replace(/</g,"&lt;")
+ .replace(/>/g,"&gt;");
+}
+
+
+/* START */
 
 (function(){
 
-    const session =
-        getAdminSession();
+ const session=getAdminSession();
 
-    if(session){
-
-        showAdmin(session);
-
-    }
+ if(session){
+  showAdmin(session);
+ }
 
 })();
 
