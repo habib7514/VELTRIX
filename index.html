@@ -74,9 +74,7 @@ button,input,textarea{font-family:inherit}
         welcomeGlow 2.2s ease-in-out 1s infinite;
 }
 
-.splash-welcome span{
-    color:#d4af37;
-}
+.splash-welcome span{color:#d4af37}
 
 .splash-icon-wrap{
     position:relative;
@@ -135,8 +133,7 @@ button,input,textarea{font-family:inherit}
     color:#d4af37;
     font-size:58px;
     font-weight:900;
-    background:
-        linear-gradient(145deg,#171717,#080808);
+    background:linear-gradient(145deg,#171717,#080808);
     box-shadow:
         0 0 20px rgba(212,175,55,.20),
         0 0 45px rgba(212,175,55,.10),
@@ -178,8 +175,7 @@ button,input,textarea{font-family:inherit}
     opacity:0;
     transform:translateY(18px);
     animation:nameIn 1s ease .9s forwards;
-    text-shadow:
-        0 0 12px rgba(212,175,55,.25);
+    text-shadow:0 0 12px rgba(212,175,55,.25);
 }
 
 .splash-description{
@@ -227,68 +223,35 @@ button,input,textarea{font-family:inherit}
     margin-left:4px;
     border-radius:50%;
     background:#d4af37;
-    box-shadow:
-        8px 0 #555,
-        16px 0 #333;
+    box-shadow:8px 0 #555,16px 0 #333;
     animation:loadingDots 1.2s infinite;
 }
 
 @keyframes welcomeIn{
-    0%{
-        opacity:0;
-        transform:translateY(-18px);
-        letter-spacing:8px;
-    }
-    100%{
-        opacity:1;
-        transform:translateY(0);
-        letter-spacing:4px;
-    }
+    0%{opacity:0;transform:translateY(-18px);letter-spacing:8px}
+    100%{opacity:1;transform:translateY(0);letter-spacing:4px}
 }
 
 @keyframes welcomeGlow{
-    0%,100%{
-        text-shadow:0 0 0 rgba(212,175,55,0);
-    }
-    50%{
-        text-shadow:0 0 14px rgba(212,175,55,.18);
-    }
+    0%,100%{text-shadow:0 0 0 rgba(212,175,55,0)}
+    50%{text-shadow:0 0 14px rgba(212,175,55,.18)}
 }
 
 @keyframes iconAppear{
-    0%{
-        opacity:0;
-        transform:scale(.35);
-    }
-    65%{
-        opacity:1;
-        transform:scale(1.08);
-    }
-    100%{
-        opacity:1;
-        transform:scale(1);
-    }
+    0%{opacity:0;transform:scale(.35)}
+    65%{opacity:1;transform:scale(1.08)}
+    100%{opacity:1;transform:scale(1)}
 }
 
 @keyframes iconRotate{
-    0%{
-        transform:rotate(-18deg) scale(.75);
-    }
-    70%{
-        transform:rotate(5deg) scale(1.04);
-    }
-    100%{
-        transform:rotate(0deg) scale(1);
-    }
+    0%{transform:rotate(-18deg) scale(.75)}
+    70%{transform:rotate(5deg) scale(1.04)}
+    100%{transform:rotate(0deg) scale(1)}
 }
 
 @keyframes iconFloat{
-    0%,100%{
-        transform:translateY(0);
-    }
-    50%{
-        transform:translateY(-7px);
-    }
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-7px)}
 }
 
 @keyframes iconPulse{
@@ -317,29 +280,19 @@ button,input,textarea{font-family:inherit}
 }
 
 @keyframes nameIn{
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+    to{opacity:1;transform:translateY(0)}
 }
 
 @keyframes descriptionIn{
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+    to{opacity:1;transform:translateY(0)}
 }
 
 @keyframes lineIn{
-    to{
-        width:110px;
-    }
+    to{width:110px}
 }
 
 @keyframes loadingIn{
-    to{
-        opacity:1;
-    }
+    to{opacity:1}
 }
 
 @keyframes loadingDots{
@@ -349,25 +302,13 @@ button,input,textarea{font-family:inherit}
 }
 
 @keyframes splashRing{
-    0%,100%{
-        transform:scale(.9);
-        opacity:.35;
-    }
-    50%{
-        transform:scale(1.08);
-        opacity:.7;
-    }
+    0%,100%{transform:scale(.9);opacity:.35}
+    50%{transform:scale(1.08);opacity:.7}
 }
 
 @keyframes splashRingOuter{
-    0%,100%{
-        transform:scale(.92);
-        opacity:.25;
-    }
-    50%{
-        transform:scale(1.04);
-        opacity:.5;
-    }
+    0%,100%{transform:scale(.92);opacity:.25}
+    50%{transform:scale(1.04);opacity:.5}
 }
 
 /* =========================
@@ -428,7 +369,7 @@ button,input,textarea{font-family:inherit}
 }
 
 /* =========================
-   HOME WELCOME
+   HOME
 ========================= */
 
 .home-welcome{
@@ -554,9 +495,7 @@ button,input,textarea{font-family:inherit}
     font-weight:800;
 }
 
-.main-btn:hover{
-    border-color:#d4af37;
-}
+.main-btn:hover{border-color:#d4af37}
 
 .main-btn.active-main{
     background:#d4af37;
@@ -564,7 +503,7 @@ button,input,textarea{font-family:inherit}
 }
 
 /* =========================
-   BOTTOM NAVIGATION
+   BOTTOM NAV
 ========================= */
 
 .bottom-nav{
@@ -620,9 +559,7 @@ button,input,textarea{font-family:inherit}
     background:#151515;
 }
 
-.bottom-btn.active-bottom .bottom-icon{
-    color:#d4af37;
-}
+.bottom-btn.active-bottom .bottom-icon{color:#d4af37}
 
 /* =========================
    BALANCE
@@ -680,9 +617,7 @@ button,input,textarea{font-family:inherit}
     margin-bottom:7px;
 }
 
-.info-card strong{
-    font-size:17px;
-}
+.info-card strong{font-size:17px}
 
 /* =========================
    SIGNALS
@@ -703,20 +638,11 @@ button,input,textarea{font-family:inherit}
     margin-bottom:15px;
 }
 
-.buy{
-    color:#54d88a;
-    font-weight:900;
-}
+.buy{color:#54d88a;font-weight:900}
 
-.sell{
-    color:#ff6868;
-    font-weight:900;
-}
+.sell{color:#ff6868;font-weight:900}
 
-.active{
-    color:#d4af37;
-    font-size:12px;
-}
+.active{color:#d4af37;font-size:12px}
 
 .signal-row{
     display:flex;
@@ -726,25 +652,17 @@ button,input,textarea{font-family:inherit}
     border-bottom:1px solid #222;
 }
 
-.signal-row:last-child{
-    border-bottom:none;
-}
+.signal-row:last-child{border-bottom:none}
 
-.signal-row span:first-child{
-    color:#777;
-}
+.signal-row span:first-child{color:#777}
 
 /* =========================
    PAGES
 ========================= */
 
-.page{
-    display:none;
-}
+.page{display:none}
 
-.page.active-page{
-    display:block;
-}
+.page.active-page{display:block}
 
 /* =========================
    TRADES
@@ -839,14 +757,8 @@ button,input,textarea{font-family:inherit}
 }
 
 @keyframes marketPulse{
-    0%,100%{
-        opacity:.45;
-        transform:scale(.85);
-    }
-    50%{
-        opacity:1;
-        transform:scale(1.15);
-    }
+    0%,100%{opacity:.45;transform:scale(.85)}
+    50%{opacity:1;transform:scale(1.15)}
 }
 
 .market-row{
@@ -857,9 +769,7 @@ button,input,textarea{font-family:inherit}
     border-bottom:1px solid #242424;
 }
 
-.market-row:last-child{
-    border-bottom:none;
-}
+.market-row:last-child{border-bottom:none}
 
 .market-name{
     font-weight:800;
@@ -906,17 +816,9 @@ button,input,textarea{font-family:inherit}
     font-weight:700;
 }
 
-.market-up{
-    color:#54d88a;
-}
-
-.market-down{
-    color:#ff6868;
-}
-
-.market-neutral{
-    color:#999;
-}
+.market-up{color:#54d88a}
+.market-down{color:#ff6868}
+.market-neutral{color:#999}
 
 .market-status{
     background:#111;
@@ -1006,9 +908,7 @@ input,textarea{
     outline:none;
 }
 
-input:focus,textarea:focus{
-    border-color:#d4af37;
-}
+input:focus,textarea:focus{border-color:#d4af37}
 
 /* =========================
    NOTIFICATIONS
@@ -1089,9 +989,7 @@ input:focus,textarea:focus{
     word-break:break-word;
 }
 
-.account-status{
-    color:#ffb347!important;
-}
+.account-status{color:#ffb347!important}
 
 .account-status.active-account{
     color:#59d98e!important;
@@ -1133,9 +1031,7 @@ input:focus,textarea:focus{
     margin-bottom:25px;
 }
 
-.auth-input{
-    margin-bottom:13px;
-}
+.auth-input{margin-bottom:13px}
 
 .auth-button{
     background:#d4af37;
@@ -1182,13 +1078,9 @@ input:focus,textarea:focus{
         padding-bottom:100px;
     }
 
-    .total-balance{
-        font-size:30px;
-    }
+    .total-balance{font-size:30px}
 
-    .withdrawable-value{
-        font-size:24px;
-    }
+    .withdrawable-value{font-size:24px}
 
     .splash-welcome{
         font-size:13px;
@@ -1243,34 +1135,22 @@ input:focus,textarea:focus{
         height:95px;
     }
 
-    .crypto-symbol{
-        font-size:43px;
-    }
+    .crypto-symbol{font-size:43px}
 
     .home-welcome h1{
         font-size:29px;
         letter-spacing:5px;
     }
 
-    .bottom-nav{
-        height:66px;
-    }
+    .bottom-nav{height:66px}
 
-    .bottom-btn{
-        font-size:8px;
-    }
+    .bottom-btn{font-size:8px}
 
-    .bottom-btn .bottom-icon{
-        font-size:16px;
-    }
+    .bottom-btn .bottom-icon{font-size:16px}
 
-    .market-price{
-        min-width:115px;
-    }
+    .market-price{min-width:115px}
 
-    .market-price strong{
-        font-size:15px;
-    }
+    .market-price strong{font-size:15px}
 }
 </style>
 </head>
@@ -1806,9 +1686,6 @@ input:focus,textarea:focus{
                         LIVE MARKET • BINANCE SPOT
                     </div>
 
-
-                    <!-- BTC -->
-
                     <div class="market-row">
 
                         <div>
@@ -1837,9 +1714,6 @@ input:focus,textarea:focus{
                         </div>
 
                     </div>
-
-
-                    <!-- ETH -->
 
                     <div class="market-row">
 
@@ -1870,9 +1744,6 @@ input:focus,textarea:focus{
 
                     </div>
 
-
-                    <!-- BNB -->
-
                     <div class="market-row">
 
                         <div>
@@ -1901,9 +1772,6 @@ input:focus,textarea:focus{
                         </div>
 
                     </div>
-
-
-                    <!-- SOL -->
 
                     <div class="market-row">
 
@@ -1935,7 +1803,6 @@ input:focus,textarea:focus{
                     </div>
 
                 </div>
-
 
                 <div
                     id="marketStatus"
@@ -2008,7 +1875,6 @@ input:focus,textarea:focus{
 
                     </div>
 
-
                     <div class="settings-item">
 
                         <span>
@@ -2020,7 +1886,6 @@ input:focus,textarea:focus{
                         </strong>
 
                     </div>
-
 
                     <div class="settings-item">
 
@@ -2037,7 +1902,6 @@ input:focus,textarea:focus{
 
                     </div>
 
-
                     <div class="settings-item">
 
                         <span>
@@ -2049,7 +1913,6 @@ input:focus,textarea:focus{
                         </strong>
 
                     </div>
-
 
                     <div class="settings-item">
 
@@ -2063,7 +1926,6 @@ input:focus,textarea:focus{
 
                     </div>
 
-
                     <label>
                         Wallet Address
                     </label>
@@ -2074,14 +1936,12 @@ input:focus,textarea:focus{
                         placeholder="Enter your BEP20 wallet address"
                     >
 
-
                     <button
                         class="primary-btn"
                         onclick="saveWalletAddress()"
                     >
                         SAVE WALLET
                     </button>
-
 
                     <button
                         class="danger-btn"
@@ -2148,7 +2008,6 @@ input:focus,textarea:focus{
                 WALLET
             </button>
 
-
             <button
                 class="bottom-btn"
                 onclick="openBottomPage('marketPage',this)"
@@ -2156,7 +2015,6 @@ input:focus,textarea:focus{
                 <span class="bottom-icon">▥</span>
                 MARKET
             </button>
-
 
             <button
                 class="bottom-btn active-bottom"
@@ -2166,7 +2024,6 @@ input:focus,textarea:focus{
                 HOME
             </button>
 
-
             <button
                 class="bottom-btn"
                 onclick="openBottomPage('notificationsPage',this)"
@@ -2174,7 +2031,6 @@ input:focus,textarea:focus{
                 <span class="bottom-icon">♢</span>
                 NOTIFICATIONS
             </button>
-
 
             <button
                 class="bottom-btn"
@@ -2202,6 +2058,9 @@ const NHOST_REGION="eu-central-1";
 
 const NHOST_AUTH=
 `https://${NHOST_SUBDOMAIN}.auth.${NHOST_REGION}.nhost.run/v1`;
+
+const NHOST_GRAPHQL=
+`https://${NHOST_SUBDOMAIN}.graphql.${NHOST_REGION}.nhost.run/v1`;
 
 const DEPOSIT_ADDRESS=
 "0x4E11E978119cAAB300b5439B909D06341C24a2A7";
@@ -2241,9 +2100,6 @@ const MARKET_CONFIG={
     }
 
 };
-
-
-/* Format live price */
 
 function formatMarketPrice(value){
 
@@ -2287,9 +2143,6 @@ function formatMarketPrice(value){
         );
 }
 
-
-/* Update one market item */
-
 function updateMarketItem(
     symbol,
     price,
@@ -2329,8 +2182,6 @@ function updateMarketItem(
     priceElement.dataset.price=
         String(numericPrice);
 
-    /* Price movement animation */
-
     priceElement.classList.remove(
         "price-up",
         "price-down"
@@ -2363,9 +2214,6 @@ function updateMarketItem(
         );
 
     },220);
-
-
-    /* 24 hour change */
 
     const numericChange=
         Number(change);
@@ -2409,9 +2257,6 @@ function updateMarketItem(
     }
 }
 
-
-/* Market status */
-
 function setMarketStatus(
     message,
     type
@@ -2445,9 +2290,6 @@ function setMarketStatus(
     }
 }
 
-
-/* Connect to Binance live market */
-
 function connectLiveMarket(){
 
     if(
@@ -2467,12 +2309,6 @@ function connectLiveMarket(){
         marketReconnectTimer
     );
 
-    /*
-       Binance combined streams.
-       Trade = immediate price movement.
-       Ticker = 24H percentage.
-    */
-
     const streams=[
 
         "btcusdt@trade",
@@ -2487,11 +2323,9 @@ function connectLiveMarket(){
 
     ].join("/");
 
-
     const websocketUrl=
         "wss://stream.binance.com:9443/stream?streams="+
         streams;
-
 
     try{
 
@@ -2512,7 +2346,6 @@ function connectLiveMarket(){
         return;
     }
 
-
     marketSocket.onopen=function(){
 
         setMarketStatus(
@@ -2520,7 +2353,6 @@ function connectLiveMarket(){
             "live"
         );
     };
-
 
     marketSocket.onmessage=function(event){
 
@@ -2536,13 +2368,6 @@ function connectLiveMarket(){
                 return;
             }
 
-
-            /*
-               Trade stream:
-               s = symbol
-               p = latest traded price
-            */
-
             if(data.e==="trade"){
 
                 updateMarketItem(
@@ -2553,14 +2378,6 @@ function connectLiveMarket(){
 
                 return;
             }
-
-
-            /*
-               Ticker stream:
-               s = symbol
-               c = latest price
-               P = 24H percentage change
-            */
 
             if(data.e==="24hrTicker"){
 
@@ -2581,7 +2398,6 @@ function connectLiveMarket(){
         }
     };
 
-
     marketSocket.onerror=function(){
 
         setMarketStatus(
@@ -2589,7 +2405,6 @@ function connectLiveMarket(){
             "error"
         );
     };
-
 
     marketSocket.onclose=function(){
 
@@ -2601,9 +2416,6 @@ function connectLiveMarket(){
         scheduleMarketReconnect();
     };
 }
-
-
-/* Reconnect automatically */
 
 function scheduleMarketReconnect(){
 
@@ -2618,9 +2430,6 @@ function scheduleMarketReconnect(){
 
         },3000);
 }
-
-
-/* Start market once */
 
 function startLiveMarket(){
 
@@ -2657,6 +2466,213 @@ function getSession(){
 
         return null;
     }
+}
+
+
+/* =========================
+   NHOST MEMBER PROFILE
+   FIX FOR EMPTY MEMBERS TABLE
+========================= */
+
+async function ensureMemberProfile(
+    fullNameOverride=""
+){
+
+    const session=getSession();
+
+    if(
+        !session||
+        !session.user||
+        !session.accessToken
+    ){
+
+        return false;
+    }
+
+    const userId=
+        session.user.id;
+
+    const email=
+        session.user.email||
+        "";
+
+    const fullName=
+        fullNameOverride||
+        session.user.displayName||
+        email.split("@")[0]||
+        "Member";
+
+    const headers={
+
+        "Content-Type":
+            "application/json",
+
+        "Authorization":
+            `Bearer ${session.accessToken}`
+
+    };
+
+
+    /* =========================
+       CHECK EXISTING MEMBER
+    ========================= */
+
+    const checkQuery=`
+
+        query CheckMember($id:uuid!){
+
+            members_by_pk(id:$id){
+
+                id
+
+            }
+
+        }
+
+    `;
+
+
+    const checkResponse=
+        await fetch(
+            NHOST_GRAPHQL,
+            {
+                method:"POST",
+
+                headers:headers,
+
+                body:JSON.stringify({
+
+                    query:checkQuery,
+
+                    variables:{
+                        id:userId
+                    }
+
+                })
+            }
+        );
+
+
+    const checkData=
+        await checkResponse.json();
+
+
+    if(checkData.errors){
+
+        throw new Error(
+            checkData.errors[0]?.message||
+            "Unable to check member profile."
+        );
+    }
+
+
+    /*
+       Member already exists.
+       Nothing else needs to be created.
+    */
+
+    if(
+        checkData.data &&
+        checkData.data.members_by_pk
+    ){
+
+        return true;
+    }
+
+
+    /* =========================
+       CREATE MEMBER
+    ========================= */
+
+    const insertMutation=`
+
+        mutation CreateMember(
+            $object:members_insert_input!
+        ){
+
+            insert_members_one(
+                object:$object
+            ){
+
+                id
+                email
+                full_name
+                investor
+                investment
+                profit
+                available_to_withdraw
+
+            }
+
+        }
+
+    `;
+
+
+    const insertResponse=
+        await fetch(
+            NHOST_GRAPHQL,
+            {
+                method:"POST",
+
+                headers:headers,
+
+                body:JSON.stringify({
+
+                    query:insertMutation,
+
+                    variables:{
+
+                        object:{
+
+                            id:userId,
+
+                            email:email,
+
+                            full_name:fullName,
+
+                            investor:false,
+
+                            investment:0,
+
+                            profit:0,
+
+                            available_to_withdraw:0
+
+                        }
+
+                    }
+
+                })
+            }
+        );
+
+
+    const insertData=
+        await insertResponse.json();
+
+
+    if(insertData.errors){
+
+        throw new Error(
+            insertData.errors[0]?.message||
+            "Unable to create member profile."
+        );
+    }
+
+
+    if(
+        !insertData.data ||
+        !insertData.data.insert_members_one
+    ){
+
+        throw new Error(
+            "Member profile was not created."
+        );
+    }
+
+
+    return true;
 }
 
 
@@ -2759,11 +2775,6 @@ function showApp(){
     ).style.display="block";
 
     loadUserInterface();
-
-    /*
-       Start the live market when
-       the TRADIX app becomes visible.
-    */
 
     startLiveMarket();
 }
@@ -3199,11 +3210,33 @@ async function createAccount(){
                 JSON.stringify(data.session)
             );
 
+
+            /*
+               IMPORTANT:
+               Create the corresponding
+               public.members row immediately.
+            */
+
+            await ensureMemberProfile(
+                fullName
+            );
+
+
             createInitialUserData();
 
             showApp();
 
         }else{
+
+            /*
+               If Nhost requires email
+               verification, there is no
+               access token yet.
+
+               The member row will be
+               created automatically when
+               the user logs in.
+            */
 
             alert(
                 "Account created successfully. You can now login."
@@ -3239,17 +3272,26 @@ function createInitialUserData(){
 
     if(!session||!session.user)return;
 
+    const existing=getUserData();
+
     saveUserData({
 
-        accountStatus:"INACTIVE",
+        accountStatus:
+            existing.accountStatus||
+            "INACTIVE",
 
-        totalDeposits:0,
+        totalDeposits:
+            Number(existing.totalDeposits||0),
 
-        totalProfits:0,
+        totalProfits:
+            Number(existing.totalProfits||0),
 
-        totalWithdrawals:0,
+        totalWithdrawals:
+            Number(existing.totalWithdrawals||0),
 
-        walletAddress:""
+        walletAddress:
+            existing.walletAddress||
+            ""
 
     });
 }
@@ -3454,6 +3496,17 @@ async function loginAccount(){
             JSON.stringify(data.session)
         );
 
+
+        /*
+           IMPORTANT:
+           This creates the public.members
+           row for existing Auth users that
+           currently have no member row.
+        */
+
+        await ensureMemberProfile();
+
+
         const existing=
             getUserData();
 
@@ -3463,6 +3516,11 @@ async function loginAccount(){
         ){
 
             createInitialUserData();
+
+        }else{
+
+            createInitialUserData();
+
         }
 
         showApp();
@@ -3672,16 +3730,14 @@ function submitWithdrawal(){
         document
         .getElementById(
             "withdrawAddress"
-        )
-        .value
+        ).value
         .trim();
 
     const amount=
         document
         .getElementById(
             "withdrawAmount"
-        )
-        .value
+        ).value
         .trim();
 
     if(!address||!amount){
