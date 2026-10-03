@@ -3,1494 +3,3883 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050505">
-<title>VELTRIX</title>
+<title>TRADIX</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth}
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#050505;
-  color:#fff;
-  min-height:100vh;
+    background:#050505;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+    overflow-x:hidden;
+    padding-bottom:75px;
 }
 
-:root{
-  --gold:#d6a84f;
-  --gold2:#f1c96b;
-  --dark:#080808;
-  --card:#111;
-  --line:#252525;
-  --muted:#999;
+button,input,textarea{font-family:inherit}
+
+/* =========================
+   SPLASH
+========================= */
+
+#splash{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:
+        radial-gradient(circle at 50% 38%,rgba(212,175,55,.10),transparent 28%),
+        radial-gradient(circle at 50% 50%,rgba(212,175,55,.045),transparent 48%),
+        #050505;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
 }
 
-.app{
-  width:100%;
-  max-width:480px;
-  margin:auto;
-  min-height:100vh;
-  background:#070707;
-  padding-bottom:80px;
+#splash::before{
+    content:"";
+    position:absolute;
+    width:280px;
+    height:280px;
+    border:1px solid rgba(212,175,55,.10);
+    border-radius:50%;
+    animation:splashRing 4s ease-in-out infinite;
+}
+
+#splash::after{
+    content:"";
+    position:absolute;
+    width:430px;
+    height:430px;
+    border:1px solid rgba(212,175,55,.035);
+    border-radius:50%;
+    animation:splashRingOuter 5s ease-in-out infinite;
+}
+
+.splash-welcome{
+    position:relative;
+    z-index:5;
+    color:#fff;
+    font-size:16px;
+    font-weight:700;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    margin-bottom:25px;
+    opacity:0;
+    animation:
+        welcomeIn .9s ease forwards,
+        welcomeGlow 2.2s ease-in-out 1s infinite;
+}
+
+.splash-welcome span{
+    color:#d4af37;
+}
+
+.splash-icon-wrap{
+    position:relative;
+    z-index:5;
+    width:145px;
+    height:145px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    animation:
+        iconAppear 1.2s cubic-bezier(.2,.8,.2,1) .25s forwards,
+        iconFloat 3s ease-in-out 1.5s infinite;
+}
+
+.splash-icon-ring{
+    position:absolute;
+    width:145px;
+    height:145px;
+    border:1px solid rgba(212,175,55,.25);
+    border-radius:50%;
+    animation:ringRotate 7s linear infinite;
+}
+
+.splash-icon-ring::before{
+    content:"";
+    position:absolute;
+    top:-4px;
+    left:50%;
+    width:7px;
+    height:7px;
+    transform:translateX(-50%);
+    border-radius:50%;
+    background:#d4af37;
+    box-shadow:0 0 15px #d4af37;
+}
+
+.splash-icon-ring-2{
+    position:absolute;
+    width:125px;
+    height:125px;
+    border:1px solid rgba(212,175,55,.16);
+    border-radius:50%;
+    animation:ringRotateReverse 5s linear infinite;
+}
+
+.splash-icon{
+    position:relative;
+    width:105px;
+    height:105px;
+    border:2px solid #d4af37;
+    border-radius:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#d4af37;
+    font-size:58px;
+    font-weight:900;
+    background:
+        linear-gradient(145deg,#171717,#080808);
+    box-shadow:
+        0 0 20px rgba(212,175,55,.20),
+        0 0 45px rgba(212,175,55,.10),
+        inset 0 0 25px rgba(212,175,55,.08);
+    animation:
+        iconRotate 1.3s cubic-bezier(.2,.8,.2,1) .35s both,
+        iconPulse 2.4s ease-in-out 1.6s infinite;
+}
+
+.splash-icon::before{
+    content:"";
+    position:absolute;
+    inset:8px;
+    border:1px solid rgba(212,175,55,.25);
+    border-radius:22px;
+}
+
+.splash-icon::after{
+    content:"";
+    position:absolute;
+    width:20px;
+    height:20px;
+    top:7px;
+    right:12px;
+    border-radius:50%;
+    background:#d4af37;
+    filter:blur(8px);
+    opacity:.35;
+}
+
+.splash-name{
+    position:relative;
+    z-index:5;
+    margin-top:25px;
+    color:#d4af37;
+    font-size:40px;
+    font-weight:900;
+    letter-spacing:8px;
+    opacity:0;
+    transform:translateY(18px);
+    animation:nameIn 1s ease .9s forwards;
+    text-shadow:
+        0 0 12px rgba(212,175,55,.25);
+}
+
+.splash-description{
+    position:relative;
+    z-index:5;
+    margin-top:11px;
+    color:#999;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    opacity:0;
+    transform:translateY(12px);
+    animation:descriptionIn .9s ease 1.25s forwards;
+}
+
+.splash-line{
+    position:relative;
+    z-index:5;
+    width:0;
+    height:1px;
+    background:#d4af37;
+    margin-top:20px;
+    opacity:.8;
+    animation:lineIn 1s ease 1.45s forwards;
+}
+
+.splash-loading{
+    position:relative;
+    z-index:5;
+    margin-top:15px;
+    color:#555;
+    font-size:9px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    opacity:0;
+    animation:loadingIn .8s ease 1.7s forwards;
+}
+
+.splash-loading::after{
+    content:"";
+    display:inline-block;
+    width:4px;
+    height:4px;
+    margin-left:4px;
+    border-radius:50%;
+    background:#d4af37;
+    box-shadow:
+        8px 0 #555,
+        16px 0 #333;
+    animation:loadingDots 1.2s infinite;
+}
+
+@keyframes welcomeIn{
+    0%{
+        opacity:0;
+        transform:translateY(-18px);
+        letter-spacing:8px;
+    }
+    100%{
+        opacity:1;
+        transform:translateY(0);
+        letter-spacing:4px;
+    }
+}
+
+@keyframes welcomeGlow{
+    0%,100%{
+        text-shadow:0 0 0 rgba(212,175,55,0);
+    }
+    50%{
+        text-shadow:0 0 14px rgba(212,175,55,.18);
+    }
+}
+
+@keyframes iconAppear{
+    0%{
+        opacity:0;
+        transform:scale(.35);
+    }
+    65%{
+        opacity:1;
+        transform:scale(1.08);
+    }
+    100%{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+@keyframes iconRotate{
+    0%{
+        transform:rotate(-18deg) scale(.75);
+    }
+    70%{
+        transform:rotate(5deg) scale(1.04);
+    }
+    100%{
+        transform:rotate(0deg) scale(1);
+    }
+}
+
+@keyframes iconFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-7px);
+    }
+}
+
+@keyframes iconPulse{
+    0%,100%{
+        box-shadow:
+            0 0 20px rgba(212,175,55,.20),
+            0 0 45px rgba(212,175,55,.10),
+            inset 0 0 25px rgba(212,175,55,.08);
+    }
+    50%{
+        box-shadow:
+            0 0 30px rgba(212,175,55,.34),
+            0 0 70px rgba(212,175,55,.15),
+            inset 0 0 30px rgba(212,175,55,.12);
+    }
+}
+
+@keyframes ringRotate{
+    from{transform:rotate(0deg)}
+    to{transform:rotate(360deg)}
+}
+
+@keyframes ringRotateReverse{
+    from{transform:rotate(360deg)}
+    to{transform:rotate(0deg)}
+}
+
+@keyframes nameIn{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes descriptionIn{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes lineIn{
+    to{
+        width:110px;
+    }
+}
+
+@keyframes loadingIn{
+    to{
+        opacity:1;
+    }
+}
+
+@keyframes loadingDots{
+    0%{opacity:.35}
+    50%{opacity:1}
+    100%{opacity:.35}
+}
+
+@keyframes splashRing{
+    0%,100%{
+        transform:scale(.9);
+        opacity:.35;
+    }
+    50%{
+        transform:scale(1.08);
+        opacity:.7;
+    }
+}
+
+@keyframes splashRingOuter{
+    0%,100%{
+        transform:scale(.92);
+        opacity:.25;
+    }
+    50%{
+        transform:scale(1.04);
+        opacity:.5;
+    }
+}
+
+/* =========================
+   APP
+========================= */
+
+#app{
+    display:none;
+    min-height:100vh;
 }
 
 .header{
-  padding:22px 18px 14px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  border-bottom:1px solid var(--line);
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(5,5,5,.97);
+    border-bottom:1px solid #242424;
+    padding:17px 16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
 .brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
+    color:#d4af37;
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:4px;
 }
 
-.logo{
-  width:42px;
-  height:42px;
-  border-radius:12px;
-  background:linear-gradient(135deg,#f1c96b,#8c641f);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#050505;
-  font-size:21px;
-  font-weight:900;
+.status{
+    font-size:11px;
+    color:#ffb347;
+    border:1px solid #5c4620;
+    padding:7px 10px;
+    border-radius:20px;
 }
 
-.brand h1{
-  color:var(--gold2);
-  font-size:22px;
-  letter-spacing:2px;
+.status.active-status{
+    color:#59d98e;
+    border-color:#245b3c;
 }
 
-.header-btn{
-  width:40px;
-  height:40px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:#101010;
-  color:white;
+.container{
+    width:100%;
+    max-width:700px;
+    margin:auto;
+    padding:20px 14px 100px;
 }
 
-.page{
-  display:none;
-  padding:20px 16px;
+.section{margin-bottom:22px}
+
+.section-title{
+    color:#d4af37;
+    font-size:18px;
+    font-weight:800;
+    margin-bottom:12px;
 }
 
-.page.active{
-  display:block;
+/* =========================
+   HOME WELCOME
+========================= */
+
+.home-welcome{
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+    background:
+        radial-gradient(circle at 50% 20%,rgba(212,175,55,.16),transparent 45%),
+        linear-gradient(145deg,#171717,#080808);
+    border:1px solid #3a3a3a;
+    border-radius:22px;
+    padding:28px 18px 30px;
+    margin-bottom:22px;
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
 }
 
-.title{
-  font-size:25px;
-  margin-bottom:7px;
+.home-welcome::before{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    border:1px solid rgba(212,175,55,.12);
+    border-radius:50%;
+    top:-95px;
+    left:50%;
+    transform:translateX(-50%);
 }
 
-.subtitle{
-  color:var(--muted);
-  font-size:14px;
-  margin-bottom:20px;
+.crypto-icon{
+    position:relative;
+    width:105px;
+    height:105px;
+    margin:0 auto 17px;
+    border:2px solid #d4af37;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#090909;
+    box-shadow:
+        0 0 25px rgba(212,175,55,.18),
+        inset 0 0 25px rgba(212,175,55,.08);
 }
 
-.hero{
-  border:1px solid #3b2d14;
-  background:linear-gradient(145deg,#151108,#0b0b0b);
-  border-radius:20px;
-  padding:22px;
-  margin-bottom:18px;
+.crypto-icon::before{
+    content:"";
+    position:absolute;
+    width:76px;
+    height:76px;
+    border:1px solid rgba(212,175,55,.35);
+    border-radius:50%;
 }
 
-.hero small{
-  color:var(--gold2);
+.crypto-symbol{
+    position:relative;
+    color:#d4af37;
+    font-size:48px;
+    font-weight:900;
 }
 
-.hero h2{
-  font-size:28px;
-  margin:10px 0;
+.home-welcome h1{
+    color:#d4af37;
+    font-size:32px;
+    font-weight:900;
+    letter-spacing:6px;
+    margin-bottom:9px;
 }
 
-.hero p{
-  color:#aaa;
-  line-height:1.5;
+.home-welcome .welcome-title{
+    color:#fff;
+    font-size:19px;
+    font-weight:700;
+    margin-bottom:8px;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
+.home-welcome p{
+    color:#999;
+    font-size:14px;
+    line-height:1.6;
+    max-width:480px;
+    margin:0 auto;
 }
 
-.card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:17px;
+.scroll-hint{
+    margin-top:18px;
+    color:#d4af37;
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
 }
 
-.card h3{
-  font-size:16px;
-  margin-bottom:8px;
+.scroll-arrow{
+    display:block;
+    margin:7px auto 0;
+    color:#d4af37;
+    font-size:20px;
+    animation:arrowDown 1.4s infinite;
 }
 
-.card p{
-  color:#999;
-  font-size:13px;
+@keyframes arrowDown{
+    0%,100%{transform:translateY(0);opacity:.5}
+    50%{transform:translateY(5px);opacity:1}
 }
 
-.gold{
-  color:var(--gold2);
+/* =========================
+   MAIN BUTTONS
+========================= */
+
+.main-menu{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:22px;
 }
 
-.btn{
-  width:100%;
-  padding:14px;
-  border:0;
-  border-radius:12px;
-  background:linear-gradient(135deg,#f0c667,#a67628);
-  color:#080808;
-  font-weight:800;
-  margin-top:12px;
-  cursor:pointer;
+.main-btn{
+    background:#111;
+    border:1px solid #303030;
+    color:#d4af37;
+    border-radius:13px;
+    padding:15px 10px;
+    font-size:13px;
+    font-weight:800;
 }
 
-.btn.dark{
-  background:#171717;
-  color:white;
-  border:1px solid var(--line);
+.main-btn:hover{
+    border-color:#d4af37;
 }
 
-.balance{
-  font-size:31px;
-  font-weight:800;
-  color:var(--gold2);
-  margin:8px 0;
+.main-btn.active-main{
+    background:#d4af37;
+    color:#050505;
 }
 
-.plan{
-  background:#101010;
-  border:1px solid #292929;
-  border-radius:18px;
-  padding:20px;
-  margin-bottom:14px;
+/* =========================
+   BOTTOM NAVIGATION
+========================= */
+
+.bottom-nav{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:500;
+    height:68px;
+    background:rgba(8,8,8,.98);
+    border-top:1px solid #292929;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:7px 5px;
+    box-shadow:0 -8px 25px rgba(0,0,0,.4);
 }
 
-.plan.featured{
-  border-color:#7d5c22;
+.bottom-nav-inner{
+    width:100%;
+    max-width:700px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:4px;
 }
 
-.price{
-  font-size:28px;
-  color:var(--gold2);
-  font-weight:800;
-  margin:10px 0;
+.bottom-btn{
+    width:100%;
+    height:52px;
+    margin:0;
+    padding:5px 2px;
+    background:transparent;
+    border:none;
+    color:#777;
+    border-radius:9px;
+    font-size:9px;
+    font-weight:800;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
 }
 
-.plan ul{
-  list-style:none;
-  color:#aaa;
-  line-height:2;
-  font-size:14px;
+.bottom-btn .bottom-icon{
+    font-size:17px;
+    color:#999;
+    line-height:1;
 }
 
-.signal{
-  border:1px solid #302712;
-  background:#0e0e0e;
-  border-radius:18px;
-  padding:18px;
-  margin-bottom:15px;
+.bottom-btn.active-bottom{
+    color:#d4af37;
+    background:#151515;
 }
 
-.signal-head{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:12px;
+.bottom-btn.active-bottom .bottom-icon{
+    color:#d4af37;
+}
+
+/* =========================
+   BALANCE
+========================= */
+
+.balance-card{
+    background:linear-gradient(145deg,#151515,#0b0b0b);
+    border:1px solid #383838;
+    border-radius:18px;
+    padding:22px;
+}
+
+.balance-label{
+    color:#888;
+    font-size:13px;
+}
+
+.total-balance{
+    color:#fff;
+    font-size:34px;
+    font-weight:800;
+    margin-top:7px;
+}
+
+.withdrawable{
+    margin-top:20px;
+    padding-top:17px;
+    border-top:1px solid #292929;
+}
+
+.withdrawable-value{
+    color:#d4af37;
+    font-size:26px;
+    font-weight:800;
+    margin-top:6px;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:15px;
+}
+
+.info-card{
+    background:#111;
+    border:1px solid #292929;
+    border-radius:14px;
+    padding:15px;
+}
+
+.info-card small{
+    color:#777;
+    display:block;
+    margin-bottom:7px;
+}
+
+.info-card strong{
+    font-size:17px;
+}
+
+/* =========================
+   SIGNALS
+========================= */
+
+.signal-card{
+    background:#111;
+    border:1px solid #292929;
+    border-radius:16px;
+    padding:18px;
+    margin-bottom:12px;
+}
+
+.signal-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
 }
 
 .buy{
-  color:#4ade80;
-  font-weight:800;
+    color:#54d88a;
+    font-weight:900;
 }
 
 .sell{
-  color:#f87171;
-  font-weight:800;
+    color:#ff6868;
+    font-weight:900;
+}
+
+.active{
+    color:#d4af37;
+    font-size:12px;
 }
 
 .signal-row{
-  display:flex;
-  justify-content:space-between;
-  padding:9px 0;
-  border-bottom:1px solid #1e1e1e;
-  color:#aaa;
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:9px 0;
+    border-bottom:1px solid #222;
 }
 
-.signal-row strong{
-  color:#fff;
+.signal-row:last-child{
+    border-bottom:none;
 }
 
-.course{
-  background:#101010;
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:18px;
-  margin-bottom:14px;
+.signal-row span:first-child{
+    color:#777;
 }
 
-.course-icon{
-  font-size:30px;
-  margin-bottom:10px;
+/* =========================
+   PAGES
+========================= */
+
+.page{
+    display:none;
 }
 
-.course h3{
-  margin-bottom:7px;
+.page.active-page{
+    display:block;
 }
 
-.course p{
-  color:#999;
-  font-size:13px;
-  line-height:1.5;
+/* =========================
+   TRADES
+========================= */
+
+.trade-card{
+    background:#111;
+    border:1px solid #292929;
+    border-radius:16px;
+    overflow:hidden;
+    margin-bottom:14px;
 }
 
-.form-group{
-  margin-bottom:14px;
+.trade-image{
+    width:100%;
+    background:#181818;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:220px;
+    color:#666;
+    font-size:13px;
+    overflow:hidden;
 }
 
-.form-group label{
-  display:block;
-  color:#aaa;
-  font-size:13px;
-  margin-bottom:7px;
+.trade-image img{
+    width:100%;
+    height:auto;
+    display:block;
 }
 
-input{
-  width:100%;
-  padding:14px;
-  background:#111;
-  border:1px solid #292929;
-  border-radius:11px;
-  color:#fff;
-  outline:none;
+/* =========================
+   WALLET
+========================= */
+
+.wallet-card{
+    background:#111;
+    border:1px solid #292929;
+    border-radius:16px;
+    padding:18px;
 }
 
-input:focus{
-  border-color:#80601f;
+.wallet-network{
+    color:#d4af37;
+    font-weight:700;
+    margin-bottom:12px;
 }
 
-.nav{
-  position:fixed;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:100%;
-  max-width:480px;
-  height:68px;
-  background:#0b0b0b;
-  border-top:1px solid #242424;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  z-index:100;
+.address-box{
+    background:#080808;
+    border:1px solid #333;
+    border-radius:10px;
+    padding:13px;
+    word-break:break-all;
+    color:#bbb;
+    font-size:13px;
+    line-height:1.5;
 }
 
-.nav button{
-  background:none;
-  border:0;
-  color:#777;
-  font-size:11px;
+/* =========================
+   LIVE MARKET
+========================= */
+
+.market-card{
+    background:#111;
+    border:1px solid #292929;
+    border-radius:16px;
+    padding:18px;
+    margin-bottom:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,.20);
 }
 
-.nav button span{
-  display:block;
-  font-size:21px;
-  margin-bottom:3px;
+.market-live-bar{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#54d88a;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    margin-bottom:8px;
+    text-transform:uppercase;
 }
 
-.nav button.active{
-  color:var(--gold2);
+.market-live-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#54d88a;
+    box-shadow:0 0 9px rgba(84,216,138,.8);
+    animation:marketPulse 1.2s ease-in-out infinite;
 }
 
-.notice{
-  padding:14px;
-  background:#111;
-  border-left:3px solid var(--gold);
-  border-radius:8px;
-  color:#aaa;
-  font-size:13px;
-  line-height:1.5;
-  margin-bottom:16px;
+@keyframes marketPulse{
+    0%,100%{
+        opacity:.45;
+        transform:scale(.85);
+    }
+    50%{
+        opacity:1;
+        transform:scale(1.15);
+    }
 }
 
-/* AUTH */
-
-.auth{
-  min-height:100vh;
-  max-width:480px;
-  margin:auto;
-  padding:35px 22px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
+.market-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 0;
+    border-bottom:1px solid #242424;
 }
 
-.auth-logo{
-  width:75px;
-  height:75px;
-  border-radius:22px;
-  background:linear-gradient(135deg,#f1c96b,#8c641f);
-  color:#050505;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:34px;
-  font-weight:900;
-  margin:0 auto 20px;
+.market-row:last-child{
+    border-bottom:none;
 }
 
-.auth h1{
-  text-align:center;
-  color:var(--gold2);
-  letter-spacing:3px;
-  margin-bottom:7px;
+.market-name{
+    font-weight:800;
+    font-size:15px;
 }
 
-.auth-sub{
-  text-align:center;
-  color:#888;
-  margin-bottom:28px;
+.market-symbol{
+    color:#777;
+    font-size:12px;
+    margin-top:5px;
 }
 
-.auth-screen{
-  display:none;
+.market-price{
+    text-align:right;
+    min-width:125px;
 }
 
-.auth-screen.active{
-  display:block;
+.market-price strong{
+    display:block;
+    font-size:17px;
+    font-weight:800;
+    color:#fff;
+    transition:
+        color .15s ease,
+        transform .15s ease,
+        text-shadow .15s ease;
 }
 
-.back-btn{
-  width:100%;
-  background:none;
-  border:0;
-  color:#999;
-  padding:13px;
-  margin-top:8px;
-  cursor:pointer;
+.market-price strong.price-up{
+    color:#54d88a;
+    transform:scale(1.035);
+    text-shadow:0 0 10px rgba(84,216,138,.25);
 }
 
-.message{
-  display:none;
-  padding:12px;
-  margin-bottom:14px;
-  border-radius:9px;
-  background:#171717;
-  border:1px solid #333;
-  color:#aaa;
-  font-size:13px;
-  line-height:1.5;
+.market-price strong.price-down{
+    color:#ff6868;
+    transform:scale(1.035);
+    text-shadow:0 0 10px rgba(255,104,104,.25);
 }
 
-.message.error{
-  display:none;
-  color:#ff8b8b;
-  border-color:#5b2929;
+.market-change{
+    font-size:11px;
+    margin-top:5px;
+    font-weight:700;
 }
 
-.message.success{
-  display:none;
-  color:#75e6a0;
-  border-color:#295a3c;
+.market-up{
+    color:#54d88a;
 }
 
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.8);
-  z-index:500;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
+.market-down{
+    color:#ff6868;
 }
 
-.modal.show{
-  display:flex;
+.market-neutral{
+    color:#999;
 }
 
-.modal-box{
-  width:100%;
-  max-width:430px;
-  background:#111;
-  border:1px solid #333;
-  border-radius:18px;
-  padding:22px;
+.market-status{
+    background:#111;
+    border:1px solid #292929;
+    border-radius:15px;
+    padding:15px;
+    text-align:center;
+    color:#777;
+    font-size:11px;
+    letter-spacing:.5px;
 }
 
-.close{
-  float:right;
-  background:none;
-  border:0;
-  color:#aaa;
-  font-size:20px;
+.market-status.live{
+    color:#54d88a;
+    border-color:#245b3c;
 }
 
-@media(max-width:360px){
-  .grid{
-    grid-template-columns:1fr;
-  }
+.market-status.error{
+    color:#ff6868;
+    border-color:#633434;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+button{
+    width:100%;
+    border:none;
+    border-radius:11px;
+    padding:15px;
+    font-size:15px;
+    font-weight:800;
+    cursor:pointer;
+    margin-top:12px;
+}
+
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.primary-btn{
+    background:#d4af37;
+    color:#050505;
+}
+
+.secondary-btn{
+    background:#181818;
+    border:1px solid #383838;
+    color:#d4af37;
+}
+
+.danger-btn{
+    background:#181818;
+    border:1px solid #633434;
+    color:#ff7373;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-card{
+    background:#111;
+    border:1px solid #292929;
+    border-radius:16px;
+    padding:18px;
+}
+
+label{
+    display:block;
+    color:#999;
+    font-size:13px;
+    margin-bottom:7px;
+    margin-top:14px;
+}
+
+input,textarea{
+    width:100%;
+    background:#080808;
+    color:#fff;
+    border:1px solid #303030;
+    border-radius:10px;
+    padding:14px;
+    font-size:15px;
+    outline:none;
+}
+
+input:focus,textarea:focus{
+    border-color:#d4af37;
+}
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+.notification{
+    background:#111;
+    border:1px solid #292929;
+    border-left:3px solid #d4af37;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:10px;
+}
+
+.notification strong{
+    display:block;
+    margin-bottom:6px;
+}
+
+.notification p{
+    color:#999;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.notification-time{
+    color:#555;
+    font-size:11px;
+    margin-top:8px;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-card{
+    text-align:center;
+    background:linear-gradient(145deg,#151515,#0b0b0b);
+    border:1px solid #333;
+    border-radius:16px;
+    padding:22px;
+}
+
+.contact-card p{
+    color:#888;
+    margin:8px 0 15px;
+    line-height:1.5;
+}
+
+/* =========================
+   SETTINGS
+========================= */
+
+.settings-card{
+    background:#111;
+    border:1px solid #292929;
+    border-radius:16px;
+    padding:18px;
+}
+
+.settings-item{
+    background:#0b0b0b;
+    border:1px solid #292929;
+    border-radius:12px;
+    padding:16px;
+    margin-bottom:10px;
+}
+
+.settings-item span{
+    display:block;
+    color:#777;
+    font-size:12px;
+    margin-bottom:6px;
+}
+
+.settings-item strong{
+    color:#fff;
+    word-break:break-word;
+}
+
+.account-status{
+    color:#ffb347!important;
+}
+
+.account-status.active-account{
+    color:#59d98e!important;
+}
+
+/* =========================
+   AUTH
+========================= */
+
+#auth{
+    display:none;
+    min-height:100vh;
+    align-items:center;
+    justify-content:center;
+    padding:25px 18px;
+}
+
+.auth-box{
+    width:100%;
+    max-width:430px;
+}
+
+.auth-brand{
+    text-align:center;
+    color:#d4af37;
+    font-size:35px;
+    font-weight:900;
+    letter-spacing:5px;
+    margin-bottom:35px;
+}
+
+.auth-box h1{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.auth-subtitle{
+    color:#888;
+    margin-bottom:25px;
+}
+
+.auth-input{
+    margin-bottom:13px;
+}
+
+.auth-button{
+    background:#d4af37;
+    color:#050505;
+    margin-top:8px;
+}
+
+.auth-link{
+    text-align:center;
+    color:#777;
+    margin-top:18px;
+    font-size:14px;
+}
+
+.auth-link span{
+    color:#d4af37;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+    background:#111;
+    border:1px solid #292929;
+    border-radius:15px;
+    padding:25px;
+    text-align:center;
+    color:#666;
+    line-height:1.6;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:480px){
+
+    .container{
+        padding-left:13px;
+        padding-right:13px;
+        padding-bottom:100px;
+    }
+
+    .total-balance{
+        font-size:30px;
+    }
+
+    .withdrawable-value{
+        font-size:24px;
+    }
+
+    .splash-welcome{
+        font-size:13px;
+        letter-spacing:3px;
+        margin-bottom:21px;
+    }
+
+    .splash-icon-wrap{
+        width:130px;
+        height:130px;
+    }
+
+    .splash-icon-ring{
+        width:130px;
+        height:130px;
+    }
+
+    .splash-icon-ring-2{
+        width:112px;
+        height:112px;
+    }
+
+    .splash-icon{
+        width:95px;
+        height:95px;
+        font-size:51px;
+        border-radius:27px;
+    }
+
+    .splash-name{
+        font-size:33px;
+        letter-spacing:7px;
+        margin-top:23px;
+    }
+
+    .splash-description{
+        font-size:10px;
+        letter-spacing:2.3px;
+    }
+
+    .main-btn{
+        font-size:12px;
+        padding:14px 7px;
+    }
+
+    .home-welcome{
+        padding:25px 15px 27px;
+    }
+
+    .crypto-icon{
+        width:95px;
+        height:95px;
+    }
+
+    .crypto-symbol{
+        font-size:43px;
+    }
+
+    .home-welcome h1{
+        font-size:29px;
+        letter-spacing:5px;
+    }
+
+    .bottom-nav{
+        height:66px;
+    }
+
+    .bottom-btn{
+        font-size:8px;
+    }
+
+    .bottom-btn .bottom-icon{
+        font-size:16px;
+    }
+
+    .market-price{
+        min-width:115px;
+    }
+
+    .market-price strong{
+        font-size:15px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- AUTH -->
+<!-- =========================
+     SPLASH
+========================= -->
 
-<div id="auth" class="auth">
+<div id="splash">
 
-  <div class="auth-logo">V</div>
-
-  <!-- LOGIN -->
-
-  <div id="loginScreen" class="auth-screen active">
-
-    <h1>VELTRIX</h1>
-
-    <div class="auth-sub">
-      Digital Trading & Education
+    <div class="splash-welcome">
+        WELCOME TO <span>TRADIX</span>
     </div>
 
-    <div id="loginMessage" class="message"></div>
+    <div class="splash-icon-wrap">
 
-    <div class="form-group">
-      <label>Email</label>
-      <input
-        id="loginEmail"
-        type="email"
-        placeholder="Enter your email"
-        autocomplete="email"
-      >
-    </div>
+        <div class="splash-icon-ring"></div>
 
-    <div class="form-group">
-      <label>Password</label>
-      <input
-        id="loginPassword"
-        type="password"
-        placeholder="Enter your password"
-        autocomplete="current-password"
-      >
-    </div>
+        <div class="splash-icon-ring-2"></div>
 
-    <button class="btn" onclick="login()">
-      LOGIN
-    </button>
-
-    <button class="btn dark" onclick="showRegister()">
-      CREATE ACCOUNT
-    </button>
-
-    <div class="notice" style="margin-top:20px">
-      Access to premium trading signals and paid courses
-      requires an active subscription.
-    </div>
-
-  </div>
-
-
-  <!-- REGISTER -->
-
-  <div id="registerScreen" class="auth-screen">
-
-    <h1>CREATE ACCOUNT</h1>
-
-    <div class="auth-sub">
-      Create your VELTRIX account
-    </div>
-
-    <div id="registerMessage" class="message"></div>
-
-    <div class="form-group">
-
-      <label>Email</label>
-
-      <input
-        id="registerEmail"
-        type="email"
-        placeholder="Enter your email"
-        autocomplete="email"
-      >
+        <div class="splash-icon">
+            T
+        </div>
 
     </div>
 
-
-    <div class="form-group">
-
-      <label>Password</label>
-
-      <input
-        id="registerPassword"
-        type="password"
-        placeholder="Create a password"
-        autocomplete="new-password"
-      >
-
+    <div class="splash-name">
+        TRADIX
     </div>
 
-
-    <div class="form-group">
-
-      <label>Confirm Password</label>
-
-      <input
-        id="registerConfirm"
-        type="password"
-        placeholder="Confirm your password"
-        autocomplete="new-password"
-      >
-
+    <div class="splash-description">
+        Crypto & Trading Platform
     </div>
 
+    <div class="splash-line"></div>
 
-    <button class="btn" onclick="register()">
-      CREATE ACCOUNT
-    </button>
-
-
-    <button class="back-btn" onclick="showLogin()">
-      ← BACK TO LOGIN
-    </button>
-
-  </div>
+    <div class="splash-loading">
+        ENTERING PLATFORM
+    </div>
 
 </div>
 
 
-<!-- APP -->
-
-<div id="app" class="app" style="display:none">
-
-<header class="header">
-
-  <div class="brand">
-
-    <div class="logo">V</div>
-
-    <h1>VELTRIX</h1>
-
-  </div>
-
-  <button
-    class="header-btn"
-    onclick="showPage('notifications')"
-  >
-    🔔
-  </button>
-
-</header>
-
-
-<!-- HOME -->
-
-<section id="home" class="page active">
-
-  <div class="hero">
-
-    <small>VELTRIX PLATFORM</small>
-
-    <h2>Trade. Learn. Grow.</h2>
-
-    <p>
-      A professional platform for digital asset trading,
-      trading education and premium market signals.
-    </p>
-
-    <button
-      class="btn"
-      onclick="showPage('plans')"
-    >
-      VIEW PLANS
-    </button>
-
-  </div>
-
-
-  <div class="grid">
-
-    <div class="card">
-      <h3>💰 Wallet</h3>
-      <p>Manage your digital assets and deposits.</p>
-    </div>
-
-    <div class="card">
-      <h3>📊 Signals</h3>
-      <p>Access premium trading opportunities.</p>
-    </div>
-
-    <div class="card">
-      <h3>🎓 Academy</h3>
-      <p>Learn trading through structured courses.</p>
-    </div>
-
-    <div class="card">
-      <h3>💎 VIP</h3>
-      <p>Unlock premium platform features.</p>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- WALLET -->
-
-<section id="wallet" class="page">
-
-  <h2 class="title">Wallet</h2>
-
-  <p class="subtitle">
-    Your digital asset account
-  </p>
-
-  <div class="card">
-
-    <p>Available Balance</p>
-
-    <div class="balance">
-      $0.00
-    </div>
-
-    <button
-      class="btn"
-      onclick="showPage('deposit')"
-    >
-      DEPOSIT
-    </button>
-
-    <button class="btn dark">
-      WITHDRAW
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- DEPOSIT -->
-
-<section id="deposit" class="page">
-
-  <h2 class="title">Deposit</h2>
-
-  <p class="subtitle">
-    Crypto deposit
-  </p>
-
-  <div class="notice">
-
-    Network:
-    <strong class="gold">
-      BNB Smart Chain (BEP20)
-    </strong>
-
-  </div>
-
-  <div class="card">
-
-    <p style="color:#aaa;font-size:13px">
-      Deposit Address
-    </p>
-
-    <p style="margin-top:10px;word-break:break-all">
-      Deposit wallet will be displayed here.
-    </p>
-
-    <button class="btn">
-      COPY ADDRESS
-    </button>
-
-  </div>
-
-  <div
-    class="form-group"
-    style="margin-top:18px"
-  >
-
-    <label>
-      Transaction Hash
-    </label>
-
-    <input
-      type="text"
-      placeholder="Paste transaction hash"
-    >
-
-  </div>
-
-  <button class="btn">
-    SUBMIT DEPOSIT
-  </button>
-
-</section>
-
-
-<!-- PLANS -->
-
-<section id="plans" class="page">
-
-  <h2 class="title">
-    Plans
-  </h2>
-
-  <p class="subtitle">
-    Choose your VELTRIX access
-  </p>
-
-
-  <div class="plan">
-
-    <h3>1 MONTH</h3>
-
-    <div class="price">
-      $49
-    </div>
-
-    <ul>
-      <li>✓ Premium signals</li>
-      <li>✓ Trading education</li>
-      <li>✓ Member notifications</li>
-      <li>✓ VIP access</li>
-    </ul>
-
-    <button
-      class="btn"
-      onclick="showPage('deposit')"
-    >
-      SELECT PLAN
-    </button>
-
-  </div>
-
-
-  <div class="plan featured">
-
-    <h3>3 MONTHS</h3>
-
-    <div class="price">
-      $119
-    </div>
-
-    <ul>
-      <li>✓ Premium signals</li>
-      <li>✓ Trading education</li>
-      <li>✓ Member notifications</li>
-      <li>✓ VIP access</li>
-    </ul>
-
-    <button
-      class="btn"
-      onclick="showPage('deposit')"
-    >
-      SELECT PLAN
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- SIGNALS -->
-
-<section id="signals" class="page">
-
-  <h2 class="title">
-    Trading Signals
-  </h2>
-
-  <p class="subtitle">
-    Premium market analysis
-  </p>
-
-
-  <div class="signal">
-
-    <div class="signal-head">
-
-      <strong>
-        GOLD / XAUUSD
-      </strong>
-
-      <span class="buy">
-        BUY
-      </span>
+<!-- =========================
+     AUTH
+========================= -->
+
+<div id="auth">
+
+    <div class="auth-box">
+
+        <div class="auth-brand">
+            TRADIX
+        </div>
+
+        <h1>Create Account</h1>
+
+        <p class="auth-subtitle">
+            Create your TRADIX account
+        </p>
+
+        <input
+            id="fullName"
+            class="auth-input"
+            type="text"
+            placeholder="Full Name"
+            maxlength="32"
+        >
+
+        <input
+            id="email"
+            class="auth-input"
+            type="email"
+            placeholder="Email"
+        >
+
+        <input
+            id="password"
+            class="auth-input"
+            type="password"
+            placeholder="Password"
+        >
+
+        <input
+            id="confirmPassword"
+            class="auth-input"
+            type="password"
+            placeholder="Confirm Password"
+        >
+
+        <button
+            class="auth-button"
+            onclick="createAccount()"
+        >
+            CREATE ACCOUNT
+        </button>
+
+        <div class="auth-link">
+            Already have an account?
+            <span onclick="showLogin()">
+                LOGIN
+            </span>
+        </div>
 
     </div>
-
-
-    <div class="signal-row">
-
-      <span>Entry</span>
-
-      <strong>—</strong>
-
-    </div>
-
-
-    <div class="signal-row">
-
-      <span>Stop Loss</span>
-
-      <strong>—</strong>
-
-    </div>
-
-
-    <div class="signal-row">
-
-      <span>Take Profit</span>
-
-      <strong>—</strong>
-
-    </div>
-
-
-    <div class="signal-row">
-
-      <span>Timeframe</span>
-
-      <strong>1H</strong>
-
-    </div>
-
-  </div>
-
-
-  <div class="notice">
-
-    Trading signals are provided for informational
-    and educational purposes.
-
-  </div>
-
-</section>
-
-
-<!-- ACADEMY -->
-
-<section id="academy" class="page">
-
-  <h2 class="title">
-    VELTRIX Academy
-  </h2>
-
-  <p class="subtitle">
-    Learn trading step by step
-  </p>
-
-
-  <div class="course">
-
-    <div class="course-icon">
-      📘
-    </div>
-
-    <h3>
-      Trading Fundamentals
-    </h3>
-
-    <p>
-      Learn market structure, orders, risk management
-      and essential trading concepts.
-    </p>
-
-    <button class="btn">
-      VIEW COURSE
-    </button>
-
-  </div>
-
-
-  <div class="course">
-
-    <div class="course-icon">
-      📈
-    </div>
-
-    <h3>
-      Technical Analysis
-    </h3>
-
-    <p>
-      Learn charts, trends, support, resistance,
-      indicators and price action.
-    </p>
-
-    <button class="btn">
-      VIEW COURSE
-    </button>
-
-  </div>
-
-
-  <div class="course">
-
-    <div class="course-icon">
-      🎯
-    </div>
-
-    <h3>
-      Advanced Trading
-    </h3>
-
-    <p>
-      Advanced strategies, trade management
-      and professional risk control.
-    </p>
-
-    <button class="btn">
-      VIEW COURSE
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- NOTIFICATIONS -->
-
-<section id="notifications" class="page">
-
-  <h2 class="title">
-    Notifications
-  </h2>
-
-  <p class="subtitle">
-    Latest updates
-  </p>
-
-  <div class="notice">
-    No new notifications.
-  </div>
-
-</section>
-
-
-<!-- PROFILE -->
-
-<section id="profile" class="page">
-
-  <h2 class="title">
-    Profile
-  </h2>
-
-  <p class="subtitle">
-    Account settings
-  </p>
-
-  <div class="card">
-
-    <p>Email</p>
-
-    <p
-      id="profileEmail"
-      style="margin-top:8px;color:#ddd"
-    >
-      —
-    </p>
-
-    <button
-      class="btn dark"
-      onclick="logout()"
-    >
-      LOGOUT
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- NAVIGATION -->
-
-<nav class="nav">
-
-  <button
-    class="active"
-    onclick="showPage('home')"
-  >
-    <span>⌂</span>
-    Home
-  </button>
-
-
-  <button onclick="showPage('wallet')">
-
-    <span>◈</span>
-    Wallet
-
-  </button>
-
-
-  <button onclick="showPage('signals')">
-
-    <span>◉</span>
-    Signals
-
-  </button>
-
-
-  <button onclick="showPage('academy')">
-
-    <span>▣</span>
-    Academy
-
-  </button>
-
-
-  <button onclick="showPage('profile')">
-
-    <span>●</span>
-    Profile
-
-  </button>
-
-</nav>
 
 </div>
 
 
-<!-- MODAL -->
+<!-- =========================
+     APP
+========================= -->
 
-<div id="modal" class="modal">
+<div id="app">
 
-  <div class="modal-box">
+    <header class="header">
 
-    <button
-      class="close"
-      onclick="closeModal()"
-    >
-      ×
-    </button>
+        <div class="brand">
+            TRADIX
+        </div>
 
-    <h2 id="modalTitle">
-      VELTRIX
-    </h2>
+        <div
+            class="status"
+            id="headerStatus"
+        >
+            INACTIVE
+        </div>
 
-    <p
-      id="modalText"
-      style="color:#aaa;margin-top:12px;line-height:1.5"
-    >
-    </p>
+    </header>
 
-  </div>
+
+    <main class="container">
+
+        <!-- HOME -->
+
+        <div
+            id="homePage"
+            class="page active-page"
+        >
+
+            <section class="home-welcome">
+
+                <div class="crypto-icon">
+                    <div class="crypto-symbol">₿</div>
+                </div>
+
+                <h1>TRADIX</h1>
+
+                <div class="welcome-title">
+                    Welcome to TRADIX
+                </div>
+
+                <p>
+                    Your crypto & trading membership platform.
+                    Follow the latest trading signals and manage
+                    your account in one place.
+                </p>
+
+                <div class="scroll-hint">
+                    SCROLL DOWN TO EXPLORE
+                </div>
+
+                <span class="scroll-arrow">↓</span>
+
+            </section>
+
+
+            <div class="main-menu">
+
+                <button
+                    class="main-btn active-main"
+                    onclick="openPage('homePage',this)"
+                >
+                    HOME
+                </button>
+
+                <button
+                    class="main-btn"
+                    onclick="openPage('tradesPage',this)"
+                >
+                    TRADES
+                </button>
+
+                <button
+                    class="main-btn"
+                    onclick="openPage('depositPage',this)"
+                >
+                    DEPOSIT
+                </button>
+
+                <button
+                    class="main-btn"
+                    onclick="openPage('withdrawPage',this)"
+                >
+                    WITHDRAW
+                </button>
+
+            </div>
+
+
+            <section class="section">
+
+                <div class="section-title">
+                    Home
+                </div>
+
+                <div class="balance-card">
+
+                    <div class="balance-label">
+                        Total Balance
+                    </div>
+
+                    <div
+                        class="total-balance"
+                        id="homeTotalBalance"
+                    >
+                        $0.00
+                    </div>
+
+                    <div class="withdrawable">
+
+                        <div class="balance-label">
+                            Available to Withdraw
+                        </div>
+
+                        <div
+                            class="withdrawable-value"
+                            id="homeAvailable"
+                        >
+                            $0.00
+                        </div>
+
+                    </div>
+
+                    <div class="info-grid">
+
+                        <div class="info-card">
+                            <small>Subscription</small>
+                            <strong id="homeSubscription">
+                                INACTIVE
+                            </strong>
+                        </div>
+
+                        <div class="info-card">
+                            <small>Active Signals</small>
+                            <strong id="homeActiveSignals">
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <section class="section">
+
+                <div class="section-title">
+                    Trading Signals
+                </div>
+
+                <div id="signalsContainer">
+
+                    <div class="empty">
+                        No active trading signals.
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <section class="section">
+
+                <div class="section-title">
+                    Balance & Profits
+                </div>
+
+                <div class="info-grid">
+
+                    <div class="info-card">
+                        <small>Total Deposits</small>
+                        <strong id="totalDeposits">
+                            $0.00
+                        </strong>
+                    </div>
+
+                    <div class="info-card">
+                        <small>Total Profits</small>
+                        <strong id="totalProfits">
+                            $0.00
+                        </strong>
+                    </div>
+
+                    <div class="info-card">
+                        <small>Total Withdrawals</small>
+                        <strong id="totalWithdrawals">
+                            $0.00
+                        </strong>
+                    </div>
+
+                    <div class="info-card">
+                        <small>Available to Withdraw</small>
+                        <strong id="availableBalance">
+                            $0.00
+                        </strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- TRADES -->
+
+        <div id="tradesPage" class="page">
+
+            <section class="section">
+
+                <div class="section-title">
+                    Completed Trades
+                </div>
+
+                <div id="completedTradesContainer">
+
+                    <div class="empty">
+                        No completed trades yet.
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- DEPOSIT -->
+
+        <div id="depositPage" class="page">
+
+            <section class="section">
+
+                <div class="section-title">
+                    Deposit USDT
+                </div>
+
+                <div class="form-card">
+
+                    <div class="wallet-network">
+                        USDT — BNB Smart Chain (BEP20)
+                    </div>
+
+                    <label>
+                        Deposit Address
+                    </label>
+
+                    <div
+                        class="address-box"
+                        id="depositAddress"
+                    >
+                        0x4E11E978119cAAB300b5439B909D06341C24a2A7
+                    </div>
+
+                    <button
+                        class="secondary-btn"
+                        onclick="copyDepositAddress()"
+                    >
+                        COPY ADDRESS
+                    </button>
+
+                    <label>Amount</label>
+
+                    <input
+                        id="depositAmount"
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        placeholder="Enter USDT amount"
+                    >
+
+                    <label>Transaction Hash</label>
+
+                    <input
+                        id="depositHash"
+                        type="text"
+                        placeholder="Enter transaction hash"
+                    >
+
+                    <button
+                        class="primary-btn"
+                        onclick="submitDeposit()"
+                    >
+                        SUBMIT DEPOSIT
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- WITHDRAW -->
+
+        <div id="withdrawPage" class="page">
+
+            <section class="section">
+
+                <div class="section-title">
+                    Withdraw USDT
+                </div>
+
+                <div class="form-card">
+
+                    <div class="wallet-network">
+                        USDT — BNB Smart Chain (BEP20)
+                    </div>
+
+                    <label>
+                        Your Wallet Address
+                    </label>
+
+                    <input
+                        id="withdrawAddress"
+                        type="text"
+                        placeholder="Enter your BEP20 wallet address"
+                    >
+
+                    <label>
+                        Amount
+                    </label>
+
+                    <input
+                        id="withdrawAmount"
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        placeholder="Enter USDT amount"
+                    >
+
+                    <button
+                        class="danger-btn"
+                        onclick="submitWithdrawal()"
+                    >
+                        SUBMIT WITHDRAWAL
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- WALLET -->
+
+        <div id="walletPage" class="page">
+
+            <section class="section">
+
+                <div class="section-title">
+                    Wallet
+                </div>
+
+                <div class="wallet-card">
+
+                    <div class="wallet-network">
+                        BNB Smart Chain (BEP20)
+                    </div>
+
+                    <div class="info-grid">
+
+                        <div class="info-card">
+                            <small>Total Deposits</small>
+                            <strong id="walletDeposits">$0.00</strong>
+                        </div>
+
+                        <div class="info-card">
+                            <small>Total Profits</small>
+                            <strong id="walletProfits">$0.00</strong>
+                        </div>
+
+                        <div class="info-card">
+                            <small>Total Withdrawals</small>
+                            <strong id="walletWithdrawals">$0.00</strong>
+                        </div>
+
+                        <div class="info-card">
+                            <small>Available to Withdraw</small>
+                            <strong id="walletAvailable">$0.00</strong>
+                        </div>
+
+                    </div>
+
+                    <label>
+                        Your Wallet Address
+                    </label>
+
+                    <div
+                        class="address-box"
+                        id="savedWalletAddress"
+                    >
+                        No wallet address saved.
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- MARKET -->
+
+        <div id="marketPage" class="page">
+
+            <section class="section">
+
+                <div class="section-title">
+                    Live Market
+                </div>
+
+                <div class="market-card">
+
+                    <div class="market-live-bar">
+                        <span class="market-live-dot"></span>
+                        LIVE MARKET • BINANCE SPOT
+                    </div>
+
+
+                    <!-- BTC -->
+
+                    <div class="market-row">
+
+                        <div>
+                            <div class="market-name">
+                                Bitcoin
+                            </div>
+
+                            <div class="market-symbol">
+                                BTC / USDT
+                            </div>
+                        </div>
+
+                        <div class="market-price">
+
+                            <strong id="market-btc-price">
+                                Loading...
+                            </strong>
+
+                            <div
+                                id="market-btc-change"
+                                class="market-change market-neutral"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ETH -->
+
+                    <div class="market-row">
+
+                        <div>
+                            <div class="market-name">
+                                Ethereum
+                            </div>
+
+                            <div class="market-symbol">
+                                ETH / USDT
+                            </div>
+                        </div>
+
+                        <div class="market-price">
+
+                            <strong id="market-eth-price">
+                                Loading...
+                            </strong>
+
+                            <div
+                                id="market-eth-change"
+                                class="market-change market-neutral"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BNB -->
+
+                    <div class="market-row">
+
+                        <div>
+                            <div class="market-name">
+                                BNB
+                            </div>
+
+                            <div class="market-symbol">
+                                BNB / USDT
+                            </div>
+                        </div>
+
+                        <div class="market-price">
+
+                            <strong id="market-bnb-price">
+                                Loading...
+                            </strong>
+
+                            <div
+                                id="market-bnb-change"
+                                class="market-change market-neutral"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SOL -->
+
+                    <div class="market-row">
+
+                        <div>
+                            <div class="market-name">
+                                Solana
+                            </div>
+
+                            <div class="market-symbol">
+                                SOL / USDT
+                            </div>
+                        </div>
+
+                        <div class="market-price">
+
+                            <strong id="market-sol-price">
+                                Loading...
+                            </strong>
+
+                            <div
+                                id="market-sol-change"
+                                class="market-change market-neutral"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="marketStatus"
+                    class="market-status"
+                >
+                    Connecting to live market...
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- NOTIFICATIONS -->
+
+        <div id="notificationsPage" class="page">
+
+            <section class="section">
+
+                <div class="section-title">
+                    Notifications
+                </div>
+
+                <div id="notificationsContainer">
+
+                    <div class="notification">
+
+                        <strong>
+                            Welcome to TRADIX
+                        </strong>
+
+                        <p>
+                            Your account notifications will appear here.
+                        </p>
+
+                        <div class="notification-time">
+                            TRADIX
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- SETTINGS -->
+
+        <div id="settingsPage" class="page">
+
+            <section class="section">
+
+                <div class="section-title">
+                    Settings
+                </div>
+
+                <div class="settings-card">
+
+                    <div class="settings-item">
+
+                        <span>
+                            Full Name
+                        </span>
+
+                        <strong id="settingsName">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="settings-item">
+
+                        <span>
+                            Email
+                        </span>
+
+                        <strong id="settingsEmail">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="settings-item">
+
+                        <span>
+                            Account Status
+                        </span>
+
+                        <strong
+                            id="settingsStatus"
+                            class="account-status"
+                        >
+                            INACTIVE
+                        </strong>
+
+                    </div>
+
+
+                    <div class="settings-item">
+
+                        <span>
+                            Language
+                        </span>
+
+                        <strong>
+                            English
+                        </strong>
+
+                    </div>
+
+
+                    <div class="settings-item">
+
+                        <span>
+                            Network
+                        </span>
+
+                        <strong>
+                            BNB Smart Chain (BEP20)
+                        </strong>
+
+                    </div>
+
+
+                    <label>
+                        Wallet Address
+                    </label>
+
+                    <input
+                        id="walletAddressInput"
+                        type="text"
+                        placeholder="Enter your BEP20 wallet address"
+                    >
+
+
+                    <button
+                        class="primary-btn"
+                        onclick="saveWalletAddress()"
+                    >
+                        SAVE WALLET
+                    </button>
+
+
+                    <button
+                        class="danger-btn"
+                        onclick="logoutAccount()"
+                    >
+                        LOG OUT
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- CONTACT ADMIN -->
+
+        <div id="contactPage" class="page">
+
+            <section class="section">
+
+                <div class="section-title">
+                    Contact Admin
+                </div>
+
+                <div class="contact-card">
+
+                    <h2>
+                        TRADIX Support
+                    </h2>
+
+                    <p>
+                        Contact the TRADIX administrator
+                        for account or membership support.
+                    </p>
+
+                    <button
+                        class="primary-btn"
+                        onclick="contactAdmin()"
+                    >
+                        EMAIL ADMIN
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- BOTTOM NAVIGATION -->
+
+    <nav class="bottom-nav">
+
+        <div class="bottom-nav-inner">
+
+            <button
+                class="bottom-btn"
+                onclick="openBottomPage('walletPage',this)"
+            >
+                <span class="bottom-icon">◈</span>
+                WALLET
+            </button>
+
+
+            <button
+                class="bottom-btn"
+                onclick="openBottomPage('marketPage',this)"
+            >
+                <span class="bottom-icon">▥</span>
+                MARKET
+            </button>
+
+
+            <button
+                class="bottom-btn active-bottom"
+                onclick="openBottomPage('homePage',this)"
+            >
+                <span class="bottom-icon">⌂</span>
+                HOME
+            </button>
+
+
+            <button
+                class="bottom-btn"
+                onclick="openBottomPage('notificationsPage',this)"
+            >
+                <span class="bottom-icon">♢</span>
+                NOTIFICATIONS
+            </button>
+
+
+            <button
+                class="bottom-btn"
+                onclick="openBottomPage('settingsPage',this)"
+            >
+                <span class="bottom-icon">⚙</span>
+                SETTINGS
+            </button>
+
+        </div>
+
+    </nav>
 
 </div>
 
 
 <script>
 
-let currentUser = null;
+/* =========================
+   NHOST
+========================= */
+
+const NHOST_SUBDOMAIN="ocjpynkhncowxcjpnorl";
+const NHOST_REGION="eu-central-1";
+
+const NHOST_AUTH=
+`https://${NHOST_SUBDOMAIN}.auth.${NHOST_REGION}.nhost.run/v1`;
+
+const DEPOSIT_ADDRESS=
+"0x4E11E978119cAAB300b5439B909D06341C24a2A7";
+
+const ADMIN_EMAIL=
+"mmatrix081@gmail.com";
 
 
-/* AUTH */
+/* =========================
+   LIVE MARKET
+========================= */
 
-function showRegister(){
+let marketSocket=null;
+let marketReconnectTimer=null;
+let marketStarted=false;
 
-  document
-    .getElementById("loginScreen")
-    .classList.remove("active");
+const MARKET_CONFIG={
 
-  document
-    .getElementById("registerScreen")
-    .classList.add("active");
+    BTCUSDT:{
+        priceId:"market-btc-price",
+        changeId:"market-btc-change"
+    },
 
-  clearMessages();
+    ETHUSDT:{
+        priceId:"market-eth-price",
+        changeId:"market-eth-change"
+    },
 
+    BNBUSDT:{
+        priceId:"market-bnb-price",
+        changeId:"market-bnb-change"
+    },
+
+    SOLUSDT:{
+        priceId:"market-sol-price",
+        changeId:"market-sol-change"
+    }
+
+};
+
+
+/* Format live price */
+
+function formatMarketPrice(value){
+
+    const number=Number(value);
+
+    if(!Number.isFinite(number)){
+        return "—";
+    }
+
+    if(number>=1000){
+
+        return "$"+
+            number.toLocaleString(
+                "en-US",
+                {
+                    minimumFractionDigits:2,
+                    maximumFractionDigits:2
+                }
+            );
+    }
+
+    if(number>=1){
+
+        return "$"+
+            number.toLocaleString(
+                "en-US",
+                {
+                    minimumFractionDigits:2,
+                    maximumFractionDigits:4
+                }
+            );
+    }
+
+    return "$"+
+        number.toLocaleString(
+            "en-US",
+            {
+                minimumFractionDigits:4,
+                maximumFractionDigits:8
+            }
+        );
 }
 
+
+/* Update one market item */
+
+function updateMarketItem(
+    symbol,
+    price,
+    change
+){
+
+    const config=
+        MARKET_CONFIG[symbol];
+
+    if(!config)return;
+
+    const priceElement=
+        document.getElementById(
+            config.priceId
+        );
+
+    const changeElement=
+        document.getElementById(
+            config.changeId
+        );
+
+    if(!priceElement||!changeElement){
+        return;
+    }
+
+    const numericPrice=
+        Number(price);
+
+    const previousPrice=
+        Number(
+            priceElement.dataset.price||0
+        );
+
+    priceElement.textContent=
+        formatMarketPrice(price);
+
+    priceElement.dataset.price=
+        String(numericPrice);
+
+    /* Price movement animation */
+
+    priceElement.classList.remove(
+        "price-up",
+        "price-down"
+    );
+
+    if(
+        previousPrice>0 &&
+        numericPrice>previousPrice
+    ){
+
+        priceElement.classList.add(
+            "price-up"
+        );
+
+    }else if(
+        previousPrice>0 &&
+        numericPrice<previousPrice
+    ){
+
+        priceElement.classList.add(
+            "price-down"
+        );
+    }
+
+    setTimeout(function(){
+
+        priceElement.classList.remove(
+            "price-up",
+            "price-down"
+        );
+
+    },220);
+
+
+    /* 24 hour change */
+
+    const numericChange=
+        Number(change);
+
+    if(Number.isFinite(numericChange)){
+
+        const sign=
+            numericChange>0
+            ?"+"
+            :"";
+
+        changeElement.textContent=
+            sign+
+            numericChange.toFixed(2)+
+            "% 24H";
+
+        changeElement.classList.remove(
+            "market-up",
+            "market-down",
+            "market-neutral"
+        );
+
+        if(numericChange>0){
+
+            changeElement.classList.add(
+                "market-up"
+            );
+
+        }else if(numericChange<0){
+
+            changeElement.classList.add(
+                "market-down"
+            );
+
+        }else{
+
+            changeElement.classList.add(
+                "market-neutral"
+            );
+        }
+    }
+}
+
+
+/* Market status */
+
+function setMarketStatus(
+    message,
+    type
+){
+
+    const status=
+        document.getElementById(
+            "marketStatus"
+        );
+
+    if(!status)return;
+
+    status.textContent=message;
+
+    status.classList.remove(
+        "live",
+        "error"
+    );
+
+    if(type==="live"){
+
+        status.classList.add(
+            "live"
+        );
+
+    }else if(type==="error"){
+
+        status.classList.add(
+            "error"
+        );
+    }
+}
+
+
+/* Connect to Binance live market */
+
+function connectLiveMarket(){
+
+    if(
+        marketSocket &&
+        (
+            marketSocket.readyState===
+            WebSocket.OPEN ||
+            marketSocket.readyState===
+            WebSocket.CONNECTING
+        )
+    ){
+
+        return;
+    }
+
+    clearTimeout(
+        marketReconnectTimer
+    );
+
+    /*
+       Binance combined streams.
+       Trade = immediate price movement.
+       Ticker = 24H percentage.
+    */
+
+    const streams=[
+
+        "btcusdt@trade",
+        "ethusdt@trade",
+        "bnbusdt@trade",
+        "solusdt@trade",
+
+        "btcusdt@ticker",
+        "ethusdt@ticker",
+        "bnbusdt@ticker",
+        "solusdt@ticker"
+
+    ].join("/");
+
+
+    const websocketUrl=
+        "wss://stream.binance.com:9443/stream?streams="+
+        streams;
+
+
+    try{
+
+        marketSocket=
+            new WebSocket(
+                websocketUrl
+            );
+
+    }catch(error){
+
+        setMarketStatus(
+            "Unable to connect to live market.",
+            "error"
+        );
+
+        scheduleMarketReconnect();
+
+        return;
+    }
+
+
+    marketSocket.onopen=function(){
+
+        setMarketStatus(
+            "LIVE MARKET • CONNECTED",
+            "live"
+        );
+    };
+
+
+    marketSocket.onmessage=function(event){
+
+        try{
+
+            const message=
+                JSON.parse(event.data);
+
+            const data=
+                message.data;
+
+            if(!data){
+                return;
+            }
+
+
+            /*
+               Trade stream:
+               s = symbol
+               p = latest traded price
+            */
+
+            if(data.e==="trade"){
+
+                updateMarketItem(
+                    data.s,
+                    data.p,
+                    null
+                );
+
+                return;
+            }
+
+
+            /*
+               Ticker stream:
+               s = symbol
+               c = latest price
+               P = 24H percentage change
+            */
+
+            if(data.e==="24hrTicker"){
+
+                updateMarketItem(
+                    data.s,
+                    data.c,
+                    data.P
+                );
+
+            }
+
+        }catch(error){
+
+            console.error(
+                "Market message error:",
+                error
+            );
+        }
+    };
+
+
+    marketSocket.onerror=function(){
+
+        setMarketStatus(
+            "Market connection error. Reconnecting...",
+            "error"
+        );
+    };
+
+
+    marketSocket.onclose=function(){
+
+        setMarketStatus(
+            "Reconnecting to live market...",
+            ""
+        );
+
+        scheduleMarketReconnect();
+    };
+}
+
+
+/* Reconnect automatically */
+
+function scheduleMarketReconnect(){
+
+    clearTimeout(
+        marketReconnectTimer
+    );
+
+    marketReconnectTimer=
+        setTimeout(function(){
+
+            connectLiveMarket();
+
+        },3000);
+}
+
+
+/* Start market once */
+
+function startLiveMarket(){
+
+    if(marketStarted){
+        return;
+    }
+
+    marketStarted=true;
+
+    connectLiveMarket();
+}
+
+
+/* =========================
+   SESSION
+========================= */
+
+function getSession(){
+
+    const saved=
+        localStorage.getItem("tradix_session");
+
+    if(!saved)return null;
+
+    try{
+
+        return JSON.parse(saved);
+
+    }catch(error){
+
+        localStorage.removeItem(
+            "tradix_session"
+        );
+
+        return null;
+    }
+}
+
+
+/* =========================
+   USER LOCAL DATA
+========================= */
+
+function getUserData(){
+
+    const session=getSession();
+
+    if(!session||!session.user)return {};
+
+    const key=
+        "tradix_user_"+session.user.id;
+
+    const saved=
+        localStorage.getItem(key);
+
+    if(!saved)return {};
+
+    try{
+
+        return JSON.parse(saved);
+
+    }catch(error){
+
+        return {};
+    }
+}
+
+
+function saveUserData(data){
+
+    const session=getSession();
+
+    if(!session||!session.user)return;
+
+    const key=
+        "tradix_user_"+session.user.id;
+
+    localStorage.setItem(
+        key,
+        JSON.stringify(data)
+    );
+}
+
+
+/* =========================
+   SPLASH — 5 SECONDS
+========================= */
+
+setTimeout(function(){
+
+    const splash=
+        document.getElementById("splash");
+
+    splash.style.transition=
+        "opacity .65s ease, transform .65s ease";
+
+    splash.style.opacity="0";
+
+    splash.style.transform="scale(1.02)";
+
+    setTimeout(function(){
+
+        splash.style.display="none";
+
+        const session=getSession();
+
+        if(session&&session.user){
+
+            showApp();
+
+        }else{
+
+            document.getElementById(
+                "auth"
+            ).style.display="flex";
+
+        }
+
+    },650);
+
+},5000);
+
+
+/* =========================
+   SHOW APP
+========================= */
+
+function showApp(){
+
+    document.getElementById(
+        "auth"
+    ).style.display="none";
+
+    document.getElementById(
+        "app"
+    ).style.display="block";
+
+    loadUserInterface();
+
+    /*
+       Start the live market when
+       the TRADIX app becomes visible.
+    */
+
+    startLiveMarket();
+}
+
+
+/* =========================
+   LOAD USER
+========================= */
+
+function loadUserInterface(){
+
+    const session=getSession();
+
+    if(!session||!session.user)return;
+
+    let data=getUserData();
+
+    if(!data.accountStatus){
+
+        data.accountStatus="INACTIVE";
+        data.totalDeposits=0;
+        data.totalProfits=0;
+        data.totalWithdrawals=0;
+        data.walletAddress="";
+
+        saveUserData(data);
+    }
+
+    const name=
+        session.user.displayName||
+        "Member";
+
+    const email=
+        session.user.email||
+        "";
+
+    document.getElementById(
+        "settingsName"
+    ).textContent=name;
+
+    document.getElementById(
+        "settingsEmail"
+    ).textContent=email;
+
+    document.getElementById(
+        "settingsStatus"
+    ).textContent=
+        data.accountStatus;
+
+    document.getElementById(
+        "headerStatus"
+    ).textContent=
+        data.accountStatus;
+
+    if(
+        data.accountStatus.toUpperCase()==="ACTIVE"
+    ){
+
+        document
+            .getElementById("headerStatus")
+            .classList.add("active-status");
+
+        document
+            .getElementById("settingsStatus")
+            .classList.add("active-account");
+
+    }else{
+
+        document
+            .getElementById("headerStatus")
+            .classList.remove("active-status");
+
+        document
+            .getElementById("settingsStatus")
+            .classList.remove("active-account");
+    }
+
+    document.getElementById(
+        "walletAddressInput"
+    ).value=
+        data.walletAddress||"";
+
+    document.getElementById(
+        "savedWalletAddress"
+    ).textContent=
+        data.walletAddress||
+        "No wallet address saved.";
+
+    updateBalances(data);
+}
+
+
+/* =========================
+   BALANCES
+========================= */
+
+function updateBalances(data){
+
+    const deposits=
+        Number(data.totalDeposits||0);
+
+    const profits=
+        Number(data.totalProfits||0);
+
+    const withdrawals=
+        Number(data.totalWithdrawals||0);
+
+    const available=Math.max(
+        0,
+        deposits+profits-withdrawals
+    );
+
+    const totalBalance=
+        deposits+profits-withdrawals;
+
+    const money=value=>
+        "$"+Number(value||0).toFixed(2);
+
+    document.getElementById(
+        "homeTotalBalance"
+    ).textContent=
+        money(totalBalance);
+
+    document.getElementById(
+        "homeAvailable"
+    ).textContent=
+        money(available);
+
+    document.getElementById(
+        "availableBalance"
+    ).textContent=
+        money(available);
+
+    document.getElementById(
+        "totalDeposits"
+    ).textContent=
+        money(deposits);
+
+    document.getElementById(
+        "totalProfits"
+    ).textContent=
+        money(profits);
+
+    document.getElementById(
+        "totalWithdrawals"
+    ).textContent=
+        money(withdrawals);
+
+    document.getElementById(
+        "walletDeposits"
+    ).textContent=
+        money(deposits);
+
+    document.getElementById(
+        "walletProfits"
+    ).textContent=
+        money(profits);
+
+    document.getElementById(
+        "walletWithdrawals"
+    ).textContent=
+        money(withdrawals);
+
+    document.getElementById(
+        "walletAvailable"
+    ).textContent=
+        money(available);
+
+    document.getElementById(
+        "homeSubscription"
+    ).textContent=
+        data.accountStatus==="ACTIVE"
+        ?"Active"
+        :"Inactive";
+}
+
+
+/* =========================
+   MAIN PAGE NAVIGATION
+========================= */
+
+function openPage(pageId,button){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page=>{
+            page.classList.remove(
+                "active-page"
+            );
+        });
+
+    const page=
+        document.getElementById(pageId);
+
+    if(page){
+
+        page.classList.add(
+            "active-page"
+        );
+    }
+
+    document
+        .querySelectorAll(".main-btn")
+        .forEach(btn=>{
+            btn.classList.remove(
+                "active-main"
+            );
+        });
+
+    if(button){
+
+        button.classList.add(
+            "active-main"
+        );
+    }
+
+    updateBottomHomeState(pageId);
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+/* =========================
+   BOTTOM NAVIGATION
+========================= */
+
+function openBottomPage(pageId,button){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page=>{
+            page.classList.remove(
+                "active-page"
+            );
+        });
+
+    const page=
+        document.getElementById(pageId);
+
+    if(page){
+
+        page.classList.add(
+            "active-page"
+        );
+    }
+
+    document
+        .querySelectorAll(".bottom-btn")
+        .forEach(btn=>{
+            btn.classList.remove(
+                "active-bottom"
+            );
+        });
+
+    if(button){
+
+        button.classList.add(
+            "active-bottom"
+        );
+    }
+
+    document
+        .querySelectorAll(".main-btn")
+        .forEach(btn=>{
+            btn.classList.remove(
+                "active-main"
+            );
+        });
+
+    if(pageId==="homePage"){
+
+        const homeButton=
+            document.querySelector(
+                ".main-btn"
+            );
+
+        if(homeButton){
+
+            homeButton.classList.add(
+                "active-main"
+            );
+        }
+    }
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+function updateBottomHomeState(pageId){
+
+    document
+        .querySelectorAll(".bottom-btn")
+        .forEach(btn=>{
+            btn.classList.remove(
+                "active-bottom"
+            );
+        });
+
+    if(pageId==="homePage"){
+
+        document
+            .querySelectorAll(".bottom-btn")
+            .forEach(btn=>{
+
+                if(
+                    btn.textContent
+                    .trim()
+                    .includes("HOME")
+                ){
+
+                    btn.classList.add(
+                        "active-bottom"
+                    );
+
+                }
+
+            });
+    }
+}
+
+
+/* =========================
+   CREATE ACCOUNT
+========================= */
+
+async function createAccount(){
+
+    const fullName=
+        document
+        .getElementById("fullName")
+        .value
+        .trim();
+
+    const email=
+        document
+        .getElementById("email")
+        .value
+        .trim();
+
+    const password=
+        document
+        .getElementById("password")
+        .value;
+
+    const confirmPassword=
+        document
+        .getElementById("confirmPassword")
+        .value;
+
+    if(
+        !fullName||
+        !email||
+        !password||
+        !confirmPassword
+    ){
+
+        alert(
+            "Please complete all fields."
+        );
+
+        return;
+    }
+
+    if(password!==confirmPassword){
+
+        alert(
+            "Passwords do not match."
+        );
+
+        return;
+    }
+
+    if(password.length<3){
+
+        alert(
+            "Password must be at least 3 characters."
+        );
+
+        return;
+    }
+
+    const button=
+        document.querySelector(
+            ".auth-button"
+        );
+
+    button.disabled=true;
+    button.textContent=
+        "CREATING...";
+
+    try{
+
+        const response=
+            await fetch(
+                `${NHOST_AUTH}/signup/email-password`,
+                {
+                    method:"POST",
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+                    body:JSON.stringify({
+                        email:email,
+                        password:password,
+                        options:{
+                            displayName:fullName
+                        }
+                    })
+                }
+            );
+
+        const data=
+            await response.json();
+
+        if(!response.ok){
+
+            throw new Error(
+                data.message||
+                "Unable to create account."
+            );
+        }
+
+        if(data.session){
+
+            localStorage.setItem(
+                "tradix_session",
+                JSON.stringify(data.session)
+            );
+
+            createInitialUserData();
+
+            showApp();
+
+        }else{
+
+            alert(
+                "Account created successfully. You can now login."
+            );
+
+            showLogin();
+        }
+
+    }catch(error){
+
+        alert(
+            error.message||
+            "Registration failed."
+        );
+
+    }finally{
+
+        button.disabled=false;
+
+        button.textContent=
+            "CREATE ACCOUNT";
+    }
+}
+
+
+/* =========================
+   INITIAL USER DATA
+========================= */
+
+function createInitialUserData(){
+
+    const session=getSession();
+
+    if(!session||!session.user)return;
+
+    saveUserData({
+
+        accountStatus:"INACTIVE",
+
+        totalDeposits:0,
+
+        totalProfits:0,
+
+        totalWithdrawals:0,
+
+        walletAddress:""
+
+    });
+}
+
+
+/* =========================
+   LOGIN SCREEN
+========================= */
 
 function showLogin(){
 
-  document
-    .getElementById("registerScreen")
-    .classList.remove("active");
+    const box=
+        document.querySelector(
+            ".auth-box"
+        );
 
-  document
-    .getElementById("loginScreen")
-    .classList.add("active");
+    box.innerHTML=`
 
-  clearMessages();
+        <div class="auth-brand">
+            TRADIX
+        </div>
 
+        <h1>Login</h1>
+
+        <p class="auth-subtitle">
+            Login to your TRADIX account
+        </p>
+
+        <input
+            id="loginEmail"
+            class="auth-input"
+            type="email"
+            placeholder="Email"
+        >
+
+        <input
+            id="loginPassword"
+            class="auth-input"
+            type="password"
+            placeholder="Password"
+        >
+
+        <button
+            class="auth-button"
+            onclick="loginAccount()"
+        >
+            LOGIN
+        </button>
+
+        <div class="auth-link">
+            Don't have an account?
+            <span onclick="showCreateAccount()">
+                CREATE ACCOUNT
+            </span>
+        </div>
+    `;
 }
 
 
-function clearMessages(){
+/* =========================
+   CREATE SCREEN
+========================= */
 
-  const loginMessage =
-    document.getElementById("loginMessage");
+function showCreateAccount(){
 
-  const registerMessage =
-    document.getElementById("registerMessage");
+    const box=
+        document.querySelector(
+            ".auth-box"
+        );
 
-  loginMessage.style.display="none";
-  registerMessage.style.display="none";
+    box.innerHTML=`
 
-  loginMessage.className="message";
-  registerMessage.className="message";
+        <div class="auth-brand">
+            TRADIX
+        </div>
 
-  loginMessage.textContent="";
-  registerMessage.textContent="";
+        <h1>Create Account</h1>
 
+        <p class="auth-subtitle">
+            Create your TRADIX account
+        </p>
+
+        <input
+            id="fullName"
+            class="auth-input"
+            type="text"
+            placeholder="Full Name"
+            maxlength="32"
+        >
+
+        <input
+            id="email"
+            class="auth-input"
+            type="email"
+            placeholder="Email"
+        >
+
+        <input
+            id="password"
+            class="auth-input"
+            type="password"
+            placeholder="Password"
+        >
+
+        <input
+            id="confirmPassword"
+            class="auth-input"
+            type="password"
+            placeholder="Confirm Password"
+        >
+
+        <button
+            class="auth-button"
+            onclick="createAccount()"
+        >
+            CREATE ACCOUNT
+        </button>
+
+        <div class="auth-link">
+            Already have an account?
+            <span onclick="showLogin()">
+                LOGIN
+            </span>
+        </div>
+    `;
 }
 
 
-/* REGISTER */
+/* =========================
+   LOGIN
+========================= */
 
-function register(){
+async function loginAccount(){
 
-  const email =
-    document
-      .getElementById("registerEmail")
-      .value
-      .trim();
+    const email=
+        document
+        .getElementById("loginEmail")
+        .value
+        .trim();
 
-  const password =
-    document
-      .getElementById("registerPassword")
-      .value;
+    const password=
+        document
+        .getElementById("loginPassword")
+        .value;
 
-  const confirm =
-    document
-      .getElementById("registerConfirm")
-      .value;
+    if(!email||!password){
+
+        alert(
+            "Please enter your email and password."
+        );
+
+        return;
+    }
+
+    const button=
+        document.querySelector(
+            ".auth-button"
+        );
+
+    button.disabled=true;
+    button.textContent=
+        "LOGGING IN...";
+
+    try{
+
+        const response=
+            await fetch(
+                `${NHOST_AUTH}/signin/email-password`,
+                {
+                    method:"POST",
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+                    body:JSON.stringify({
+                        email:email,
+                        password:password
+                    })
+                }
+            );
+
+        const data=
+            await response.json();
+
+        if(!response.ok){
+
+            throw new Error(
+                data.message||
+                "Login failed."
+            );
+        }
+
+        if(!data.session){
+
+            throw new Error(
+                "Login failed."
+            );
+        }
+
+        localStorage.setItem(
+            "tradix_session",
+            JSON.stringify(data.session)
+        );
+
+        const existing=
+            getUserData();
+
+        if(
+            !existing||
+            Object.keys(existing).length===0
+        ){
+
+            createInitialUserData();
+        }
+
+        showApp();
+
+    }catch(error){
+
+        alert(
+            error.message||
+            "Login failed."
+        );
+
+    }finally{
+
+        button.disabled=false;
+
+        button.textContent=
+            "LOGIN";
+    }
+}
 
 
-  if(!email || !password || !confirm){
+/* =========================
+   LOGOUT
+========================= */
 
-    showMessage(
-      "registerMessage",
-      "Please complete all fields.",
-      "error"
+function logoutAccount(){
+
+    localStorage.removeItem(
+        "tradix_session"
     );
 
-    return;
-  }
+    if(marketSocket){
 
+        try{
+            marketSocket.close();
+        }catch(error){}
 
-  if(!isValidEmail(email)){
+        marketSocket=null;
+    }
 
-    showMessage(
-      "registerMessage",
-      "Please enter a valid email address.",
-      "error"
-    );
+    document.getElementById(
+        "app"
+    ).style.display="none";
 
-    return;
-  }
-
-
-  if(password.length < 6){
-
-    showMessage(
-      "registerMessage",
-      "Password must contain at least 6 characters.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  if(password !== confirm){
-
-    showMessage(
-      "registerMessage",
-      "Password and Confirm Password do not match.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  /*
-    Temporary local registration.
-
-    The account is validated here first.
-    Backend authentication can be connected
-    after the interface is confirmed working.
-  */
-
-  localStorage.setItem(
-    "veltrix_registered_email",
-    email
-  );
-
-  localStorage.setItem(
-    "veltrix_registered_password",
-    password
-  );
-
-
-  showMessage(
-    "registerMessage",
-    "Account created successfully. Please login.",
-    "success"
-  );
-
-
-  setTimeout(function(){
-
-    document.getElementById("loginEmail").value =
-      email;
-
-    document.getElementById("loginPassword").value =
-      "";
+    document.getElementById(
+        "auth"
+    ).style.display="flex";
 
     showLogin();
-
-  },1200);
-
 }
 
 
-/* LOGIN */
+/* =========================
+   COPY DEPOSIT
+========================= */
 
-function login(){
+function copyDepositAddress(){
 
-  const email =
-    document
-      .getElementById("loginEmail")
-      .value
-      .trim();
+    if(navigator.clipboard){
 
-  const password =
-    document
-      .getElementById("loginPassword")
-      .value;
+        navigator.clipboard
+            .writeText(DEPOSIT_ADDRESS)
+            .then(()=>{
+
+                alert(
+                    "Deposit address copied."
+                );
+
+            })
+            .catch(()=>{
+
+                alert(
+                    DEPOSIT_ADDRESS
+                );
+            });
+
+    }else{
+
+        alert(
+            DEPOSIT_ADDRESS
+        );
+    }
+}
 
 
-  if(!email || !password){
+/* =========================
+   CONTACT ADMIN
+========================= */
 
-    showMessage(
-      "loginMessage",
-      "Please enter your email and password.",
-      "error"
+function contactAdmin(){
+
+    window.location.href=
+        "mailto:"+
+        ADMIN_EMAIL+
+        "?subject=TRADIX%20Support";
+}
+
+
+/* =========================
+   SAVE WALLET
+========================= */
+
+function saveWalletAddress(){
+
+    const address=
+        document
+        .getElementById(
+            "walletAddressInput"
+        )
+        .value
+        .trim();
+
+    if(!address){
+
+        alert(
+            "Please enter your wallet address."
+        );
+
+        return;
+    }
+
+    const data=
+        getUserData();
+
+    data.walletAddress=
+        address;
+
+    saveUserData(data);
+
+    document.getElementById(
+        "savedWalletAddress"
+    ).textContent=
+        address;
+
+    alert(
+        "Wallet address saved."
+    );
+}
+
+
+/* =========================
+   DEPOSIT
+========================= */
+
+function submitDeposit(){
+
+    const amount=
+        document
+        .getElementById(
+            "depositAmount"
+        )
+        .value
+        .trim();
+
+    const hash=
+        document
+        .getElementById(
+            "depositHash"
+        )
+        .value
+        .trim();
+
+    if(!amount||!hash){
+
+        alert(
+            "Please enter the amount and transaction hash."
+        );
+
+        return;
+    }
+
+    if(Number(amount)<=0){
+
+        alert(
+            "Please enter a valid amount."
+        );
+
+        return;
+    }
+
+    addNotification(
+        "Deposit Submitted",
+        "Your USDT deposit request has been submitted for administrator review."
     );
 
-    return;
-  }
+    document.getElementById(
+        "depositAmount"
+    ).value="";
+
+    document.getElementById(
+        "depositHash"
+    ).value="";
+
+    alert(
+        "Deposit submitted for review."
+    );
+}
 
 
-  const savedEmail =
-    localStorage.getItem(
-      "veltrix_registered_email"
+/* =========================
+   WITHDRAW
+========================= */
+
+function submitWithdrawal(){
+
+    const address=
+        document
+        .getElementById(
+            "withdrawAddress"
+        )
+        .value
+        .trim();
+
+    const amount=
+        document
+        .getElementById(
+            "withdrawAmount"
+        )
+        .value
+        .trim();
+
+    if(!address||!amount){
+
+        alert(
+            "Please enter your wallet address and amount."
+        );
+
+        return;
+    }
+
+    if(Number(amount)<=0){
+
+        alert(
+            "Please enter a valid amount."
+        );
+
+        return;
+    }
+
+    const data=
+        getUserData();
+
+    const available=
+        Number(data.totalDeposits||0)+
+        Number(data.totalProfits||0)-
+        Number(data.totalWithdrawals||0);
+
+    if(Number(amount)>available){
+
+        alert(
+            "The requested amount exceeds your available balance."
+        );
+
+        return;
+    }
+
+    addNotification(
+        "Withdrawal Submitted",
+        "Your USDT withdrawal request has been submitted for administrator review."
     );
 
-  const savedPassword =
-    localStorage.getItem(
-      "veltrix_registered_password"
+    document.getElementById(
+        "withdrawAmount"
+    ).value="";
+
+    alert(
+        "Withdrawal request submitted."
     );
-
-
-  if(!savedEmail){
-
-    showMessage(
-      "loginMessage",
-      "No account found. Please create an account first.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  if(
-    email !== savedEmail ||
-    password !== savedPassword
-  ){
-
-    showMessage(
-      "loginMessage",
-      "Incorrect email or password.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  currentUser = email;
-
-  enterApp();
-
 }
 
 
-/* EMAIL */
+/* =========================
+   NOTIFICATIONS
+========================= */
 
-function isValidEmail(email){
+function getNotifications(){
 
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const session=getSession();
 
+    if(!session||!session.user)return [];
+
+    const key=
+        "tradix_notifications_"+
+        session.user.id;
+
+    const saved=
+        localStorage.getItem(key);
+
+    if(!saved)return [];
+
+    try{
+
+        return JSON.parse(saved);
+
+    }catch(error){
+
+        return [];
+    }
 }
 
 
-/* MESSAGE */
+function addNotification(
+    title,
+    message
+){
 
-function showMessage(id,text,type){
+    const session=getSession();
 
-  const element =
-    document.getElementById(id);
+    if(!session||!session.user)return;
 
-  element.textContent = text;
+    const key=
+        "tradix_notifications_"+
+        session.user.id;
 
-  element.className =
-    "message " + type;
+    const notifications=
+        getNotifications();
 
-  element.style.display="block";
+    notifications.unshift({
 
-}
+        title:title,
 
+        message:message,
 
-/* ENTER APP */
-
-function enterApp(){
-
-  document
-    .getElementById("auth")
-    .style.display="none";
-
-  document
-    .getElementById("app")
-    .style.display="block";
-
-  document
-    .getElementById("profileEmail")
-    .textContent=currentUser;
-
-}
-
-
-/* LOGOUT */
-
-function logout(){
-
-  currentUser = null;
-
-  document
-    .getElementById("app")
-    .style.display="none";
-
-  document
-    .getElementById("auth")
-    .style.display="flex";
-
-  document
-    .getElementById("loginEmail")
-    .value="";
-
-  document
-    .getElementById("loginPassword")
-    .value="";
-
-  showLogin();
-
-}
-
-
-/* NAVIGATION */
-
-function showPage(page){
-
-  document
-    .querySelectorAll(".page")
-    .forEach(function(p){
-
-      p.classList.remove("active");
+        time:
+            new Date()
+            .toLocaleString()
 
     });
 
+    localStorage.setItem(
+        key,
+        JSON.stringify(
+            notifications.slice(0,50)
+        )
+    );
 
-  const target =
-    document.getElementById(page);
-
-
-  if(target){
-
-    target.classList.add("active");
-
-  }
-
-
-  document
-    .querySelectorAll(".nav button")
-    .forEach(function(button){
-
-      button.classList.remove("active");
-
-    });
-
-
-  const buttons =
-    document.querySelectorAll(".nav button");
-
-
-  const pages=[
-    "home",
-    "wallet",
-    "signals",
-    "academy",
-    "profile"
-  ];
-
-
-  const index =
-    pages.indexOf(page);
-
-
-  if(index >= 0 && buttons[index]){
-
-    buttons[index].classList.add("active");
-
-  }
-
+    renderNotifications();
 }
 
 
-/* MODAL */
+function renderNotifications(){
 
-function showModal(title,text){
+    const container=
+        document.getElementById(
+            "notificationsContainer"
+        );
 
-  document
-    .getElementById("modalTitle")
-    .textContent=title;
+    if(!container)return;
 
-  document
-    .getElementById("modalText")
-    .textContent=text;
+    const notifications=
+        getNotifications();
 
-  document
-    .getElementById("modal")
-    .classList.add("show");
+    if(notifications.length===0){
 
+        container.innerHTML=`
+
+            <div class="empty">
+                No notifications yet.
+            </div>
+
+        `;
+
+        return;
+    }
+
+    container.innerHTML=
+        notifications
+        .map(item=>`
+
+            <div class="notification">
+
+                <strong>
+                    ${escapeHtml(item.title)}
+                </strong>
+
+                <p>
+                    ${escapeHtml(item.message)}
+                </p>
+
+                <div class="notification-time">
+                    ${escapeHtml(item.time)}
+                </div>
+
+            </div>
+
+        `)
+        .join("");
 }
 
 
-function closeModal(){
+/* =========================
+   ESCAPE HTML
+========================= */
 
-  document
-    .getElementById("modal")
-    .classList.remove("show");
+function escapeHtml(value){
 
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 }
+
+
+/* =========================
+   INITIALIZATION
+========================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        renderNotifications();
+
+    }
+);
 
 </script>
 
